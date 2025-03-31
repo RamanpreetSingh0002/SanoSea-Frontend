@@ -1,0 +1,147 @@
+.outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #005c75;
+}
+
+.inner-container {
+  background-color: rgb(177 213 219 / 80%);
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 5px 25px rgb(168 173 190 / 50%);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 450px;
+  width: 100%;
+}
+
+.inner-container h1 {
+  margin-bottom: 1.5rem;
+  color: #082433;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.inner-container p {
+  margin-bottom: 2rem;
+  color: #39393b;
+  font-weight: 400;
+}
+
+.otp-input {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.otp-input input {
+  width: 50px;
+  height: 50px;
+  margin: 0 8px;
+  text-align: center;
+  font-size: 1.5rem;
+  /* border: 2px solid #00627db5; */
+  border: none;
+  border-radius: 12px;
+  background-color: rgb(240 240 240 / 80%);
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.otp-input input:focus {
+  border-color: #005c75;
+  box-shadow: 0 0 0 2px rgb(0 92 117 / 20%);
+  outline: none;
+}
+
+.otp-input input::-webkit-outer-spin-button,
+.otp-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.otp-input input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.inner-container button {
+  background: linear-gradient(309deg, #005c75, #71b4c7);
+  color: white;
+  box-shadow: 0px 0px 10px 4px rgb(108 165 181 / 50%);
+  /* border: 2px solid #208ba9; */
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.inner-container button:hover {
+  background: linear-gradient(309deg, #71b4c7, #005c75);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgb(0 92 117 / 30%);
+}
+
+.inner-container button:disabled {
+  background: #cccccc;
+  border-color: #999999;
+  color: #666666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+#timer {
+  font-size: 1rem;
+  color: #064658;
+  font-weight: 500;
+  /* margin-left: 10px; */
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.expired {
+  animation: pulse 2s infinite;
+  color: #ff4444;
+}
+
+.resend-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #39393b;
+}
+
+.resend-link {
+  color: #0f809e;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding-left: 5px;
+}
+
+.resend-link:hover {
+  color: #064658;
+  text-decoration: underline;
+}
+
+/* #email {
+  color: #064658;
+  font-weight: 500;
+} */

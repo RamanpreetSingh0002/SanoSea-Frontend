@@ -1,0 +1,227 @@
+.booking-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above all other elements */
+  overflow: hidden;
+  opacity: 0; /* Start invisible */
+  animation: fadeIn 0.4s ease-in-out forwards; /* Smooth fade-in animation */
+}
+
+.booking-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  transform: scale(0.5); /* Start small */
+  opacity: 0; /* Start invisible */
+  animation: popUp 0.4s ease-in-out forwards; /* Smooth pop-up animation */
+}
+
+/* Fade-in animation for overlay */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Pop-up animation for modal */
+@keyframes popUp {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1); /* Full size */
+    opacity: 1; /* Fully visible */
+  }
+}
+
+/* Closing animation for modal */
+.booking-modal.closing {
+  animation: closePopUp 0.4s ease-in-out forwards; /* Smooth closing animation */
+}
+
+@keyframes closePopUp {
+  0% {
+    transform: scale(1); /* Full size */
+    opacity: 1; /* Fully visible */
+  }
+  100% {
+    transform: scale(0.5); /* Shrink back to center */
+    opacity: 0; /* Invisible */
+  }
+}
+
+/* .details {
+  display: flex;
+  justify-content: flex-end;
+  background: #00000066;
+
+  height: 100%;
+
+  z-index: 1050; Ensure this is above other components
+  display: block;
+} */
+
+/* Appointment Form Container */
+.Appointments {
+  width: 100%;
+  background: #ffffff;
+  padding: 25px;
+
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Booking Title */
+.Booking h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  /* margin-top: 20px; */
+}
+
+/* Form Fields */
+/* .Appointments form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+} */
+
+/* Input & Select Fields */
+.Appointments input,
+.Appointments select,
+.Appointments textarea {
+  width: 100%;
+  padding: 6px 10px !important;
+  border: 1px solid #d1d3d6;
+  background-color: #ffffff;
+  border-radius: 6px !important;
+  font-size: 12px;
+  color: #2f2f2f;
+}
+
+.Appointments input:focus,
+.Appointments select:focus,
+.Appointments textarea:focus {
+  border: 1px solid #3d3d3d;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+  box-shadow: none;
+}
+
+/* Style empty fields */
+.Appointments input.empty,
+.Appointments select.empty {
+  color: #757575; /* Default color when no input */
+}
+
+/* Style filled fields */
+.Appointments input.filled,
+.Appointments select.filled {
+  color: #2f2f2f; /* Darker text when filled */
+}
+
+/* Labels */
+.Appointments label {
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 5px;
+  /* display: block; */
+  margin-top: 12px;
+}
+
+/* Date & Time Picker Container */
+
+/* Date & Time Picker */
+/* .input-group {
+  display: flex;
+  align-items: center;
+  position: relative;
+} */
+
+/* .input-group input {
+  font-size: 12px;
+} */
+
+/* Icons for Date & Time */
+/* .input-group::before {
+  content: "\f073"; FontAwesome Calendar Icon
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 10px;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+#time.input-group::before {
+  content: "\f017"; FontAwesome Clock Icon
+} */
+
+/* Doctor Specialty Dropdown */
+/* .doctor-speciality select {
+  appearance: none;
+  background: url("https://cdn-icons-png.flaticon.com/512/25/25623.png")
+    no-repeat right 10px center;
+  background-size: 15px;
+} */
+
+/* Mention Consultation Reason */
+.Appointments textarea {
+  resize: none;
+}
+
+/* Buttons */
+.booking-buttons {
+  display: flex;
+  justify-content: right;
+
+  column-gap: 10px;
+}
+
+.btn {
+  width: 100px;
+  padding: 8px 0px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background-color: #a3dde9;
+  color: black;
+}
+
+/* Save Button */
+.save-btn {
+  background-color: #030f21;
+  color: white;
+}
+
+/* Fix Overlay Icons */
+/* .input-group::after {
+  display: none !important;
+} */
+
+/* Mobile Responsive */
+@media screen and (max-width: 480px) {
+  .Appointments {
+    width: 95%;
+  }
+}
