@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+
 import TopNav from "../../Navbar/JSX/TopNav";
 import SideNav from "../../Navbar/JSX/SideNav";
-import "../Style/CoordinatorDashboard.css";
-// import CoordinatorMain from "./CoordinatorMain";
+import CoordinatorMain from "./CoordinatorMain";
 import AuditManagerModal from "../../AuditManager/JSX/AuditManagerModal";
-// import PortAgentModal from "../../PortAgent/JSX/PortAgentModal";
+import PortAgentModal from "../../PortAgent/JSX/PortAgentModal";
+
+import "../Style/CoordinatorDashboard.css";
 
 const CoordinatorDashboard = () => {
   const [isAuditOpen, setAuditOpen] = useState(false); // State to control audit modal
@@ -43,10 +45,10 @@ const CoordinatorDashboard = () => {
     <div>
       <TopNav />
       <SideNav />
-      {/* <CoordinatorMain
+      <CoordinatorMain
         onAuditOpen={handleOpenAudit}
         onPortOpen={handleOpenPort}
-      /> */}
+      />
 
       {isAuditOpen && (
         <div className="modal-overlay">
@@ -57,11 +59,11 @@ const CoordinatorDashboard = () => {
         </div>
       )}
 
-      {/* {isPortOpen && (
+      {isPortOpen && (
         <div className="modal-overlay">
           <PortAgentModal isPortClose={isPortClose} onClose={handleClosePort} />
         </div>
-      )} */}
+      )}
     </div>
   );
 };

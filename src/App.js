@@ -32,11 +32,8 @@ function App() {
           path="/auth/coordinator-dashboard"
           element={<CoordinatorDashboard />}
         />
-        <Route
-          path="/auth/coordinator-dashboard"
-          element={<CoordinatorDashboard />}
-        />
-        <Route path="/auth/audit-detail" element={<AuditManagerModal />} />
+        <Route path="/auth/audit-list" element={<AuditManagerModal />} />
+        <Route path="/auth/port-list" element={<PortAgentModal />} />
       </Routes>
     </>
   );

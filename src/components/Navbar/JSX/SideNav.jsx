@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
-import "../Style/SideNav.css";
-
 import SideNavIcon from "./SideNavIcon";
 import { useAuth } from "../../../hooks";
+
+import "../Style/SideNav.css";
 
 const SideNav = ({ bookNow, onOpen }) => {
   const { authInfo, handleLogout } = useAuth();

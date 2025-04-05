@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ImSpinner3 } from "react-icons/im";
 
 import {
   resendEmailVerificationToken,
   verifyUserEmail,
 } from "../../../api/auth";
 import Container from "../../Container";
-import { useAuth } from "../../../hooks";
-import { ImSpinner3 } from "react-icons/im";
+import CustomLink from "../../CustomLink";
+import { useAuth, useNotification } from "../../../hooks";
 
 import "../Style/EmailVerification.css";
 
@@ -41,6 +42,7 @@ const EmailVerification = () => {
   const email = user.email;
 
   const navigate = useNavigate();
+  const { updateNotification } = useNotification();
 
   useEffect(() => {
     // Start the timer on component mount
@@ -69,22 +71,12 @@ const EmailVerification = () => {
   const resendOTP = async () => {
     const { error, message } = await resendEmailVerificationToken(user.id);
 
-    // if (error) return updateNotification("error", error);
-    if (error) {
-      alert("error", error);
-      return;
-    }
+    if (error) return updateNotification("error", error);
 
-    // updateNotification("success", message);
+    updateNotification("success", message);
 
-    alert(message);
     setOtp(new Array(6).fill("")); // Clear the OTP inputs
     startTimer(); // Restart the timer
-    // if (canResend) {
-
-    // } else {
-    //   alert("Cannot resend code. Time has not expired.");
-    // }
   };
 
   const handleChange = (value, index) => {
@@ -111,10 +103,12 @@ const EmailVerification = () => {
     e.preventDefault();
 
     if (!isValidOTP(otp)) {
-      // Display an error if OTP is invalid
-      alert("Invalid OTP! Please enter a valid 6-digit OTP.");
       setBusy(false);
-      return;
+      // Display an error if OTP is invalid
+      return updateNotification(
+        "error",
+        "Invalid OTP! Please enter a valid 6-digit OTP."
+      );
     }
 
     // Submit OTP for verification
@@ -124,13 +118,12 @@ const EmailVerification = () => {
     });
 
     if (error) {
-      alert(error); // Handle error response
       setBusy(false);
-      return;
+      return updateNotification("error", error); // Handle error response
     }
     setBusy(false);
     // If OTP is verified successfully
-    alert(message || "Email verified successfully!");
+    updateNotification("success", message);
     isAuth(); // Refresh authentication state
     navigate("/auth/sign-in");
   };
@@ -186,6 +179,10 @@ const EmailVerification = () => {
                 .padStart(2, "0")})`
             : "Code expired"}
         </span>
+        <CustomLink className="back-login" to="/auth/sign-in">
+          <i class="fa-solid fa-arrow-left"></i>
+          Back to login
+        </CustomLink>
       </div>
     </Container>
   );

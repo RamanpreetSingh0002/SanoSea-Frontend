@@ -1,7 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
-import { getIsAuth, signInUser } from "../api/auth";
-
 import { useNavigate } from "react-router-dom";
+
+import { getIsAuth, signInUser } from "../api/auth";
+import { useNotification } from "../hooks";
 
 export const AuthContext = createContext();
 
@@ -14,7 +15,7 @@ const defaultAuthInfo = {
 
 const AuthProvider = ({ children }) => {
   const [authInfo, setAuthInfo] = useState({ ...defaultAuthInfo });
-  // const { updateNotification } = useNotification();
+  const { updateNotification } = useNotification();
 
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const AuthProvider = ({ children }) => {
     const { error, user } = await signInUser({ email, password });
 
     if (error) {
-      // updateNotification("error", error);
+      updateNotification("error", error);
       console.log(error);
 
       return setAuthInfo({ ...authInfo, isPending: false, error });
@@ -92,7 +93,7 @@ const AuthProvider = ({ children }) => {
       const { error, user } = await getIsAuth(token);
 
       if (error) {
-        // updateNotification("error", error);
+        updateNotification("error", error);
         return setAuthInfo({ ...authInfo, isPending: false, error });
       }
 

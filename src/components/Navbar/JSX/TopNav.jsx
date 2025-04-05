@@ -29,11 +29,11 @@ const TopNav = () => {
         </div>
 
         <div class="top-nav-right-portion">
-          <span>
+          {/* <span>
             <CustomLink href="/">
               <i class="fa-solid fa-moon"></i>
             </CustomLink>
-          </span>
+          </span> */}
 
           <span>
             <CustomLink href="/">

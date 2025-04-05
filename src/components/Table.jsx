@@ -1,10 +1,10 @@
 import React from "react";
 import TableHeader from "./TableHeader";
 
-const Table = ({ children }) => {
+const Table = ({ isPatient, children }) => {
   return (
     <table class="booking-table">
-      <TableHeader />
+      <TableHeader isPatient={isPatient} />
       {children}
     </table>
   );

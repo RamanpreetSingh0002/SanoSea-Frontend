@@ -4,7 +4,7 @@ import FormField from "./FormField";
 import AuthOptions from "./AuthOptions";
 import AuthActionSection from "./AuthActionSection";
 import { isValidEmail } from "../../utils/helper";
-import { useAuth } from "../../hooks";
+import { useAuth, useNotification } from "../../hooks";
 
 const validateUserInfo = ({ email, password }) => {
   if (!email.trim()) return { ok: false, error: "Email is missing!" };
@@ -26,7 +26,8 @@ const LoginForm = ({ className, setResetForm }) => {
   const [rememberMe, setRememberMe] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  // const { updateNotification } = useNotification();
+  const { updateNotification } = useNotification();
+
   const { handleLogin, authInfo } = useAuth();
   const { isPending, isLoggedIn } = authInfo;
 
@@ -43,10 +44,7 @@ const LoginForm = ({ className, setResetForm }) => {
     e.preventDefault();
     const { ok, error } = validateUserInfo(userInfo);
 
-    if (!ok) console.log(error);
-
-    if (!ok) return;
-    // if (!ok) return updateNotification("error", error);
+    if (!ok) return updateNotification("error", error);
 
     handleLogin(userInfo.email, userInfo.password, rememberMe);
   };

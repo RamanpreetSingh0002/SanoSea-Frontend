@@ -236,7 +236,7 @@
   transition: border-color 0.3s ease-in-out;
 }
 
-.icon {
+.form_field .icon {
   position: absolute;
   right: 18px;
   top: 43px;

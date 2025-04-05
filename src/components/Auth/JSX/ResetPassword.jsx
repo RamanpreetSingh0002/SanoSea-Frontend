@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { ImSpinner3 } from "react-icons/im";
 
 import Container from "../../Container";
-import { useAuth } from "../../../hooks";
 import FormField from "../../Form/FormField";
-import { ImSpinner3 } from "react-icons/im";
+import CustomLink from "../../CustomLink";
+import { useAuth, useNotification } from "../../../hooks";
 import { resetPassword, verifyPasswordResetToken } from "../../../api/auth";
 
 import "../Style/ResetPassword.css";
@@ -21,7 +22,7 @@ const ResetPassword = () => {
   const token = searchParams.get("token");
   const id = searchParams.get("id");
 
-  // const { updateNotification } = useNotification();
+  const { updateNotification } = useNotification();
 
   const navigate = useNavigate();
 
@@ -35,9 +36,8 @@ const ResetPassword = () => {
 
     if (error) {
       navigate("/auth/reset-password", { replace: true });
-      console.log(error);
 
-      // updateNotification("error", error);
+      updateNotification("error", error);
     }
 
     if (!valid) {
@@ -56,17 +56,14 @@ const ResetPassword = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    if (!password.new.trim()) return console.log("Password is missing!");
-
-    // return updateNotification("error", "Password is missing!");
+    if (!password.new.trim() || !password.confirm.trim())
+      return updateNotification("error", "Password is missing!");
 
     if (password.new.trim().length < 8)
-      return console.log("Password must be 8 characters long!");
-    // return updateNotification("error", "Password must be 8 characters long!");
+      return updateNotification("error", "Password must be 8 characters long!");
 
     if (password.new !== password.confirm)
-      return console.log("Password do not match!");
-    // return updateNotification("error", "Password do not match!");
+      return updateNotification("error", "Password do not match!");
 
     const { error, message } = await resetPassword({
       newPassword: password.new,
@@ -74,13 +71,9 @@ const ResetPassword = () => {
       token,
     });
 
-    if (error) return console.log(error);
+    if (error) return updateNotification("error", error);
 
-    // return updateNotification("error", error);
-
-    console.log(message);
-
-    // updateNotification("success", message);
+    updateNotification("success", message);
     handleLogout();
     navigate("/auth/sign-in", { replace: true });
   };
@@ -134,6 +127,11 @@ const ResetPassword = () => {
         />
 
         <button type="submit">Confirm</button>
+
+        <CustomLink className="back-login" to="/auth/sign-in">
+          <i class="fa-solid fa-arrow-left"></i>
+          Back to login
+        </CustomLink>
       </form>
     </Container>
   );

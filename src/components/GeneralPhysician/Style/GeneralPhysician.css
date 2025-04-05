@@ -1,6 +1,4 @@
-/* Three divs patient details */
-
-#patient-section {
+#appointment-section {
   background-color: #f5f5f5;
   padding-left: 60px;
   padding: 15px 0 15px 60px;
@@ -8,32 +6,26 @@
   justify-content: center;
 }
 
-.patient-detail-section {
+.appointment-detail-section {
   margin-top: 90px;
   width: 97%;
 }
 
-.patient-detail {
+.appointment-detail {
   background-color: white;
   border-radius: 8px;
   padding: 13px;
   height: 100%;
 }
 
-.booking {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.patient-detail h6 {
+.appointment-detail h6 {
   color: #9595a3;
   /* margin-bottom: 15px; */
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
 }
 
-.patient-detail h4 {
+.appointment-detail h4 {
   font-size: 40px;
   font-weight: bold;
 }
@@ -42,8 +34,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 18px;
-  margin-bottom: -12px;
+  margin-top: 5px;
+  margin-bottom: -6px;
 }
 
 .calender-icon img {
@@ -63,157 +55,6 @@
   top: 17px;
   color: #005c75;
 }
-
-.calender {
-  display: flex;
-  align-items: center;
-}
-
-.calender img,
-.cab-driver-time img,
-.timer img {
-  width: 15px;
-}
-
-.calender p,
-.timer p,
-.doctor-port-agent p,
-.cab-driver p {
-  font-size: 10px;
-  color: #9494a2;
-  font-weight: 500;
-  margin: 0;
-}
-
-.timer {
-  display: flex;
-}
-
-.doctor-agent {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  /* margin: 5px 0; */
-  padding-bottom: 3px;
-}
-
-.doctor-agent > div {
-  display: flex;
-  /* padding: 12px; */
-  align-items: center;
-}
-
-.doctor-agent-img {
-  /* height: 2.5rem; */
-  /* width: 2.5rem; */
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid white;
-  box-shadow: 0px 0px 15px 2px #d8d8d8;
-  /* margin-right: 10px; */
-}
-
-.doctor-agent-img img {
-  /* width: 30px; */
-  border-radius: 50px;
-  width: 45px;
-  height: 45px;
-  border-radius: 50px;
-  object-fit: cover;
-}
-
-.doctor-agent-details {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: space-between;
-  margin-left: 10px;
-}
-
-.doctor-port-agent h5 {
-  font-size: 15px;
-  margin: 0;
-}
-
-.doctor-agent-view-detail {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.doctor-agent-view-detail a {
-  text-decoration: none;
-  color: black;
-
-  background-color: #bae8e8;
-  border-radius: 3px;
-  margin: 0px;
-
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: 500;
-  display: inline-block;
-}
-
-.cab-driver {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2px;
-}
-
-.cab-location-address strong {
-  font-size: 15px;
-}
-
-.cab-driver-name strong,
-.cab-location-address strong {
-  font-size: 10px;
-}
-
-.cab-driver-time,
-.calender,
-.timer {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  color: #777;
-}
-
-.cab-location {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  /* margin-top: 20px; */
-}
-.cab-location > div {
-  display: flex;
-  align-items: center;
-  background: #f8f8f8;
-  padding: 5px 10px;
-  border-radius: 8px;
-  /* margin-bottom: 8px; */
-}
-
-.cab-driver-name p,
-.cab-location-address p {
-  font-size: 10px;
-  color: #9494a2;
-  font-weight: 500;
-  margin: 0;
-}
-
-/* .fa-location-dot,
-.fa-clock {
-  color: #005c75;
-} */
-
-/* .fa-location-dot {
-  font-size: 16px;
-  margin-right: 10px;
-} */
 
 /* all bookings section */
 
@@ -372,10 +213,6 @@ tbody tr {
   border: 1px solid green;
 }
 
-/* .cancelled a:hover {
-      background: red;
-      color: white;
-    } */
 .upcoming a {
   color: orangered;
   border: 1px solid orangered;
@@ -398,12 +235,10 @@ tbody tr {
   padding: 2px 5px;
   border-radius: 3px;
   font-weight: 500;
-  /* display: block; */
   width: 140px;
   text-align: center;
   background-color: #f5f5f5;
   display: flex;
-  /* align-items: center; */
   justify-content: center;
 }
 
@@ -422,8 +257,9 @@ tbody tr {
 .assigned-status-view-detail a {
   color: grey;
   font-size: 14px;
+  text-decoration: none;
 }
 
 .assigned-status-view-detail a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import InfoCardList from "../../InfoCardList";
 
-const AuditManagerModal = ({ isAuditClose, onClose }) => {
+const PortAgentModal = ({ isPortClose, onClose }) => {
   return (
-    <div className={`list-modal ${isAuditClose ? "closing" : ""}`}>
+    <div className={`list-modal ${isPortClose ? "closing" : ""}`}>
       <InfoCardList
-        title="Audit Manager"
+        title="Port Agent"
         onClose={onClose}
         data={[
           {
@@ -59,4 +59,4 @@ const AuditManagerModal = ({ isAuditClose, onClose }) => {
   );
 };
 
-export default AuditManagerModal;
+export default PortAgentModal;

@@ -12,13 +12,16 @@ const TRow = ({
   date,
   statusClass,
   statusLabel,
+  actionType,
 }) => {
   return (
     <tr>
       {/* Patient Assigned */}
-      <td>
-        <AssignedPerson img={patientImg} name={patientName} />
-      </td>
+      {patientName && (
+        <td>
+          <AssignedPerson img={patientImg} name={patientName} />
+        </td>
+      )}
       {/* Doctor assigned */}
       <td>
         <AssignedPerson img={doctorImg} name={doctorName} />
@@ -48,9 +51,20 @@ const TRow = ({
         </div>
       </td>
 
+      {!patientName && (
+        <td>
+          <div class="assigned-status-download-report">
+            <a href="">
+              <img src="/images/icons-download.png" alt="download" />
+              <span>Download Report</span>
+            </a>
+          </div>
+        </td>
+      )}
+
       <td>
         <div class="assigned-status-view-detail">
-          <a href="">Cancel Appointment</a>
+          <a href="">{actionType}</a>
         </div>
       </td>
     </tr>

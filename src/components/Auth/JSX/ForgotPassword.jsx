@@ -1,30 +1,28 @@
 import React, { useState } from "react";
 
 import Container from "../../Container";
-
-import "../Style/ForgotPassword.css";
+import CustomLink from "../../CustomLink";
 import { isValidEmail } from "../../../utils/helper";
 import { forgetPassword } from "../../../api/auth";
+import { useNotification } from "../../../hooks";
+
+import "../Style/ForgotPassword.css";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
+  const { updateNotification } = useNotification();
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    if (!isValidEmail(email)) return console.log("Invalid email!");
-
-    // return updateNotification("error", "Invalid email!");
+    if (!isValidEmail(email))
+      return updateNotification("error", "Invalid email!");
 
     const { error, message } = await forgetPassword(email);
-    if (error) return console.log("Error: ", error);
 
-    // return updateNotification("error", error);
+    if (error) return updateNotification("error", error);
 
-    alert(message || "Link sent successfully!");
-    console.log("Success: ", message);
-
-    // updateNotification("success", message);
+    updateNotification("success", message);
   };
 
   return (
@@ -47,8 +45,13 @@ const ForgotPassword = () => {
         </div>
 
         <button type="submit" onClick={handleSubmit}>
-          Send
+          Reset Password
         </button>
+
+        <CustomLink className="back-login" to="/auth/sign-in">
+          <i class="fa-solid fa-arrow-left"></i>
+          Back to login
+        </CustomLink>
       </form>
     </Container>
   );

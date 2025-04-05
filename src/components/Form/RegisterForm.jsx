@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAuth } from "../../hooks";
+import { useAuth, useNotification } from "../../hooks";
 import { signUpUser } from "../../api/auth";
 import { isValidEmail } from "../../utils/helper";
 import FormField from "./FormField";
@@ -57,7 +57,7 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
   const { authInfo } = useAuth();
   const { isLoggedIn } = authInfo;
 
-  // const { updateNotification } = useNotification();
+  const { updateNotification } = useNotification();
 
   const handleResize = () => {
     setIsSmallScreen(window.innerWidth <= 981);
@@ -87,11 +87,9 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
     e.preventDefault();
     const { ok, error } = validateUserInfo(userInfo);
 
-    // if (!ok) return updateNotification("error", error);
     if (!ok) {
-      console.log(error);
       setBusy(false);
-      return;
+      return updateNotification("error", error);
     }
 
     const formData = new FormData();
@@ -105,10 +103,7 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
 
     setBusy(false);
 
-    if (response.error) {
-      console.log(response.error);
-      return;
-    }
+    if (response.error) return updateNotification("error", response.error);
 
     setUserInfo({ ...defaultUserInfo });
     setSelectedProfilePhoto("");
@@ -118,7 +113,6 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
     // document.querySelector(".wrapper").classList.remove("active");
 
     // navigate("/");
-    // if (response.error) return updateNotification("error", response.error);
 
     navigate("/auth/verify-email", {
       state: { user: response.user },
