@@ -9,6 +9,7 @@ import GeneralPhysician from "./components/GeneralPhysician/JSX/GeneralPhysician
 import BookAppointment from "./components/GeneralPhysician/JSX/BookAppointment.jsx";
 import CoordinatorDashboard from "./components/Coordinator/JSX/CoordinatorDashboard.jsx";
 import AuditManagerModal from "./components/AuditManager/JSX/AuditManagerModal.jsx";
+import PortAgentModal from "./components/PortAgent/JSX/PortAgentModal.jsx";
 
 function App() {
   return (
