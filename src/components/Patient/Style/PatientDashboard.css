@@ -186,12 +186,11 @@
   margin: 0;
 }
 
-.fa-location-dot,
-.fa-clock {
+.cab-location i {
   color: #005c75;
 }
 
-.fa-location-dot {
+.cab-location i {
   font-size: 16px;
   margin-right: 10px;
 }

@@ -1,4 +1,4 @@
-.booking-overlay {
+.box-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +14,7 @@
   animation: fadeIn 0.4s ease-in-out forwards; /* Smooth fade-in animation */
 }
 
-.booking-modal {
+.box-modal {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -50,7 +50,7 @@
 }
 
 /* Closing animation for modal */
-.booking-modal.closing {
+.box-modal.closing {
   animation: closePopUp 0.4s ease-in-out forwards; /* Smooth closing animation */
 }
 
@@ -76,8 +76,8 @@
   display: block;
 } */
 
-/* Appointment Form Container */
-.Appointments {
+/* internal-modal Form Container */
+.internal-modal {
   width: 100%;
   background: #ffffff;
   padding: 25px;
@@ -85,8 +85,8 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Booking Title */
-.Booking h2 {
+/* box-heading Title */
+.box-heading h2 {
   text-align: center;
   font-size: 28px;
   font-weight: bold;
@@ -95,16 +95,16 @@
 }
 
 /* Form Fields */
-/* .Appointments form {
+/* .internal-modal form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 } */
 
 /* Input & Select Fields */
-.Appointments input,
-.Appointments select,
-.Appointments textarea {
+.internal-modal input,
+.internal-modal select,
+.internal-modal textarea {
   width: 100%;
   padding: 6px 10px !important;
   border: 1px solid #d1d3d6;
@@ -114,9 +114,9 @@
   color: #2f2f2f;
 }
 
-.Appointments input:focus,
-.Appointments select:focus,
-.Appointments textarea:focus {
+.internal-modal input:focus,
+.internal-modal select:focus,
+.internal-modal textarea:focus {
   border: 1px solid #3d3d3d;
   outline: none;
   transition: border-color 0.3s ease-in-out;
@@ -124,19 +124,19 @@
 }
 
 /* Style empty fields */
-.Appointments input.empty,
-.Appointments select.empty {
+.internal-modal input.empty,
+.internal-modal select.empty {
   color: #757575; /* Default color when no input */
 }
 
 /* Style filled fields */
-.Appointments input.filled,
-.Appointments select.filled {
+.internal-modal input.filled,
+.internal-modal select.filled {
   color: #2f2f2f; /* Darker text when filled */
 }
 
 /* Labels */
-.Appointments label {
+.internal-modal label {
   font-weight: 600;
   font-size: 12px;
   margin-bottom: 5px;
@@ -181,12 +181,12 @@
 } */
 
 /* Mention Consultation Reason */
-.Appointments textarea {
+.internal-modal textarea {
   resize: none;
 }
 
 /* Buttons */
-.booking-buttons {
+.box-buttons {
   display: flex;
   justify-content: right;
 
@@ -221,7 +221,7 @@
 
 /* Mobile Responsive */
 @media screen and (max-width: 480px) {
-  .Appointments {
+  .internal-modal {
     width: 95%;
   }
 }

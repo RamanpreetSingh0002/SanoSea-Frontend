@@ -9,7 +9,8 @@ import AuthActionSection from "./AuthActionSection";
 
 const defaultUserInfo = {
   profilePhoto: null,
-  fullName: "",
+  firstName: "",
+  lastName: "",
   phoneNumber: "",
   email: "",
   password: "",
@@ -18,7 +19,8 @@ const defaultUserInfo = {
 
 const validateUserInfo = ({
   profilePhoto,
-  fullName,
+  firstName,
+  lastName,
   phoneNumber,
   email,
   password,
@@ -28,8 +30,9 @@ const validateUserInfo = ({
   if (profilePhoto && !profilePhoto.type?.startsWith("image"))
     return { error: "Invalid image/Profile photo file!" };
 
-  if (!fullName.trim()) return { ok: false, error: "Full name is missing!" };
-  if (!isValidName.test(fullName)) return { ok: false, error: "Invalid name!" };
+  if (!firstName.trim()) return { ok: false, error: "First name is missing!" };
+  if (!isValidName.test(firstName) || !isValidName.test(lastName))
+    return { ok: false, error: "Invalid name!" };
 
   if (!phoneNumber.trim())
     return { ok: false, error: "Phone number is missing!" };
@@ -176,7 +179,8 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
     });
   }, [initialState, setResetForm]);
 
-  const { fullName, phoneNumber, email, password, officeAddress } = userInfo;
+  const { firstName, lastName, phoneNumber, email, password, officeAddress } =
+    userInfo;
 
   return (
     <div
@@ -229,17 +233,26 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
         {/* Name */}
         <div className="col-6">
           <FormField
-            value={fullName}
+            value={firstName}
             onChange={handleChange}
-            name="fullName"
-            label="Full Name"
-            placeholder="Full name"
+            name="firstName"
+            label="First Name"
+            placeholder="First name"
             type="text"
           />
         </div>
-
-        {/* Number */}
         <div className="col-6">
+          <FormField
+            value={lastName}
+            onChange={handleChange}
+            name="lastName"
+            label="Last Name"
+            placeholder="Last name"
+            type="text"
+          />
+        </div>
+        {/* Number */}
+        <div className="col-12">
           <FormField
             value={phoneNumber}
             onChange={handleChange}

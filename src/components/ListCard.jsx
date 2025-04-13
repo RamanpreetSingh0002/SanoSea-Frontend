@@ -18,6 +18,7 @@ const ListCard = ({ title, data, onOpen }) => {
               <div className="list-profile-img">
                 <img src={item.image} alt="profile" />
               </div>
+
               <div className="list-detail">
                 <h5>{item.name}</h5>
                 <a href={item.link} className="view-link">

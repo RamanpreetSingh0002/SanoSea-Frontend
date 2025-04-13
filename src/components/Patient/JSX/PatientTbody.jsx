@@ -12,7 +12,7 @@ const PatientTbody = () => {
         time="12:30 PM"
         date="Jan 20,2025"
         statusClass="cancelled"
-        statusLabel="Complete"
+        statusLabel="Cancelled"
         actionType="View Detail"
       />
 
@@ -23,8 +23,8 @@ const PatientTbody = () => {
         portAgentName="Tiana Calzoni"
         time="12:30 PM"
         date="Jan 20,2025"
-        statusClass="upcoming"
-        statusLabel="Upcoming"
+        statusClass="new"
+        statusLabel="New"
         actionType="View Detail"
       />
 
@@ -59,8 +59,20 @@ const PatientTbody = () => {
         portAgentName="Tiana Calzoni"
         time="12:30 PM"
         date="Jan 20,2025"
-        statusClass="new"
-        statusLabel="New"
+        statusClass="complete"
+        statusLabel="Complete"
+        actionType="View Detail"
+      />
+
+      <TRow
+        doctorImg="../images/doctor-female-dummy-img.png"
+        doctorName="Jaydon Bator"
+        portAgentImg="../images/male-dummy-img.png"
+        portAgentName="Tiana Calzoni"
+        time="12:30 PM"
+        date="Jan 20,2025"
+        statusClass="upcoming"
+        statusLabel="Upcoming"
         actionType="View Detail"
       />
     </tbody>

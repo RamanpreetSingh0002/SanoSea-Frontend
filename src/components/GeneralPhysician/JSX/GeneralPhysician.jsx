@@ -29,7 +29,7 @@ const GeneralPhysician = () => {
       <GPMain />
 
       {isBookingOpen && (
-        <div className="booking-overlay">
+        <div className="box-overlay">
           <BookAppointment isClosing={isClosing} onClose={handleCloseBooking} />
         </div>
       )}

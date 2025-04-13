@@ -1,0 +1,183 @@
+/* admin booking detail */
+.booking-detail {
+  background-color: #f5f5f5;
+  padding: 105px 0 20px 80px;
+}
+
+.booking-detail-header {
+  display: flex;
+  gap: 20px;
+}
+
+.booking-detail-header button {
+  border: 1px solid #cbcbd1;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background: transparent;
+}
+
+.back-btn i {
+  font-size: 10px;
+}
+
+.booking-detail-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 20px 0 0;
+}
+
+.booking-section {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.booking-section h4 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.booking-user-detail {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.booking-user-info {
+  border-radius: 16px;
+}
+
+/* user header */
+.user-header-section {
+  display: flex;
+  background-color: #f5f5f5;
+  border-radius: 16px;
+  padding: 15px;
+  gap: 20px;
+}
+
+.user-header-avtar img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0px 0px 15px 2px #d8d8d8;
+  border: 4px solid white;
+}
+
+.user-header-info {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  gap: 10px;
+}
+
+.user-header-detail h5 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.user-header-detail p {
+  font-size: 15px;
+  color: #005c75;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* labeled icon text */
+.labeled-icon-text i {
+  margin-right: 5px;
+  color: #333;
+  font-size: 14px;
+}
+
+.labeled-icon-text strong {
+  font-weight: 600;
+}
+
+.labeled-icon-text p {
+  margin: 0;
+  font-size: 12px;
+  color: #9494a2;
+}
+
+/* patient info */
+.patient-info-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-detail {
+  display: flex;
+  gap: 51px;
+  align-items: center;
+}
+
+.download-info-button button {
+  background-color: #b0ebe3;
+  color: #000;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  float: right;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s ease;
+  width: 230px;
+  justify-content: center;
+}
+
+.patient-info-date-time,
+.cab-detail-port {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #777;
+}
+
+.cab-detail-port i {
+  color: #005c75;
+}
+
+.patient-info-date-time p,
+.cab-detail-port p {
+  margin: 0;
+}
+.patient-info-date-time img,
+.cab-detail-port img {
+  width: 15px;
+}
+.patient-info-symptom {
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+/* port agent */
+.port-agent-info-cab {
+  display: flex;
+  justify-content: space-between;
+}
+
+.port-agent-booking-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*  booking detail item*/
+.cab-detail-driver h6 {
+  font-size: 13px;
+  margin: 0;
+}
+
+.cab-detail-port {
+  margin-bottom: 15px;
+}

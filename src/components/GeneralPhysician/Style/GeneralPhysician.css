@@ -208,9 +208,14 @@ tbody tr {
   text-align: center;
 }
 
-.cancelled a {
+.complete a {
   color: green;
   border: 1px solid green;
+}
+
+.cancelled a {
+  color: red;
+  border: 1px solid red;
 }
 
 .upcoming a {

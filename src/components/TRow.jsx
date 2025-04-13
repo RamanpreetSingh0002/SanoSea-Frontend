@@ -1,5 +1,6 @@
 import React from "react";
 import AssignedPerson from "./AssignedPerson";
+import { Link } from "react-router-dom";
 
 const TRow = ({
   patientImg,
@@ -64,7 +65,7 @@ const TRow = ({
 
       <td>
         <div class="assigned-status-view-detail">
-          <a href="">{actionType}</a>
+          <Link to="/auth/booking-detail">{actionType}</Link>
         </div>
       </td>
     </tr>

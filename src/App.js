@@ -10,6 +10,9 @@ import BookAppointment from "./components/GeneralPhysician/JSX/BookAppointment.j
 import CoordinatorDashboard from "./components/Coordinator/JSX/CoordinatorDashboard.jsx";
 import AuditManagerModal from "./components/AuditManager/JSX/AuditManagerModal.jsx";
 import PortAgentModal from "./components/PortAgent/JSX/PortAgentModal.jsx";
+import AdminBookingDetail from "./components/Admin/JSX/AdminBookingDetail.jsx";
+import SubAdmin from "./components/Admin/JSX/SubAdmin.jsx";
+import Doctor from "./components/Doctor/JSX/Doctor.jsx";
 
 function App() {
   return (
@@ -28,13 +31,16 @@ function App() {
           path="/auth/general-physician-dashboard"
           element={<GeneralPhysician />}
         />
-        <Route path="/auth/book-appointment" element={<BookAppointment />} />
+        {/* <Route path="/auth/book-appointment" element={<BookAppointment />} /> */}
         <Route
           path="/auth/coordinator-dashboard"
           element={<CoordinatorDashboard />}
         />
-        <Route path="/auth/audit-list" element={<AuditManagerModal />} />
-        <Route path="/auth/port-list" element={<PortAgentModal />} />
+        {/* <Route path="/auth/audit-list" element={<AuditManagerModal />} />
+        <Route path="/auth/port-list" element={<PortAgentModal />} /> */}
+        <Route path="/auth/booking-detail" element={<AdminBookingDetail />} />
+        <Route path="/auth/sub-admin" element={<SubAdmin />} />
+        <Route path="/auth/doctor" element={<Doctor />} />
       </Routes>
     </>
   );
