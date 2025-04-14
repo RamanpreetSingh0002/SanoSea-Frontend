@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import FormField from "../../Form/FormField";
 import DropdownSelect from "../../DropdownSelect";
@@ -12,10 +12,25 @@ const BookAppointment = ({ isClosing, onClose }) => {
     doctorSpeciality: "",
   });
 
+  const [activeDropdownIndex, setActiveDropdownIndex] = useState(null); // Track dropdown globally
+
   const handleChange = e => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (!event.target.closest(".select-menu")) {
+        setActiveDropdownIndex(null);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={`box-modal ${isClosing ? "closing" : ""}`}>
@@ -94,9 +109,10 @@ const BookAppointment = ({ isClosing, onClose }) => {
 
             <div className="col-12">
               <div className="form_field">
-                <label>Doctor Speciality</label>
+                <label for="doctorSpeciality">Doctor Speciality</label>
                 <DropdownSelect
-                  defaultClass="default-value"
+                  id="doctorSpeciality"
+                  // defaultClass="default-value"
                   defaultValue="Select Doctor Speciality"
                   options={[
                     "Emergency Medicine Specialist",
@@ -106,6 +122,9 @@ const BookAppointment = ({ isClosing, onClose }) => {
                     "Neurologist",
                     "Gastroenterologist",
                   ]}
+                  index={0} // Unique index for tracking
+                  activeDropdownIndex={activeDropdownIndex}
+                  setActiveDropdownIndex={setActiveDropdownIndex}
                   //   includeLabel={true} // shows "Select State" label
                   //   onChange={handleDropdownChange}
                 />

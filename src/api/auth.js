@@ -115,3 +115,16 @@ export const resendEmailVerificationToken = async userId => {
     return { error: error.message || error };
   }
 };
+
+export const changePassword = async passwordInfo => {
+  try {
+    const { data } = await client.post("/user/change-password", passwordInfo);
+    return data;
+  } catch (error) {
+    const { response } = error;
+
+    if (response?.data) return response.data;
+
+    return { error: error.message || error };
+  }
+};

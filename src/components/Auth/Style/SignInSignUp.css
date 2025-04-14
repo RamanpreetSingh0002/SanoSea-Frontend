@@ -215,6 +215,8 @@
 
 .form_field label {
   margin-bottom: 5px;
+  text-align: left;
+  width: 100%;
 }
 
 .form_field input,

@@ -1,6 +1,7 @@
 #sub-admin-section {
   padding: 100px 0 20px 80px;
   background-color: #f5f5f5;
+  height: 100vh;
 }
 
 .sub-admin-header {
@@ -9,31 +10,31 @@
   padding-right: 20px;
 }
 
-.sub-admin-header h4 {
-}
-
 .sub-admin-header button {
   background-color: #498b9c;
   border: none;
-  padding: 5px 15px;
+  padding: 8px 12px;
   color: white;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .sub-admin-header img {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+  vertical-align: text-bottom;
 }
 
 .sub-admin-box {
   background-color: white;
   /* padding: 20px; */
   border-radius: 8px;
-  margin: 10px 20px 0 0;
+  margin: 14px 20px 0 0;
 }
 
 .sub-admin-table {
@@ -62,7 +63,9 @@ tbody td {
 .select-menu {
   /* max-width: 130px; */
   color: #005c75;
+  position: relative;
 }
+
 .select-menu .select-btn {
   display: flex;
   height: 40px;
@@ -82,21 +85,15 @@ tbody td {
 .select-menu .options {
   position: absolute;
   width: 120px;
-  overflow-y: auto;
-  /* max-height: 295px; */
   padding: 5px;
-  margin-top: 10px;
   border-radius: 4px;
   background: #fff;
   color: #005c75;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  animation-name: fadeInDown;
-  -webkit-animation-name: fadeInDown;
   animation-duration: 0.35s;
   animation-fill-mode: both;
-  -webkit-animation-duration: 0.35s;
-  -webkit-animation-fill-mode: both;
 }
+
 .select-menu .options .option {
   display: flex;
   height: 40px;
@@ -108,9 +105,11 @@ tbody td {
   font-size: 13px;
   font-weight: 500;
 }
+
 .select-menu .options .option:hover {
   background: #bae8e873;
 }
+
 .select-menu.active .select-btn i {
   transform: rotate(-180deg);
 }
@@ -134,6 +133,20 @@ tbody td {
   background-color: #f0f0f0;
 }
 
+/* Default dropdown opening downwards */
+.options-down {
+  top: 100%;
+  margin-top: 10px;
+  animation-name: fadeInDown;
+}
+
+/* Dropdown opening upwards when needed */
+.options-up {
+  bottom: 100%;
+  margin-bottom: 10px;
+  animation-name: fadeInUp;
+}
+
 @keyframes fadeInUp {
   from {
     transform: translate3d(0, 30px, 0);
@@ -143,6 +156,7 @@ tbody td {
     opacity: 1;
   }
 }
+
 @keyframes fadeInDown {
   from {
     transform: translate3d(0, 0, 0);
@@ -174,7 +188,7 @@ tbody td {
 .admin-profile h5,
 .doctor-profile h5 {
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .admin-type {
@@ -184,12 +198,12 @@ tbody td {
 .admin-role,
 .doctor-email {
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
 }
 .doctor-email {
   color: #9494a2;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
 }
 .delete-profile button {
@@ -224,22 +238,8 @@ tbody td {
   padding: 6px;
 }
 
-/* .form_field.active .select-btn {
-  border: 1px solid #3d3d3d;
-} */
-
-.form_field .select-btn:focus {
-  border: 1px solid #3d3d3d !important;
-  outline: none;
-  transition: border-color 0.3s ease-in-out;
-}
-
 .form_field .options .option {
   height: auto;
   padding: 6px 10px;
   font-weight: 400;
-}
-
-.sBtn-text.default-value {
-  color: #757575;
 }

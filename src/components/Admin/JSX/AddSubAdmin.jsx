@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // import "../Style/BoxModal.css";
 import FormField from "../../Form/FormField";
@@ -10,11 +10,25 @@ const AddSubAdmin = ({ isClosing, onClose }) => {
     time: "",
     doctorSpeciality: "",
   });
+  const [activeDropdownIndex, setActiveDropdownIndex] = useState(null); // Track dropdown globally
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (!event.target.closest(".select-menu")) {
+        setActiveDropdownIndex(null);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={`box-modal ${isClosing ? "closing" : ""}`}>
@@ -76,6 +90,9 @@ const AddSubAdmin = ({ isClosing, onClose }) => {
                   defaultClass="default-value"
                   defaultValue="Select Sub-Admin Type"
                   options={["Coordinator", "Audit Manager"]}
+                  index={0} // Unique index for tracking
+                  activeDropdownIndex={activeDropdownIndex}
+                  setActiveDropdownIndex={setActiveDropdownIndex}
                   //   includeLabel={true} // shows "Select State" label
                   //   onChange={handleDropdownChange}
                 />
@@ -86,12 +103,15 @@ const AddSubAdmin = ({ isClosing, onClose }) => {
               <div className="form_field mb-3">
                 <label>Select Their Role</label>
                 <DropdownSelect
-                  defaultClass="default-value"
+                  // defaultClass="default-value"
                   defaultValue="Select Their Role"
                   options={[
                     "Manage The Appointment",
                     "Maintains An Audit Trail",
                   ]}
+                  index={1} // Unique index for tracking
+                  activeDropdownIndex={activeDropdownIndex}
+                  setActiveDropdownIndex={setActiveDropdownIndex}
                   //   includeLabel={true} // shows "Select State" label
                   //   onChange={handleDropdownChange}
                 />

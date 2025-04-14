@@ -9,6 +9,7 @@ import AddSubAdmin from "./AddSubAdmin";
 const SubAdmin = () => {
   const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
   const [isClosing, setClosing] = useState(false); // State to control closing animation
+  const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
 
   const handleOpenBox = () => {
     setBoxOpen(true); // Open box modal
@@ -22,6 +23,7 @@ const SubAdmin = () => {
     setTimeout(() => setBoxOpen(false), 400); // Wait for animation before removing modal
     // setBoxOpen(false); // Close boxmodal
   };
+
   return (
     <>
       <TopNav />
@@ -31,8 +33,10 @@ const SubAdmin = () => {
           <div className="sub-admin-header">
             <h4>Sub-Admin</h4>
             <button onClick={handleOpenBox}>
-              <img src="/images/icon-plus-white.png" alt="icon-plus" />
-              Add Sub Admin
+              <div>
+                <img src="/images/icon-plus-white.png" alt="icon-plus" />
+              </div>
+              <span>Add Sub Admin</span>
             </button>
           </div>
 
@@ -48,31 +52,23 @@ const SubAdmin = () => {
                 </tr>
               </thead>
               <tbody>
-                <SubAdminRow
-                  name="Skylar Philips"
-                  type="Coordinator"
-                  role="Manage The Appointment"
-                />
-                <SubAdminRow
-                  name="Tiana Ekstrom"
-                  type="Audit Manager"
-                  role="Manage The Appointment"
-                />
-                <SubAdminRow
-                  name="Adison Gouse"
-                  type="Coordinator"
-                  role="Manage The Appointment"
-                />
-                <SubAdminRow
-                  name="Marley Lipshutz"
-                  type="Audit Manager"
-                  role="Manage The Appointment"
-                />
-                <SubAdminRow
-                  name="Omar Rhiel Madsen"
-                  type="Audit Manager"
-                  role="Manage The Appointment"
-                />
+                {[
+                  "Skylar Philips",
+                  "Tiana Ekstrom",
+                  "Adison Gouse",
+                  "Marley Lipshutz",
+                  "Omar Rhiel Madsen",
+                ].map((name, index) => (
+                  <SubAdminRow
+                    key={index}
+                    index={index}
+                    name={name}
+                    type={index % 2 === 0 ? "Coordinator" : "Audit Manager"}
+                    role="Manage The Appointment"
+                    activeDropdownIndex={activeDropdownIndex}
+                    setActiveDropdownIndex={setActiveDropdownIndex}
+                  />
+                ))}
               </tbody>
               <div className="pagination-data">
                 <div>

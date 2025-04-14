@@ -72,13 +72,14 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #f1f1f1;
-  padding: 15px 15px;
+  padding: 15px;
+  align-items: center;
 }
 
 .all-booking-table h5 {
   margin: 0;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .all-booking-date {
@@ -120,9 +121,7 @@
   text-decoration: none;
   color: black;
   background-color: #bae8e8;
-  border-radius: 3px;
   margin: 0px;
-  font-size: 12px;
   padding: 9px 20px;
   border-radius: 5px;
   font-size: 12px;

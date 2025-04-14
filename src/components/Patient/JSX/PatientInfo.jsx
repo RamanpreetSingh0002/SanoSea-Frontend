@@ -17,11 +17,15 @@ const PatientInfo = () => {
             value="9887767890"
           />
           <div className="patient-info-date-time">
-            <img src="/images/icons8-calendar-30.png" alt="calender" />
+            <div>
+              <img src="/images/icons8-calendar-30.png" alt="calender" />
+            </div>
             <p>Feb07,2025</p>
           </div>
           <div className="patient-info-date-time">
-            <img src="/images/icon-clock.png" alt="clock" />
+            <div>
+              <img src="/images/icon-clock.png" alt="clock" />
+            </div>
             <p>11:40 AM</p>
           </div>
         </div>

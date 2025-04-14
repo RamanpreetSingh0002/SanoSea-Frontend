@@ -116,7 +116,8 @@
 
 .internal-modal input:focus,
 .internal-modal select:focus,
-.internal-modal textarea:focus {
+.internal-modal textarea:focus,
+.form_field .select-menu.active .select-btn {
   border: 1px solid #3d3d3d;
   outline: none;
   transition: border-color 0.3s ease-in-out;
@@ -218,6 +219,16 @@
 /* .input-group::after {
   display: none !important;
 } */
+
+/* Default color when no selection */
+.form_field .default-color {
+  color: #757575 !important; /* Light gray */
+}
+
+/* Selected color when user picks an option */
+.form_field .selected-color {
+  color: #2f2f2f !important; /* Darker black */
+}
 
 /* Mobile Responsive */
 @media screen and (max-width: 480px) {

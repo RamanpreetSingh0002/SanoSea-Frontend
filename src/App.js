@@ -13,6 +13,7 @@ import PortAgentModal from "./components/PortAgent/JSX/PortAgentModal.jsx";
 import AdminBookingDetail from "./components/Admin/JSX/AdminBookingDetail.jsx";
 import SubAdmin from "./components/Admin/JSX/SubAdmin.jsx";
 import Doctor from "./components/Doctor/JSX/Doctor.jsx";
+import ChangePassword from "./components/Auth/JSX/ChangePassword.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/auth/verify-email" element={<EmailVerification />} />
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
         <Route path="/auth/reset-password" element={<ResetPassword />} />
+        <Route path="/auth/change-password" element={<ChangePassword />} />
 
         <Route path="/auth/patient-dashboard" element={<PatientDashboard />} />
         <Route

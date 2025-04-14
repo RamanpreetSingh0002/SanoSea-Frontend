@@ -38,7 +38,7 @@ const AdminBookingDetail = ({
                   href=""
                   style={{
                     fontSize: "12px",
-                    padding: "0px 4px",
+                    padding: "2px 10px",
                     width: "auto",
                   }}
                 >

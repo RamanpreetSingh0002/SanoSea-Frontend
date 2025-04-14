@@ -36,7 +36,7 @@
 
 .booking-section h4 {
   margin-bottom: 15px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -76,12 +76,12 @@
 }
 
 .user-header-detail h5 {
-  font-size: 18px;
+  font-size: 16px;
   margin: 0;
 }
 
 .user-header-detail p {
-  font-size: 15px;
+  font-size: 14px;
   color: #005c75;
   font-weight: 500;
   margin: 0;
@@ -95,7 +95,8 @@
 }
 
 .labeled-icon-text strong {
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .labeled-icon-text p {
@@ -139,21 +140,23 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 13px;
-  color: #777;
 }
 
 .cab-detail-port i {
   color: #005c75;
+  font-size: 12px;
 }
 
 .patient-info-date-time p,
 .cab-detail-port p {
   margin: 0;
+  font-size: 12px;
+  color: #777;
 }
 .patient-info-date-time img,
 .cab-detail-port img {
-  width: 15px;
+  width: 12px;
+  vertical-align: inherit;
 }
 .patient-info-symptom {
   font-size: 18px;
@@ -161,11 +164,6 @@
 }
 
 /* port agent */
-.port-agent-info-cab {
-  display: flex;
-  justify-content: space-between;
-}
-
 .port-agent-booking-detail {
   display: flex;
   align-items: center;
