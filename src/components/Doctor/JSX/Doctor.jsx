@@ -11,6 +11,7 @@ import AddDoctor from "./AddDoctor";
 const Doctor = () => {
   const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
   const [isClosing, setClosing] = useState(false); // State to control closing animation
+  const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
 
   const handleOpenBox = () => {
     setBoxOpen(true); // Open box modal
@@ -53,30 +54,23 @@ const Doctor = () => {
                 </tr>
               </thead>
               <tbody>
-                <DoctorTRow
-                  name="Jaydon Bartor"
-                  email="jaydonbartor@gmail.com"
-                />
-                <DoctorTRow
-                  name="Jaydon Bartor"
-                  email="jaydonbartor@gmail.com"
-                />
-                <DoctorTRow
-                  name="Jaydon Bartor"
-                  email="jaydonbartor@gmail.com"
-                />
-                <DoctorTRow
-                  name="Jaydon Bartor"
-                  email="jaydonbartor@gmail.com"
-                />
-                <DoctorTRow
-                  name="Jaydon Bartor"
-                  email="jaydonbartor@gmail.com"
-                />
-                <DoctorTRow
-                  name="Jaydon Bartor"
-                  email="jaydonbartor@gmail.com"
-                />
+                {[
+                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
+                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
+                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
+                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
+                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
+                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
+                ].map((doctor, index) => (
+                  <DoctorTRow
+                    key={index}
+                    name={doctor.name}
+                    email={doctor.email}
+                    index={index}
+                    activeDropdownIndex={activeDropdownIndex}
+                    setActiveDropdownIndex={setActiveDropdownIndex}
+                  />
+                ))}
               </tbody>
             </table>
           </div>

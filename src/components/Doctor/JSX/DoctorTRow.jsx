@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DropdownSelect from "../../DropdownSelect";
 
-const DoctorTRow = ({ name, email }) => {
-  const handleDropdownChange = (value) => {
+const DoctorTRow = ({
+  name,
+  email,
+  index,
+  activeDropdownIndex,
+  setActiveDropdownIndex,
+}) => {
+  const handleDropdownChange = value => {
     console.log("Selected Status:", value);
   };
 
@@ -24,6 +30,9 @@ const DoctorTRow = ({ name, email }) => {
           options={["Active", "Deactive", "Edit"]}
           includeLabel={true} // shows "Select State" label
           onChange={handleDropdownChange}
+          index={index}
+          activeDropdownIndex={activeDropdownIndex}
+          setActiveDropdownIndex={setActiveDropdownIndex}
         />
       </td>
 

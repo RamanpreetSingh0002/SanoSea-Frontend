@@ -10,6 +10,7 @@ const DropdownSelect = ({
   index,
   activeDropdownIndex,
   setActiveDropdownIndex,
+  ...rest
 }) => {
   const [dropdownDirection, setDropdownDirection] = useState("down"); // Track dropdown position
   const [selected, setSelected] = useState(""); // Default empty, filled on load
@@ -72,16 +73,6 @@ const DropdownSelect = ({
       className={`select-menu ${isActive ? "active" : ""}`}
       ref={dropdownRef}
     >
-      {/* <div
-        className="select-btn"
-        onClick={toggleDropdown}
-        style={{
-          color:
-            isInsideForm && (!selected || selected === defaultValue)
-              ? "#757575"
-              : "#2f2f2f",
-        }}
-      > */}
       <div
         className={`select-btn ${
           selected === defaultValue ? "default-color" : "selected-color"
@@ -96,7 +87,7 @@ const DropdownSelect = ({
       </div>
 
       {isActive && (
-        <ul className={`options options-${dropdownDirection}`}>
+        <ul className={`options options-${dropdownDirection}`} {...rest}>
           {includeLabel && (
             <li className="option label-option" key="label">
               <span className="option-text">{labelText}</span>
