@@ -9,7 +9,7 @@ const CardGrid = () => {
           col="6"
           heading="Registered Patients"
           count="50"
-          image="/images/Patient.png"
+          image="/images/PatientCooPage.png"
         />
 
         <Bits
@@ -37,7 +37,7 @@ const CardGrid = () => {
           col="6"
           heading="Doctor Added"
           count="15"
-          image="/images/Doctor.png"
+          image="/images/DoctorCooPage.png"
         />
 
         <Bits

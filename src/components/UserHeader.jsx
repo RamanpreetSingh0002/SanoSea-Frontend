@@ -1,9 +1,9 @@
 import React from "react";
 import LabeledIconText from "./LabeledIconText";
 
-const UserHeader = ({ imgSrc, name, role, experience, children }) => {
+const UserHeader = ({ imgSrc, name, role, experience, children, ...rest }) => {
   return (
-    <div className="user-header-section">
+    <div className="user-header-section" {...rest}>
       <div className="user-header-avtar">
         <img src={imgSrc} alt="person" />
       </div>

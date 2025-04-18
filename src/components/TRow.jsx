@@ -14,6 +14,7 @@ const TRow = ({
   statusClass,
   statusLabel,
   actionType,
+  isPortAgent = false,
 }) => {
   return (
     <tr>
@@ -59,6 +60,14 @@ const TRow = ({
               <img src="/images/icons-download.png" alt="download" />
               <span>Download Report</span>
             </a>
+          </div>
+        </td>
+      )}
+
+      {isPortAgent && (
+        <td>
+          <div class="add-cab-details">
+            <button to="/auth/booking-detail">Add Cab Details</button>
           </div>
         </td>
       )}

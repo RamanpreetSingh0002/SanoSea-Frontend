@@ -32,7 +32,7 @@ const SubAdmin = () => {
         <section id="sub-admin-section">
           <div className="sub-admin-header">
             <h4>Sub-Admin</h4>
-            <button onClick={handleOpenBox}>
+            <button className="add-user-btn" onClick={handleOpenBox}>
               <div>
                 <img src="/images/icon-plus-white.png" alt="icon-plus" />
               </div>
@@ -63,8 +63,7 @@ const SubAdmin = () => {
                     key={index}
                     index={index}
                     name={name}
-                    type={index % 2 === 0 ? "Coordinator" : "Audit Manager"}
-                    role="Manage The Appointment"
+                    role={index % 2 === 0 ? "Coordinator" : "Audit Manager"}
                     activeDropdownIndex={activeDropdownIndex}
                     setActiveDropdownIndex={setActiveDropdownIndex}
                   />

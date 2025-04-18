@@ -235,6 +235,7 @@ tbody tr {
   color: #fc62bf;
   border: 1px solid #fc62bf;
 }
+
 .assigned-status-download-report {
   padding: 2px 5px;
   border-radius: 3px;
@@ -266,4 +267,16 @@ tbody tr {
 
 .assigned-status-view-detail a:hover {
   text-decoration: underline;
+}
+
+.add-cab-details button {
+  background-color: transparent;
+  color: rgb(13, 117, 158);
+  border: 1px solid rgb(54, 163, 206);
+  padding: 0px 5px;
+  border-radius: 3px;
+  font-weight: 500;
+  display: block;
+
+  text-align: center;
 }

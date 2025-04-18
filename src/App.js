@@ -14,6 +14,15 @@ import AdminBookingDetail from "./components/Admin/JSX/AdminBookingDetail.jsx";
 import SubAdmin from "./components/Admin/JSX/SubAdmin.jsx";
 import Doctor from "./components/Doctor/JSX/Doctor.jsx";
 import ChangePassword from "./components/Auth/JSX/ChangePassword.jsx";
+import Patients from "./components/Patient/JSX/Patients.jsx";
+import Unconfirmed from "./components/Appointments/JSX/Unconfirmed.jsx";
+import Upcoming from "./components/Appointments/JSX/Upcoming.jsx";
+import DoctorProfile from "./components/Doctor/JSX/DoctorProfile.jsx";
+import SubAdminProfile from "./components/Admin/JSX/SubAdminProfile.jsx";
+import Cancelled from "./components/Appointments/JSX/Cancelled.jsx";
+import Complete from "./components/Appointments/JSX/Complete.jsx";
+import PortAgentDashboard from "./components/PortAgent/JSX/PortAgentDashboard.jsx";
+import New from "./components/Appointments/JSX/New.jsx";
 
 function App() {
   return (
@@ -43,6 +52,20 @@ function App() {
         <Route path="/auth/booking-detail" element={<AdminBookingDetail />} />
         <Route path="/auth/sub-admin" element={<SubAdmin />} />
         <Route path="/auth/doctor" element={<Doctor />} />
+
+        <Route path="/auth/doctor-profile" element={<DoctorProfile />} />
+        <Route path="/auth/sub-admin-profile" element={<SubAdminProfile />} />
+
+        <Route path="/auth/patient-detail" element={<Patients />} />
+        <Route path="/auth/unconfirmed-appointment" element={<Unconfirmed />} />
+        <Route path="/auth/upcoming-appointment" element={<Upcoming />} />
+        <Route path="/auth/cancelled-appointment" element={<Cancelled />} />
+        <Route path="/auth/complete-appointment" element={<Complete />} />
+        <Route path="/auth/new-appointment" element={<New />} />
+        <Route
+          path="/auth/port-agent-dashboard"
+          element={<PortAgentDashboard />}
+        />
       </Routes>
     </>
   );

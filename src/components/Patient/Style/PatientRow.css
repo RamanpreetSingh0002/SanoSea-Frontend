@@ -1,0 +1,154 @@
+/* Global styles */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Patients Container */
+.container {
+  padding: 30px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.patient-list {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  background: #bdeeee;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  font-weight: 500;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Table Header */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-weight: 600;
+}
+
+.date-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.refresh {
+  background: #c6eff0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Patient Row */
+.patient-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-top: 1px solid #ddd;
+}
+
+.patient-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.patient-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.email {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.status-select {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.report-status {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.report-status.purple {
+  background: #f3e8ff;
+  color: #a855f7;
+}
+
+.report-status.green {
+  background: #dcfce7;
+  color: #22c55e;
+}
+
+.report-status.orange {
+  background: #fef3c7;
+  color: #f59e0b;
+}
+
+.report-status.red {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.download {
+  background: #f3f4f6;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.view {
+  color: #3b82f6;
+  cursor: pointer;
+}
+
+.delete {
+  color: red;
+  cursor: pointer;
+}

@@ -84,32 +84,13 @@ const AddSubAdmin = ({ isClosing, onClose }) => {
             </div>
 
             <div className="col-12">
-              <div className="form_field">
-                <label>Sub-Admin Type</label>
+              <div className="form_field mb-3">
+                <label>Sub-Admin Role</label>
                 <DropdownSelect
                   defaultClass="default-value"
                   defaultValue="Select Sub-Admin Type"
                   options={["Coordinator", "Audit Manager"]}
                   index={0} // Unique index for tracking
-                  activeDropdownIndex={activeDropdownIndex}
-                  setActiveDropdownIndex={setActiveDropdownIndex}
-                  //   includeLabel={true} // shows "Select State" label
-                  //   onChange={handleDropdownChange}
-                />
-              </div>
-            </div>
-
-            <div className="col-12">
-              <div className="form_field mb-3">
-                <label>Select Their Role</label>
-                <DropdownSelect
-                  // defaultClass="default-value"
-                  defaultValue="Select Their Role"
-                  options={[
-                    "Manage The Appointment",
-                    "Maintains An Audit Trail",
-                  ]}
-                  index={1} // Unique index for tracking
                   activeDropdownIndex={activeDropdownIndex}
                   setActiveDropdownIndex={setActiveDropdownIndex}
                   //   includeLabel={true} // shows "Select State" label

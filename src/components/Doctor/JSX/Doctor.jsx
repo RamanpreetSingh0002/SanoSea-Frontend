@@ -5,8 +5,8 @@ import SideNav from "../../Navbar/JSX/SideNav";
 
 // import "../Style/SubAdmin.css";
 
-import DoctorTRow from "./DoctorTRow";
 import AddDoctor from "./AddDoctor";
+import DoctorTRow from "./DoctorTRow";
 
 const Doctor = () => {
   const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
@@ -33,9 +33,11 @@ const Doctor = () => {
         <section id="sub-admin-section">
           <div className="sub-admin-header">
             <h4>Doctor</h4>
-            <div>
-              <button>search</button>
-              <button onClick={handleOpenBox}>
+            <div className="doctor-btn">
+              <button className="doctor-search-btn">
+                <i className="fa-solid fa-search"></i>
+              </button>
+              <button className="add-user-btn" onClick={handleOpenBox}>
                 <img src="/images/icon-plus-white.png" alt="icon-plus" />
                 Add New Doctor
               </button>

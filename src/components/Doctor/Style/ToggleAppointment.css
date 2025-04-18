@@ -1,0 +1,60 @@
+.taeb-switch {
+  position: relative;
+  display: flex;
+  width: 100%;
+  /*   max-width: 300px;
+    margin: auto; */
+  /* border-radius: 4px; */
+  background-color: #bae8e8;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.taeb-switch:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 50px;
+  margin: 7px;
+  width: 200px; /* 100% / 5 tabs = 20% */
+  background-color: white;
+  border-radius: 4px;
+  z-index: 0;
+  transition: left 0.4s cubic-bezier(0.88, -0.35, 0.565, 1.35);
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.taeb-switch.left:after {
+  left: 0px;
+}
+.taeb-switch.upcoming:after {
+  left: 220px;
+}
+.taeb-switch.complete:after {
+  left: 435px;
+}
+.taeb-switch.cancelled:after {
+  left: 635px;
+}
+.taeb-switch.unconfirmed:after {
+  left: 840px;
+}
+
+.taeb-switch .taeb {
+  /*   flex: 1; */
+  width: 200px;
+  padding: 12px 4px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-size: 14px;
+  font-weight: 600;
+  user-select: none;
+  color: black;
+}
+
+.taeb-switch .taeb.active {
+  color: black;
+}

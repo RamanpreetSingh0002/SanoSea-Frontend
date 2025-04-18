@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import TopNav from "../../Navbar/JSX/TopNav";
-import SideNav from "../../Navbar/JSX/SideNav";
+import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
 import CoordinatorMain from "./CoordinatorMain";
 import AuditManagerModal from "../../AuditManager/JSX/AuditManagerModal";
 import PortAgentModal from "../../PortAgent/JSX/PortAgentModal";
@@ -44,7 +44,7 @@ const CoordinatorDashboard = () => {
   return (
     <div>
       <TopNav />
-      <SideNav />
+      <ControlSideNav />
       <CoordinatorMain
         onAuditOpen={handleOpenAudit}
         onPortOpen={handleOpenPort}

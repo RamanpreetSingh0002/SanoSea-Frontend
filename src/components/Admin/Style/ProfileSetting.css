@@ -1,0 +1,188 @@
+/* Remove the border */
+.form-select {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Rotate the dropdown button */
+.form-select-sm {
+  -webkit-appearance: none; /* Removes default styling in some browsers */
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 30px; /* Make space for rotated arrow */
+  position: relative;
+}
+
+.form-select-sm::after {
+  content: "▼"; /* Down arrow symbol */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg); /* Rotate the dropdown arrow */
+  pointer-events: none; /* Ensures the arrow doesn’t interfere with clicking */
+}
+
+/* Optional: Style the select text and background */
+.form-select-sm {
+  background-color: white;
+  color: black;
+}
+
+.profile-section {
+  display: flex;
+  padding: 105px 20px 20px 80px;
+  /* gap: 2rem; */
+  background-color: #f9f9f9;
+}
+
+.profile-left {
+  width: 30%;
+  background: #fff;
+  padding: 2rem;
+  text-align: center;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);*/
+}
+
+.profile-left img {
+  width: 179px;
+  height: 182px;
+  margin-top: 5px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-form .form_field {
+  margin-bottom: 10px;
+}
+
+.system-config-card table,
+.system-config-card tr,
+.system-config-card td {
+  border: 1px solid #ccc;
+}
+
+.system-config-card td {
+  padding: 10px;
+}
+
+.change-password {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.profile-right label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.system-config h6 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.profile-right-custom {
+  width: 70%;
+  background-color: #ffffff;
+  padding: 2rem;
+
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); */
+  font-family: Arial, sans-serif;
+}
+
+.form-row {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-group input {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.cancel-btn,
+.save-btn,
+.chng-pass {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 3px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #eee;
+  color: #333;
+  width: 19%;
+  height: 44px;
+}
+
+.save-btn,
+.chng-pass {
+  background-color: #005c75;
+  color: white;
+  height: 42px;
+}
+
+.chng-pass {
+  margin-top: 10px;
+}
+
+.system-config-card table {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.system-config-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e1b4b;
+  margin-bottom: 0;
+}
+
+.config-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.config-item:first-of-type {
+}
+
+.config-item span {
+  font-size: 14px;
+  color: #3d3d3d;
+}

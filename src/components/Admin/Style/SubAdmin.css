@@ -10,18 +10,29 @@
   padding-right: 20px;
 }
 
+.doctor-btn {
+  display: flex;
+  gap: 7px;
+}
+
 .sub-admin-header button {
-  background-color: #498b9c;
   border: none;
-  padding: 8px 12px;
-  color: white;
+  padding: 5px 15px;
   border-radius: 4px;
   display: flex;
   align-items: center;
+}
+
+.doctor-search-btn {
+  background-color: #efecec;
+  color: black;
+}
+
+.add-user-btn {
+  background-color: #498b9c;
+  color: white;
   justify-content: center;
   gap: 5px;
-  font-size: 14px;
-  font-weight: 500;
 }
 
 .sub-admin-header img {
@@ -191,9 +202,10 @@ tbody td {
   font-size: 14px;
 }
 
-.admin-type {
+.admin-role {
   color: #005c75;
 }
+
 .admin-type,
 .admin-role,
 .doctor-email {
