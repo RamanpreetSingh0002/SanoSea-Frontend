@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import TopNav from "../../Navbar/JSX/TopNav";
-import SideNav from "../../Navbar/JSX/SideNav";
 import UserHeader from "../../UserHeader";
 import LabeledIconText from "../../LabeledIconText";
 import DropdownSelect from "../../DropdownSelect";
 import "../Style/SubAdminProfile.css";
+import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
 
 const SubAdminProfile = () => {
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null); // Track dropdown globally
 
-  const handleDropdownChange = value => {
+  const handleDropdownChange = (value) => {
     console.log("Selected Status:", value);
   };
 
   useEffect(() => {
-    const handleClickOutside = event => {
+    const handleClickOutside = (event) => {
       if (!event.target.closest(".select-menu")) {
         setActiveDropdownIndex(null);
       }
@@ -28,9 +28,6 @@ const SubAdminProfile = () => {
 
   return (
     <>
-      <TopNav />
-      <SideNav />
-
       <main>
         <section id="doctor-profile-section">
           <div className="booking-detail-header">
@@ -55,7 +52,7 @@ const SubAdminProfile = () => {
           <div className="sub-admin-profile-head">
             <div className="doctor-profile-header">
               <UserHeader
-                imgSrc="/images/person.jpg"
+                imgSrc="/images/male-6.jpg"
                 name="Carter Bergson"
                 role="Sub Admin"
                 style={{ backgroundColor: "white" }}

@@ -6,8 +6,8 @@ import PortAgentInfo from "../../PortAgent/JSX/PortAgentInfo";
 import LabeledIconText from "../../LabeledIconText";
 import "../Style/AdminBookingDetail.css";
 import TopNav from "../../Navbar/JSX/TopNav";
-import SideNav from "../../Navbar/JSX/SideNav";
 import { useNavigate } from "react-router-dom";
+import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
 
 const AdminBookingDetail = ({
   statusClass = "complete",
@@ -16,8 +16,6 @@ const AdminBookingDetail = ({
   const navigate = useNavigate();
   return (
     <>
-      <TopNav />
-      <SideNav />
       <main>
         <div className="booking-detail">
           <div className="booking-detail-header">
@@ -49,7 +47,7 @@ const AdminBookingDetail = ({
             <div className="booking-user-detail">
               {/* patient */}
               <UserHeader
-                imgSrc="/images/person.jpg"
+                imgSrc="/images/male-1.jpg"
                 name="Alfredo Carder"
                 role="Patients"
               >
@@ -58,7 +56,7 @@ const AdminBookingDetail = ({
 
               {/* port agent */}
               <UserHeader
-                imgSrc="/images/person.jpg"
+                imgSrc="/images/female-5.jpg"
                 name="Maria Toriff"
                 role="Port Agent"
               >
@@ -67,7 +65,7 @@ const AdminBookingDetail = ({
 
               {/* general physician */}
               <UserHeader
-                imgSrc="/images/person.jpg"
+                imgSrc="/images/male-4.jpg"
                 name="Tenny Seris"
                 role="General Physician"
               >
@@ -92,7 +90,7 @@ const AdminBookingDetail = ({
 
               {/* surgeon*/}
               <UserHeader
-                imgSrc="/images/person.jpg"
+                imgSrc="/images/male-6.jpg"
                 name="Ahmed Dokidis"
                 role="Surgeon"
                 experience="10 years"

@@ -10,21 +10,17 @@ import CompleteTbody from "./CompleteTbody";
 
 const Complete = () => {
   return (
-    <div>
-      <TopNav />
-      <SideNav />
-      <section id="appointment-table">
-        <div className="appointment-body">
-          <TBox heading="Completed" />
+    <section id="appointment-table">
+      <div className="appointment-body">
+        <TBox heading="Completed" />
 
-          {/* table */}
+        {/* table */}
 
-          <Table isPatient={true}>
-            <CompleteTbody />
-          </Table>
-        </div>
-      </section>
-    </div>
+        <Table isPatient={true}>
+          <CompleteTbody />
+        </Table>
+      </div>
+    </section>
   );
 };
 

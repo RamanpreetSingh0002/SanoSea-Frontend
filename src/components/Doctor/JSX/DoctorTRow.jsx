@@ -5,11 +5,12 @@ import DropdownSelect from "../../DropdownSelect";
 const DoctorTRow = ({
   name,
   email,
+  imgSrc,
   index,
   activeDropdownIndex,
   setActiveDropdownIndex,
 }) => {
-  const handleDropdownChange = value => {
+  const handleDropdownChange = (value) => {
     console.log("Selected Status:", value);
   };
 
@@ -17,7 +18,7 @@ const DoctorTRow = ({
     <tr>
       <td>
         <div className="doctor-profile">
-          <img src="/images/person.jpg" alt="person" />
+          <img src={imgSrc} alt="person" />
           <h5>{name}</h5>
         </div>
       </td>

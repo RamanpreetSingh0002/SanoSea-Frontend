@@ -9,21 +9,17 @@ import "../Style/Appointment.css";
 
 const Unconfirmed = () => {
   return (
-    <div>
-      <TopNav />
-      <SideNav />
-      <section id="appointment-table">
-        <div className="appointment-body">
-          <TBox heading="Unconfirmed" />
+    <section id="appointment-table">
+      <div className="appointment-body">
+        <TBox heading="Unconfirmed" />
 
-          {/* table */}
+        {/* table */}
 
-          <Table isPatient={true}>
-            <UnconfirmedTbody />
-          </Table>
-        </div>
-      </section>
-    </div>
+        <Table isPatient={true}>
+          <UnconfirmedTbody />
+        </Table>
+      </div>
+    </section>
   );
 };
 

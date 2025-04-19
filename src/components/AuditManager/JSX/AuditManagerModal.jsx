@@ -9,48 +9,48 @@ const AuditManagerModal = ({ isAuditClose, onClose }) => {
         onClose={onClose}
         data={[
           {
-            image: "/images/person.jpg",
-            name: "Justin Franci",
+            image: "/images/male-1.jpg",
+            name: "Justin ",
             link: "#",
           },
           {
-            image: "/images/person.jpg",
-            name: "Justin Franci",
+            image: "/images/male-3.jpg",
+            name: "Jassie",
             link: "#",
           },
           {
-            image: "/images/person.jpg",
-            name: "Justin Franci",
+            image: "/images/female-2.jpg",
+            name: "Shaify",
             link: "#",
           },
           {
-            image: "/images/person.jpg",
-            name: "Justin Franci",
+            image: "/images/male-5.jpg",
+            name: "Franci",
             link: "#",
           },
           {
-            image: "/images/person.jpg",
-            name: "Justin Franci",
+            image: "/images/female-4.jpg",
+            name: "Diana",
             link: "#",
           },
           {
-            image: "/images/person.jpg",
-            name: "Justin Franci",
+            image: "/images/male-1.jpg",
+            name: "Justin ",
             link: "#",
           },
           {
-            image: "/images/person.jpg",
-            name: "Justin Franci",
+            image: "/images/male-3.jpg",
+            name: "Jassie",
             link: "#",
           },
           {
-            image: "/images/person.jpg",
-            name: "Justin Franci",
+            image: "/images/female-2.jpg",
+            name: "Shaify",
             link: "#",
           },
           {
-            image: "/images/person.jpg",
-            name: "Justin Franci",
+            image: "/images/male-5.jpg",
+            name: "Franci",
             link: "#",
           },
         ]}

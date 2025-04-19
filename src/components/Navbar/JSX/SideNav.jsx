@@ -4,10 +4,13 @@ import SideNavIcon from "./SideNavIcon";
 import { useAuth } from "../../../hooks";
 
 import "../Style/SideNav.css";
+import { useNavigate } from "react-router-dom";
 
 const SideNav = ({ bookNow, onOpen }) => {
   const { authInfo, handleLogout } = useAuth();
   const { isLoggedIn } = authInfo;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const navItems = document.querySelectorAll(".has-subnav");
@@ -60,24 +63,28 @@ const SideNav = ({ bookNow, onOpen }) => {
 
         <SideNavIcon
           imgSrc="/images/Calender.png"
+          onClick={() => navigate("/auth/complete-appointment")}
           iconClass={"fa-solid fa-check"}
           sideNavLabel={"Complete"}
         />
 
         <SideNavIcon
           imgSrc="/images/Calender.png"
+          onClick={() => navigate("/auth/upcoming-appointment")}
           iconClass={"fa-regular fa-user"}
           sideNavLabel={"Upcoming"}
         />
 
         <SideNavIcon
           imgSrc="/images/Calender.png"
+          onClick={() => navigate("/auth/unconfirmed-appointment")}
           iconClass={"fa-solid fa-exclamation"}
           sideNavLabel={"Un-Confirmed"}
         />
 
         <SideNavIcon
           imgSrc="/images/Calender.png"
+          onClick={() => navigate("/auth/cancelled-appointment")}
           iconClass={"fa-solid fa-xmark"}
           sideNavLabel={"Cancelled"}
         />

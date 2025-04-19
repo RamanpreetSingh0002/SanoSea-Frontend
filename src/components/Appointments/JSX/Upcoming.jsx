@@ -10,21 +10,17 @@ import UpcomingTbody from "./UpcomingTbody";
 
 const Upcoming = () => {
   return (
-    <div>
-      <TopNav />
-      <SideNav />
-      <section id="appointment-table">
-        <div className="appointment-body">
-          <TBox heading="Upcoming" />
+    <section id="appointment-table">
+      <div className="appointment-body">
+        <TBox heading="Upcoming" />
 
-          {/* table */}
+        {/* table */}
 
-          <Table isPatient={true}>
-            <UpcomingTbody />
-          </Table>
-        </div>
-      </section>
-    </div>
+        <Table isPatient={true}>
+          <UpcomingTbody />
+        </Table>
+      </div>
+    </section>
   );
 };
 

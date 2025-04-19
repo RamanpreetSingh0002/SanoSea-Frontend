@@ -66,7 +66,7 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
     setIsSmallScreen(window.innerWidth <= 981);
   };
 
-  const updateProfilePhoto = file => {
+  const updateProfilePhoto = (file) => {
     const url = URL.createObjectURL(file);
     setSelectedProfilePhoto(url);
   };
@@ -84,7 +84,7 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
     }
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     setBusy(true);
 
     e.preventDefault();
@@ -96,7 +96,7 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
     }
 
     const formData = new FormData();
-    Object.keys(userInfo).forEach(key => {
+    Object.keys(userInfo).forEach((key) => {
       if (userInfo[key]) {
         formData.append(key, userInfo[key]);
       }
@@ -142,10 +142,10 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
           landingPage = "/auth/general-physician-dashboard";
           break;
         case "Admin":
-          landingPage = "/auth/coordinator-dashboard";
+          landingPage = "/auth/admin-dashboard";
           break;
         case "Audit Manager":
-          landingPage = "/auth/audit-manager-dashboard";
+          landingPage = "/auth/sub-admin-dashboard";
           break;
         case "Doctor":
           landingPage = "/auth/doctor-dashboard";
@@ -154,7 +154,7 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
           landingPage = "/auth/port-agent-dashboard";
           break;
         case "Coordinator":
-          landingPage = "/auth/coordinator-dashboard";
+          landingPage = "/auth/sub-admin-dashboard";
           break;
         default:
           landingPage = "/auth/default-dashboard";

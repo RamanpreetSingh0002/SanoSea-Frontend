@@ -1,6 +1,6 @@
 import React from "react";
 
-const TableHeader = ({ isPatient }) => {
+const TableHeader = ({ isPatient, isPortAgent }) => {
   return (
     <thead>
       <tr class="booking-header">
@@ -9,7 +9,7 @@ const TableHeader = ({ isPatient }) => {
         <th>Port Agent Assigned</th>
         <th>Time</th>
         <th>Date</th>
-        <th colspan={isPatient ? "3" : "2"}>Status</th>
+        <th colspan={isPatient || isPortAgent ? "3" : "2"}>Status</th>
       </tr>
     </thead>
   );

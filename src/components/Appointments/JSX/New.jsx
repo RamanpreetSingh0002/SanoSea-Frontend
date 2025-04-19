@@ -10,21 +10,17 @@ import NewTbody from "./NewTbody";
 
 const New = () => {
   return (
-    <div>
-      <TopNav />
-      <SideNav />
-      <section id="appointment-table">
-        <div className="appointment-body">
-          <TBox heading="New Appointments" />
+    <section id="appointment-table">
+      <div className="appointment-body">
+        <TBox heading="New Appointments" />
 
-          {/* table */}
+        {/* table */}
 
-          <Table isPatient={true}>
-            <NewTbody />
-          </Table>
-        </div>
-      </section>
-    </div>
+        <Table isPatient={true}>
+          <NewTbody />
+        </Table>
+      </div>
+    </section>
   );
 };
 

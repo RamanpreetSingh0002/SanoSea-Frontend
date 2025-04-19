@@ -7,14 +7,7 @@ import PatientMain from "./PatientMain";
 import "../Style/PatientDashboard.css";
 
 const PatientDashboard = () => {
-  return (
-    <div>
-      <TopNav />
-      <SideNav />
-
-      <PatientMain />
-    </div>
-  );
+  return <PatientMain />;
 };
 
 export default PatientDashboard;

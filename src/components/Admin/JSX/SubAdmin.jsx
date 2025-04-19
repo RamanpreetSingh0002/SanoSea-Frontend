@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import TBox from "../../TBox";
 import TopNav from "../../Navbar/JSX/TopNav";
-import SideNav from "../../Navbar/JSX/SideNav";
 import SubAdminRow from "./SubAdminRow";
 import "../Style/SubAdmin.css";
 import AddSubAdmin from "./AddSubAdmin";
+import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
 
 const SubAdmin = () => {
   const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
@@ -26,8 +26,6 @@ const SubAdmin = () => {
 
   return (
     <>
-      <TopNav />
-      <SideNav />
       <main>
         <section id="sub-admin-section">
           <div className="sub-admin-header">
@@ -53,16 +51,36 @@ const SubAdmin = () => {
               </thead>
               <tbody>
                 {[
-                  "Skylar Philips",
-                  "Tiana Ekstrom",
-                  "Adison Gouse",
-                  "Marley Lipshutz",
-                  "Omar Rhiel Madsen",
-                ].map((name, index) => (
+                  {
+                    imgSrc: "/images/male-1.jpg",
+                    name: "Justin ",
+                  },
+                  {
+                    imgSrc: "/images/male-3.jpg",
+                    name: "Jassie",
+                  },
+                  {
+                    imgSrc: "/images/female-2.jpg",
+                    name: "Shaify",
+                  },
+                  {
+                    imgSrc: "/images/male-5.jpg",
+                    name: "Franci",
+                  },
+                  {
+                    imgSrc: "/images/female-4.jpg",
+                    name: "Diana",
+                  },
+                  {
+                    imgSrc: "/images/male-1.jpg",
+                    name: "Justin ",
+                  },
+                ].map((subAdmin, index) => (
                   <SubAdminRow
                     key={index}
                     index={index}
-                    name={name}
+                    name={subAdmin.name}
+                    imgSrc={subAdmin.imgSrc}
                     role={index % 2 === 0 ? "Coordinator" : "Audit Manager"}
                     activeDropdownIndex={activeDropdownIndex}
                     setActiveDropdownIndex={setActiveDropdownIndex}

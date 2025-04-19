@@ -5,11 +5,12 @@ import DropdownSelect from "../../DropdownSelect";
 const SubAdminRow = ({
   index,
   name,
+  imgSrc,
   role,
   activeDropdownIndex,
   setActiveDropdownIndex,
 }) => {
-  const handleDropdownChange = value => {
+  const handleDropdownChange = (value) => {
     console.log("Selected Status:", value);
   };
 
@@ -17,7 +18,7 @@ const SubAdminRow = ({
     <tr>
       <td>
         <div className="admin-profile">
-          <img src="/images/person.jpg" alt="person" />
+          <img src={imgSrc} alt="person" />
           <h5>{name}</h5>
         </div>
       </td>

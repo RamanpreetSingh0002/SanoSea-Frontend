@@ -43,8 +43,6 @@ const CoordinatorDashboard = () => {
 
   return (
     <div>
-      <TopNav />
-      <ControlSideNav />
       <CoordinatorMain
         onAuditOpen={handleOpenAudit}
         onPortOpen={handleOpenPort}

@@ -5,12 +5,12 @@ const CoordinatorTbody = () => {
   return (
     <tbody>
       <TRow
-        patientImg="../images/male-dummy-img.png"
-        patientName="Tiana Calzoni"
-        doctorImg="../images/doctor-female-dummy-img.png"
-        doctorName="Jaydon Bator"
-        portAgentImg="../images/male-dummy-img.png"
-        portAgentName="Tiana Calzoni"
+        patientImg="../images/female-2.jpg"
+        patientName="Tiana"
+        doctorImg="../images/male-doctor-2.jpg"
+        doctorName="Dr.Sandeep"
+        portAgentImg="../images/male-4.jpg"
+        portAgentName="Aman"
         time="12:30 PM"
         date="Jan 20,2025"
         statusClass="cancelled"
@@ -21,9 +21,9 @@ const CoordinatorTbody = () => {
       <TRow
         patientImg="../images/male-dummy-img.png"
         patientName="Brandon Rhiel Madsen"
-        doctorImg="../images/doctor-female-dummy-img.png"
-        doctorName="Jaydon Bator"
-        portAgentImg="../images/male-dummy-img.png"
+        doctorImg="../images/doctor-female-1.jpg"
+        doctorName="Dr.Vamika"
+        portAgentImg="../images/male-3.jpg"
         portAgentName="Tiana Calzoni"
         time="12:30 PM"
         date="Jan 20,2025"
@@ -33,7 +33,7 @@ const CoordinatorTbody = () => {
       />
 
       <TRow
-        patientImg="../images/male-dummy-img.png"
+        patientImg="../images/male-6.jpg"
         patientName="Marcus Dorwat"
         doctorImg="../images/doctor-female-dummy-img.png"
         doctorName="Jaydon Bator"

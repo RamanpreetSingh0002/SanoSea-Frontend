@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import TBox from "../../TBox";
 import TopNav from "../../Navbar/JSX/TopNav";
-import SideNav from "../../Navbar/JSX/SideNav";
 import PatientTRow from "./PatientTRow";
+import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
 
 // import "../Style/SubAdmin.css";
 
@@ -25,14 +25,14 @@ const Patients = () => {
   };
   return (
     <>
-      <TopNav />
-      <SideNav />
       <main>
         <section id="sub-admin-section">
           <div className="sub-admin-header">
             <h4>Patients</h4>
             <div>
-              <button>search</button>
+              <button className="doctor-search-btn">
+                <i className="fa-solid fa-search"></i>
+              </button>
             </div>
           </div>
 
@@ -53,43 +53,50 @@ const Patients = () => {
                 {[
                   {
                     name: "Jaydon Bartor",
+                    imgSrc: "/images/male-1.jpg",
                     email: "jaydonbartor@gmail.com",
                     statusClass: "new",
                     statusLabel: "New",
                   },
                   {
-                    name: "Jaydon Bartor",
-                    email: "jaydonbartor@gmail.com",
+                    name: "Shaify",
+                    imgSrc: "/images/female-2.jpg ",
+                    email: "Shaify@gmail.com",
                     statusClass: "complete",
                     statusLabel: "Complete",
                   },
                   {
-                    name: "Jaydon Bartor",
-                    email: "jaydonbartor@gmail.com",
+                    name: "Vikram",
+                    imgSrc: "/images/male-3.jpg",
+                    email: "Vikram@gmail.com",
                     statusClass: "upcoming",
                     statusLabel: "Upcoming",
                   },
                   {
-                    name: "Jaydon Bartor",
-                    email: "jaydonbartor@gmail.com",
+                    name: "Aryan",
+                    imgSrc: "/images/male-5.jpg",
+                    email: "Aryan@gmail.com",
                     statusClass: "cancelled",
                     statusLabel: "Cancelled",
                   },
                   {
-                    name: "Jaydon Bartor",
-                    email: "jaydonbartor@gmail.com",
+                    name: "Vishal",
+                    imgSrc: "/images/male-2.jpg",
+                    email: "Vishal@gmail.com",
                     statusClass: "new",
                     statusLabel: "New",
                   },
                   {
-                    name: "Jaydon Bartor",
-                    email: "jaydonbartor@gmail.com",
+                    name: "Shilpa",
+                    imgSrc: "/images/female-4.jpg",
+                    email: "Shilpa@gmail.com",
                     statusClass: "new",
                     statusLabel: "New",
                   },
                 ].map((patient, index) => (
                   <PatientTRow
                     key={index}
+                    imgSrc={patient.imgSrc}
                     name={patient.name}
                     email={patient.email}
                     statusClass={patient.statusClass}

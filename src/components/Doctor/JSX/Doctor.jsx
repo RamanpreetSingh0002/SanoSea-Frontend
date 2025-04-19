@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import TBox from "../../TBox";
 import TopNav from "../../Navbar/JSX/TopNav";
-import SideNav from "../../Navbar/JSX/SideNav";
 
 // import "../Style/SubAdmin.css";
 
 import AddDoctor from "./AddDoctor";
 import DoctorTRow from "./DoctorTRow";
+import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
 
 const Doctor = () => {
   const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
@@ -27,8 +27,6 @@ const Doctor = () => {
   };
   return (
     <>
-      <TopNav />
-      <SideNav />
       <main>
         <section id="sub-admin-section">
           <div className="sub-admin-header">
@@ -57,17 +55,42 @@ const Doctor = () => {
               </thead>
               <tbody>
                 {[
-                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
-                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
-                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
-                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
-                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
-                  { name: "Jaydon Bartor", email: "jaydonbartor@gmail.com" },
+                  {
+                    name: "Jaydon Bartor",
+                    email: "jaydonbartor@gmail.com",
+                    imgSrc: "/images/male-1.jpg",
+                  },
+                  {
+                    name: "Shaify",
+                    email: "Shaify@gmail.com",
+                    imgSrc: "/images/female-2.jpg ",
+                  },
+                  {
+                    name: "Vikram",
+                    email: "Vikram@gmail.com",
+                    imgSrc: "/images/male-3.jpg",
+                  },
+                  {
+                    name: "Aryan",
+                    email: "Aryan@gmail.com",
+                    imgSrc: "/images/male-5.jpg",
+                  },
+                  {
+                    name: "Vishal",
+                    email: "Vishal@gmail.com",
+                    imgSrc: "/images/male-2.jpg",
+                  },
+                  {
+                    name: "Shilpa",
+                    email: "Shilpa@gmail.com",
+                    imgSrc: "/images/female-4.jpg",
+                  },
                 ].map((doctor, index) => (
                   <DoctorTRow
                     key={index}
                     name={doctor.name}
                     email={doctor.email}
+                    imgSrc={doctor.imgSrc}
                     index={index}
                     activeDropdownIndex={activeDropdownIndex}
                     setActiveDropdownIndex={setActiveDropdownIndex}

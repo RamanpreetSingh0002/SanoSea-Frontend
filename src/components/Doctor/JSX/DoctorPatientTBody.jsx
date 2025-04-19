@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const DoctorPatientTBody = ({
   name,
+  imgSrc,
   problem,
   time,
   date,
@@ -14,7 +15,7 @@ const DoctorPatientTBody = ({
     <tr>
       <td>
         <div className="doctor-profile">
-          <img src="/images/person.jpg" alt="person" />
+          <img src={imgSrc} alt="person" />
           <h5>{name}</h5>
         </div>
       </td>

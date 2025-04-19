@@ -10,21 +10,17 @@ import CancelledTbody from "./CancelledTbody";
 
 const Cancelled = () => {
   return (
-    <div>
-      <TopNav />
-      <SideNav />
-      <section id="appointment-table">
-        <div className="appointment-body">
-          <TBox heading="Unconfirmed" />
+    <section id="appointment-table">
+      <div className="appointment-body">
+        <TBox heading="Cancelled" />
 
-          {/* table */}
+        {/* table */}
 
-          <Table isPatient={true}>
-            <CancelledTbody />
-          </Table>
-        </div>
-      </section>
-    </div>
+        <Table isPatient={true}>
+          <CancelledTbody />
+        </Table>
+      </div>
+    </section>
   );
 };
 

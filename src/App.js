@@ -23,8 +23,19 @@ import Cancelled from "./components/Appointments/JSX/Cancelled.jsx";
 import Complete from "./components/Appointments/JSX/Complete.jsx";
 import PortAgentDashboard from "./components/PortAgent/JSX/PortAgentDashboard.jsx";
 import New from "./components/Appointments/JSX/New.jsx";
+import PublicLayout from "./layout/PublicLayout.jsx";
+import PrivateLayout from "./layout/PrivateLayout.jsx";
+import ProfileSetting from "./components/Admin/JSX/ProfileSetting.jsx";
 
 function App() {
+  const publicRoutesWrapper = (Component) => {
+    return <PublicLayout>{Component}</PublicLayout>;
+  };
+
+  const privateRoutesWrapper = (Component) => {
+    return <PrivateLayout>{Component}</PrivateLayout>;
+  };
+
   return (
     <>
       <Routes>
@@ -37,7 +48,18 @@ function App() {
         <Route path="/auth/reset-password" element={<ResetPassword />} />
         <Route path="/auth/change-password" element={<ChangePassword />} />
 
-        <Route path="/auth/patient-dashboard" element={<PatientDashboard />} />
+        <Route
+          path="/auth/admin-dashboard"
+          element={privateRoutesWrapper(<CoordinatorDashboard />)}
+        />
+        <Route
+          path="/auth/sub-admin-dashboard"
+          element={privateRoutesWrapper(<CoordinatorDashboard />)}
+        />
+        <Route
+          path="/auth/patient-dashboard"
+          element={publicRoutesWrapper(<PatientDashboard />)}
+        />
         <Route
           path="/auth/general-physician-dashboard"
           element={<GeneralPhysician />}
@@ -45,26 +67,62 @@ function App() {
         {/* <Route path="/auth/book-appointment" element={<BookAppointment />} /> */}
         <Route
           path="/auth/coordinator-dashboard"
-          element={<CoordinatorDashboard />}
+          element={privateRoutesWrapper(<CoordinatorDashboard />)}
         />
         {/* <Route path="/auth/audit-list" element={<AuditManagerModal />} />
         <Route path="/auth/port-list" element={<PortAgentModal />} /> */}
-        <Route path="/auth/booking-detail" element={<AdminBookingDetail />} />
-        <Route path="/auth/sub-admin" element={<SubAdmin />} />
-        <Route path="/auth/doctor" element={<Doctor />} />
+        <Route
+          path="/auth/booking-detail"
+          element={privateRoutesWrapper(<AdminBookingDetail />)}
+        />
+        <Route
+          path="/auth/sub-admin"
+          element={privateRoutesWrapper(<SubAdmin />)}
+        />
+        <Route path="/auth/doctor" element={privateRoutesWrapper(<Doctor />)} />
 
-        <Route path="/auth/doctor-profile" element={<DoctorProfile />} />
-        <Route path="/auth/sub-admin-profile" element={<SubAdminProfile />} />
+        <Route
+          path="/auth/doctor-profile"
+          element={privateRoutesWrapper(<DoctorProfile />)}
+        />
+        <Route
+          path="/auth/admin-profile-setting"
+          element={privateRoutesWrapper(<ProfileSetting />)}
+        />
 
-        <Route path="/auth/patient-detail" element={<Patients />} />
-        <Route path="/auth/unconfirmed-appointment" element={<Unconfirmed />} />
-        <Route path="/auth/upcoming-appointment" element={<Upcoming />} />
-        <Route path="/auth/cancelled-appointment" element={<Cancelled />} />
-        <Route path="/auth/complete-appointment" element={<Complete />} />
-        <Route path="/auth/new-appointment" element={<New />} />
+        <Route
+          path="/auth/sub-admin-profile"
+          element={privateRoutesWrapper(<SubAdminProfile />)}
+        />
+
+        <Route
+          path="/auth/patient-detail"
+          element={privateRoutesWrapper(<Patients />)}
+        />
+
+        <Route
+          path="/auth/unconfirmed-appointment"
+          element={publicRoutesWrapper(<Unconfirmed />)}
+        />
+        <Route
+          path="/auth/upcoming-appointment"
+          element={publicRoutesWrapper(<Upcoming />)}
+        />
+        <Route
+          path="/auth/cancelled-appointment"
+          element={publicRoutesWrapper(<Cancelled />)}
+        />
+        <Route
+          path="/auth/complete-appointment"
+          element={publicRoutesWrapper(<Complete />)}
+        />
+        <Route
+          path="/auth/new-appointment"
+          element={publicRoutesWrapper(<New />)}
+        />
         <Route
           path="/auth/port-agent-dashboard"
-          element={<PortAgentDashboard />}
+          element={publicRoutesWrapper(<PortAgentDashboard />)}
         />
       </Routes>
     </>

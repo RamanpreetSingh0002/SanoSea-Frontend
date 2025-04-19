@@ -4,6 +4,7 @@ import DropdownSelect from "../../DropdownSelect";
 
 const PatientTRow = ({
   name,
+  imgSrc,
   email,
   index,
   statusClass,
@@ -19,7 +20,7 @@ const PatientTRow = ({
     <tr>
       <td>
         <div className="doctor-profile">
-          <img src="/images/person.jpg" alt="person" />
+          <img src={imgSrc} alt="person" />
           <h5>{name}</h5>
         </div>
       </td>

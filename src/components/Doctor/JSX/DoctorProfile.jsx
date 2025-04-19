@@ -3,7 +3,7 @@ import UserHeader from "../../UserHeader";
 import LabeledIconText from "../../LabeledIconText";
 import DropdownSelect from "../../DropdownSelect";
 import TopNav from "../../Navbar/JSX/TopNav";
-import SideNav from "../../Navbar/JSX/SideNav";
+import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
 import AllBooking from "../../AllBooking";
 import TBox from "../../TBox";
 import Table from "../../Table";
@@ -16,12 +16,12 @@ import "../Style/ToggleAppointment.css";
 const DoctorProfile = () => {
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null); // Track dropdown globally
 
-  const handleDropdownChange = value => {
+  const handleDropdownChange = (value) => {
     console.log("Selected Status:", value);
   };
 
   useEffect(() => {
-    const handleClickOutside = event => {
+    const handleClickOutside = (event) => {
       if (!event.target.closest(".select-menu")) {
         setActiveDropdownIndex(null);
       }
@@ -35,9 +35,6 @@ const DoctorProfile = () => {
 
   return (
     <>
-      <TopNav />
-      <SideNav />
-
       <main>
         <section id="doctor-profile-section">
           <div className="booking-detail-header">
@@ -63,7 +60,7 @@ const DoctorProfile = () => {
             {/* surgeon*/}
             <div className="doctor-profile-header">
               <UserHeader
-                imgSrc="/images/person.jpg"
+                imgSrc="/images/male-5.jpg"
                 name="Ahmed Dokidis"
                 role="Surgeon"
                 experience="10 years"
@@ -126,61 +123,67 @@ const DoctorProfile = () => {
               </thead>
               <tbody>
                 <DoctorPatientTBody
-                  name="Jaydon Bator"
+                  imgSrc="/images/male-4.jpg"
+                  name="Sahil"
                   problem="Body Temerature High with Cold "
                   time="12:30 PM"
                   date="Jan 20,2025"
-                  email="jaydonbartor@gmail.com"
+                  email="sahil@gmail.com"
                   statusClass="new"
                   statusLabel="New"
                   actionType="View Detail"
                 />
                 <DoctorPatientTBody
-                  name="Jaydon Bator"
+                  imgSrc="/images/male-3.jpg"
+                  name="Prayag"
                   problem="Chest Pain or Pressure "
                   time="12:30 PM"
                   date="Jan 20,2025"
-                  email="jaydonbartor@gmail.com"
+                  email="prayag@gmail.com"
                   statusClass="new"
                   statusLabel="New"
                   actionType="View Detail"
                 />
                 <DoctorPatientTBody
-                  name="Jaydon Bator"
+                  imgSrc="/images/female-3.jpg"
+                  name="Bandna"
                   problem="Body Temerature High with Cold "
                   time="12:30 PM"
                   date="Jan 20,2025"
-                  email="jaydonbartor@gmail.com"
+                  email="bandna@gmail.com"
                   statusClass="cancelled"
                   statusLabel="Cancelled"
                   actionType="View Detail"
                 />
                 <DoctorPatientTBody
-                  name="Jaydon Bator"
+                  imgSrc="/images/male-6.jpg"
+                  name="Arun"
                   problem="Chest Pain or Pressure "
                   time="12:30 PM"
                   date="Jan 20,2025"
-                  email="jaydonbartor@gmail.com"
+                  email="arun@gmail.com"
                   statusClass="upcoming"
                   statusLabel="Upcoming"
                   actionType="View Detail"
                 />
                 <DoctorPatientTBody
-                  name="Jaydon Bator"
+                  imgSrc="/images/female-4.jpg"
+                  name="Alia"
                   problem="Body Temerature High with Cold "
                   time="12:30 PM"
                   date="Jan 20,2025"
-                  email="jaydonbartor@gmail.com"
+                  email="alia@gmail.com"
                   statusClass="past"
                   statusLabel="Past"
                   actionType="View Detail"
                 />
                 <DoctorPatientTBody
-                  name="Jaydon Bator"
+                  imgSrc="/images/female-2.jpg"
+                  name="Shaify"
                   problem="Chest Pain or Pressure "
                   time="12:30 PM"
                   date="Jan 20,2025"
-                  email="jaydonbartor@gmail.com"
+                  email="Shaify@gmail.com"
                   statusClass="new"
                   statusLabel="New"
                   actionType="View Detail"

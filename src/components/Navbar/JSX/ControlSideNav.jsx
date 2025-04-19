@@ -4,10 +4,13 @@ import SideNavIcon from "./SideNavIcon";
 import { useAuth } from "../../../hooks";
 
 import "../Style/SideNav.css";
+import { useNavigate } from "react-router-dom";
 
 const ControlSideNav = ({ bookNow, onOpen }) => {
   const { authInfo, handleLogout } = useAuth();
   const { isLoggedIn } = authInfo;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const navItems = document.querySelectorAll(".has-subnav");
@@ -69,20 +72,40 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
   return (
     <nav class="main-menu">
       <ul>
-        <SideNavIcon imgSrc="/images/grid.png" sideNavLabel={"Dashboard"} />
+        <SideNavIcon
+          imgSrc="/images/grid.png"
+          onClick={() => navigate("/auth/admin-dashboard")}
+          sideNavLabel={"Dashboard"}
+        />
 
-        <SideNavIcon imgSrc="/images/setting.png" sideNavLabel={"Setting"} />
+        <SideNavIcon
+          imgSrc="/images/setting.png"
+          onClick={() => navigate("/auth/admin-profile-setting")}
+          sideNavLabel={"Setting"}
+        />
 
         <SideNavIcon
           imgSrc="/images/management.png"
           sideNavLabel={"Management"}
         />
 
-        <SideNavIcon imgSrc="/images/subAdmin.png" sideNavLabel={"Sub-Admin"} />
+        <SideNavIcon
+          imgSrc="/images/subAdmin.png"
+          onClick={() => navigate("/auth/sub-admin")}
+          sideNavLabel={"Sub-Admin"}
+        />
 
-        <SideNavIcon imgSrc="/images/doctor.png" sideNavLabel={"Doctor"} />
+        <SideNavIcon
+          imgSrc="/images/doctor.png"
+          onClick={() => navigate("/auth/doctor")}
+          sideNavLabel={"Doctor"}
+        />
 
-        <SideNavIcon imgSrc="/images/patient.png" sideNavLabel={"Patient"} />
+        <SideNavIcon
+          imgSrc="/images/patient.png"
+          onClick={() => navigate("/auth/patient-detail")}
+          sideNavLabel={"Patient"}
+        />
 
         <SideNavIcon
           imgSrc="/images/general-phy.png"

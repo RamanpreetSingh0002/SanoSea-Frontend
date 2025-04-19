@@ -47,11 +47,11 @@ const AuthProvider = ({ children }) => {
         landingPage = "/auth/general-physician-dashboard";
         break;
       case "Admin":
-        // landingPage = "/auth/admin-dashboard";
-        landingPage = "/auth/coordinator-dashboard";
+        landingPage = "/auth/admin-dashboard";
+        // landingPage = "/auth/coordinator-dashboard";
         break;
       case "Audit Manager":
-        landingPage = "/auth/audit-manager-dashboard";
+        landingPage = "/auth/sub-admin-dashboard";
         break;
       case "Doctor":
         landingPage = "/auth/doctor-dashboard";
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
         landingPage = "/auth/port-agent-dashboard";
         break;
       case "Coordinator":
-        landingPage = "/auth/coordinator-dashboard";
+        landingPage = "/auth/sub-admin-dashboard";
         break;
       default:
         landingPage = "/auth/default-dashboard";
