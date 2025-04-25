@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TBox from "../../TBox";
 import TopNav from "../../Navbar/JSX/TopNav";
 import SubAdminRow from "./SubAdminRow";
 import "../Style/SubAdmin.css";
 import AddSubAdmin from "./AddSubAdmin";
 import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const SubAdmin = () => {
   const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
   const [isClosing, setClosing] = useState(false); // State to control closing animation
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
+
+  const { authInfo } = useContext(AuthContext);
+  const { profile } = authInfo;
 
   const handleOpenBox = () => {
     setBoxOpen(true); // Open box modal
@@ -30,12 +34,15 @@ const SubAdmin = () => {
         <section id="sub-admin-section">
           <div className="sub-admin-header">
             <h4>Sub-Admin</h4>
-            <button className="add-user-btn" onClick={handleOpenBox}>
-              <div>
-                <img src="/images/icon-plus-white.png" alt="icon-plus" />
-              </div>
-              <span>Add Sub Admin</span>
-            </button>
+
+            {profile?.role == "Admin" && (
+              <button className="add-user-btn" onClick={handleOpenBox}>
+                <div>
+                  <img src="/images/icon-plus-white.png" alt="icon-plus" />
+                </div>
+                <span>Add Sub Admin</span>
+              </button>
+            )}
           </div>
 
           <div className="sub-admin-box">

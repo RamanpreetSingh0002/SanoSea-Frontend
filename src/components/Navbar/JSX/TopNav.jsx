@@ -35,11 +35,11 @@ const TopNav = () => {
             </CustomLink>
           </span> */}
 
-          <span>
+          {/* <span>
             <CustomLink href="/">
               <i class="fa-solid fa-search"></i>
             </CustomLink>
-          </span>
+          </span> */}
 
           <span>
             <CustomLink href="/">
@@ -50,7 +50,7 @@ const TopNav = () => {
           <div class="profile">
             <div class="profile-image">
               <img
-                src={profile?.profilePhoto || "/images/person.jpg"}
+                src={profile?.profilePhoto || "/images/user.png"}
                 alt="profile"
               />
             </div>
