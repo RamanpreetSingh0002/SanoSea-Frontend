@@ -145,6 +145,10 @@
   margin-top: 12px;
 }
 
+.internal-modal .icon {
+  right: 12px;
+}
+
 /* Date & Time Picker Container */
 
 /* Date & Time Picker */
@@ -210,7 +214,7 @@
 }
 
 /* Save Button */
-.save-btn {
+.add-btn {
   background-color: #030f21;
   color: white;
 }

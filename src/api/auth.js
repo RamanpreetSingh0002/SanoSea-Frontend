@@ -1,3 +1,4 @@
+import { catchError } from "../utils/helper";
 import client from "./client";
 
 export const signUpUser = async formData => {
@@ -9,11 +10,7 @@ export const signUpUser = async formData => {
     });
     return data;
   } catch (error) {
-    const { response } = error;
-
-    if (response?.data) return response.data;
-
-    return { error: error.message || error };
+    return catchError(error);
   }
 };
 
@@ -22,11 +19,7 @@ export const verifyUserEmail = async userInfo => {
     const { data } = await client.post("/user/verify-email", userInfo);
     return data;
   } catch (error) {
-    const { response } = error;
-
-    if (response?.data) return response.data;
-
-    return { error: error.message || error };
+    return catchError(error);
   }
 };
 
@@ -35,11 +28,7 @@ export const signInUser = async userInfo => {
     const { data } = await client.post("/user/sign-in", userInfo);
     return data;
   } catch (error) {
-    const { response } = error;
-
-    if (response?.data) return response.data;
-
-    return { error: error.message || error };
+    return catchError(error);
   }
 };
 
@@ -50,11 +39,7 @@ export const getIsAuth = async token => {
     });
     return data;
   } catch (error) {
-    const { response } = error;
-
-    if (response?.data) return response.data;
-
-    return { error: error.message || error };
+    return catchError(error);
   }
 };
 
@@ -63,11 +48,7 @@ export const forgetPassword = async email => {
     const { data } = await client.post("/user/forget-password", { email });
     return data;
   } catch (error) {
-    const { response } = error;
-
-    if (response?.data) return response.data;
-
-    return { error: error.message || error };
+    return catchError(error);
   }
 };
 
@@ -79,11 +60,7 @@ export const verifyPasswordResetToken = async (token, userId) => {
     });
     return data;
   } catch (error) {
-    const { response } = error;
-
-    if (response?.data) return response.data;
-
-    return { error: error.message || error };
+    return catchError(error);
   }
 };
 
@@ -92,11 +69,7 @@ export const resetPassword = async passwordInfo => {
     const { data } = await client.post("/user/reset-password", passwordInfo);
     return data;
   } catch (error) {
-    const { response } = error;
-
-    if (response?.data) return response.data;
-
-    return { error: error.message || error };
+    return catchError(error);
   }
 };
 
@@ -108,11 +81,7 @@ export const resendEmailVerificationToken = async userId => {
     );
     return data;
   } catch (error) {
-    const { response } = error;
-
-    if (response?.data) return response.data;
-
-    return { error: error.message || error };
+    return catchError(error);
   }
 };
 
@@ -121,10 +90,6 @@ export const changePassword = async passwordInfo => {
     const { data } = await client.post("/user/change-password", passwordInfo);
     return data;
   } catch (error) {
-    const { response } = error;
-
-    if (response?.data) return response.data;
-
-    return { error: error.message || error };
+    return catchError(error);
   }
 };

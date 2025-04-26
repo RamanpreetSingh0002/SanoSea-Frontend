@@ -9,7 +9,7 @@ const DoctorInputFields = () => {
   const [selectedProfilePhoto, setSelectedProfilePhoto] = useState("");
   const fileInputRef = useRef();
 
-  const updateProfilePhoto = (file) => {
+  const updateProfilePhoto = file => {
     const url = URL.createObjectURL(file);
     setSelectedProfilePhoto(url);
   };
@@ -25,56 +25,45 @@ const DoctorInputFields = () => {
     <>
       <form className="profile-details">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-12">
             <FormField
               // value={userInfo.email}
               // onChange={handleChange}
-              id="firstName"
               name="firstName"
               label="First Name"
               placeholder="Enter First Name"
-              // iconClass="fa-solid fa-pen"
-              style={{ color: "#898b90" }}
               type="text"
             />
           </div>
-          <div className="col-md-6">
+          <div className="col-12">
             <FormField
               // value={userInfo.email}
               // onChange={handleChange}
-              id="lasttName"
-              name="lasttName"
+              name="lastName"
               label="Last Name"
               placeholder="Enter Last Name"
-              // iconClass="fa-solid fa-pen"
-              style={{ color: "#898b90" }}
               type="text"
             />
           </div>
-          <div className="col-md-6">
+          <div className="col-12">
             <FormField
               // value={userInfo.email}
               // onChange={handleChange}
-              id="emailID"
-              name="emailID"
+              name="email"
               label="Email ID"
               placeholder="Enter Your Email ID"
               iconClass="fa-solid fa-envelope"
-              style={{ color: "#cccccc" }}
-              // style={{ color: "#898b90" }}
               type="email"
             />
           </div>
-          <div className="col-md-6">
+          <div className="col-12">
             <FormField
               // value={userInfo.email}
               // onChange={handleChange}
-              id="phoneNumber"
               name="phoneNumber"
               label="Phone Number"
               placeholder="Enter Your Phone Number"
-              iconClass="fa-solid fa-phone-flip"
-              style={{ color: "#cccccc" }}
+              iconClass="fa-solid fa-phone"
               type="tel"
             />
           </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TBox from "../../TBox";
 import TopNav from "../../Navbar/JSX/TopNav";
 
@@ -7,11 +7,15 @@ import TopNav from "../../Navbar/JSX/TopNav";
 import AddDoctor from "./AddDoctor";
 import DoctorTRow from "./DoctorTRow";
 import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const Doctor = () => {
   const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
   const [isClosing, setClosing] = useState(false); // State to control closing animation
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
+
+  const { authInfo } = useContext(AuthContext);
+  const { profile } = authInfo;
 
   const handleOpenBox = () => {
     setBoxOpen(true); // Open box modal
@@ -35,10 +39,12 @@ const Doctor = () => {
               <button className="doctor-search-btn">
                 <i className="fa-solid fa-search"></i>
               </button>
-              <button className="add-user-btn" onClick={handleOpenBox}>
-                <img src="/images/icon-plus-white.png" alt="icon-plus" />
-                Add New Doctor
-              </button>
+              {profile?.role == "Admin" && (
+                <button className="add-user-btn" onClick={handleOpenBox}>
+                  <img src="/images/icon-plus-white.png" alt="icon-plus" />
+                  Add New Doctor
+                </button>
+              )}
             </div>
           </div>
 
