@@ -21,7 +21,7 @@ const DoctorFooterActions = ({ onClose }) => {
 
   return (
     <>
-      <button className="availability-btn" onClick={handleOpenBox}>
+      <button className="availability-btn">
         Manage Availability <FaCalendarAlt />
       </button>
       <button className="btn create-btn">Create Profile</button>
@@ -33,12 +33,12 @@ const DoctorFooterActions = ({ onClose }) => {
         Cancel
       </button>
 
-      {isBoxOpen && (
+      {/* {isBoxOpen && (
         <ManageAvailabilityModal
           isClosing={isClosing}
           onClose={handleCloseBox}
         />
-      )}
+      )} */}
     </>
   );
 };

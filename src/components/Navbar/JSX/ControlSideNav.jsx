@@ -44,13 +44,13 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
           case 5:
             newSrc = "/images/general-phy-white.png";
             break;
+          // case 6:
+          //   newSrc = "/images/navShip-white.png";
+          //   break;
           case 6:
-            newSrc = "/images/navShip-white.png";
-            break;
-          case 7:
             newSrc = "/images/portAgent-white.png";
             break;
-          case 8:
+          case 7:
             newSrc = "/images/appointment-white.png";
             break;
           default:
@@ -111,7 +111,7 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
           sideNavLabel={"General Physician"}
         />
 
-        <SideNavIcon imgSrc="/images/navShip.png" sideNavLabel={"Ship"} />
+        {/* <SideNavIcon imgSrc="/images/navShip.png" sideNavLabel={"Ship"} /> */}
 
         <SideNavIcon
           imgSrc="/images/portAgent.png"
