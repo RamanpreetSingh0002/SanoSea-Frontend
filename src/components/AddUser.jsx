@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-import FormField from "../../Form/FormField";
-import DropdownSelect from "../../DropdownSelect";
+import { useNotification } from "../hooks";
+import { isValidEmail } from "../utils/helper";
+import { addUser } from "../api/admin";
 
-import { useNotification } from "../../../hooks";
-import { addSubAdmin } from "../../../api/admin";
-import { isValidEmail } from "../../../utils/helper";
+import FormField from "./Form/FormField";
+import DropdownSelect from "./DropdownSelect";
 
 // Default sub-admin structure
-const defaultSubAdminInfo = {
+const defaultUserInfo = {
   firstName: "",
   lastName: "",
   email: "",
@@ -18,7 +18,7 @@ const defaultSubAdminInfo = {
 };
 
 // Function to validate sub-admin input fields
-const validateSubAdminInfo = ({ firstName, lastName, phoneNumber, email }) => {
+const validateUserInfo = ({ firstName, lastName, phoneNumber, email }) => {
   const isValidName = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;
 
   if (!firstName.trim()) return { ok: false, error: "First name is missing!" };
@@ -37,30 +37,33 @@ const validateSubAdminInfo = ({ firstName, lastName, phoneNumber, email }) => {
   return { ok: true };
 };
 
-const AddUser = ({ isClosing, onClose }) => {
-  const [subAdminInfo, setSubAdminInfo] = useState({ ...defaultSubAdminInfo });
+const AddUser = ({ isClosing, onClose, header }) => {
+  const [UserInfo, setUserInfo] = useState({ ...defaultUserInfo });
   const [busy, setBusy] = useState(false);
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null); // Tracks dropdown globally
 
   const { updateNotification } = useNotification();
 
+  const location = useLocation();
+  const isSubAdminPage = location.pathname === "/auth/sub-admin";
+
   // Handles input field changes
   const handleChange = ({ target }) => {
     const { value, name } = target;
-    setSubAdminInfo((prev) => ({ ...prev, [name]: value }));
+    setUserInfo(prev => ({ ...prev, [name]: value }));
   };
 
   // Handles dropdown role selection
-  const handleDropdownChange = (selectedRole) => {
-    setSubAdminInfo((prev) => ({ ...prev, roleName: selectedRole }));
+  const handleDropdownChange = selectedRole => {
+    setUserInfo(prev => ({ ...prev, roleName: selectedRole }));
   };
 
   // Handles form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     // Validate before making API calls
-    const { ok, error } = validateSubAdminInfo(subAdminInfo);
+    const { ok, error } = validateUserInfo(UserInfo);
     if (!ok) {
       updateNotification("error", error);
       return;
@@ -69,7 +72,7 @@ const AddUser = ({ isClosing, onClose }) => {
     // Set busy before API call to prevent multiple requests
     setBusy(true);
 
-    const response = await addSubAdmin(subAdminInfo);
+    const response = await addUser(UserInfo);
 
     // Set busy to false before handling response
     setBusy(false);
@@ -79,7 +82,7 @@ const AddUser = ({ isClosing, onClose }) => {
     }
 
     // Reset input fields after successful submission
-    setSubAdminInfo({ ...defaultSubAdminInfo });
+    setUserInfo({ ...defaultUserInfo });
 
     updateNotification("success", response.message);
     onClose();
@@ -87,7 +90,7 @@ const AddUser = ({ isClosing, onClose }) => {
 
   // Closes dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (!event.target.closest(".select-menu")) {
         setActiveDropdownIndex(null);
       }
@@ -99,13 +102,13 @@ const AddUser = ({ isClosing, onClose }) => {
     };
   }, []);
 
-  const { firstName, lastName, phoneNumber, email } = subAdminInfo;
+  const { firstName, lastName, phoneNumber, email } = UserInfo;
 
   return (
     <div className={`box-modal ${isClosing ? "closing" : ""}`}>
       <div className="internal-modal">
         <div className="box-heading">
-          <h2>Add Sub Admins</h2>
+          <h2>Add {header}</h2>
         </div>
 
         {/* Form Submission */}
@@ -162,23 +165,25 @@ const AddUser = ({ isClosing, onClose }) => {
             </div>
 
             {/* Dropdown Selection for Role */}
-            <div className="col-12">
-              <div className="form_field mb-3">
-                <label>Sub-Admin Role</label>
-                <DropdownSelect
-                  defaultClass="default-value"
-                  defaultValue="Select Sub-Admin Type"
-                  options={["Coordinator", "Audit Manager"]}
-                  index={0} // Unique index for tracking
-                  activeDropdownIndex={activeDropdownIndex}
-                  setActiveDropdownIndex={setActiveDropdownIndex}
-                  onChange={handleDropdownChange}
-                />
+            {isSubAdminPage && (
+              <div className="col-12">
+                <div className="form_field">
+                  <label>Sub-Admin Role</label>
+                  <DropdownSelect
+                    defaultClass="default-value"
+                    defaultValue="Select Sub-Admin Type"
+                    options={["Coordinator", "Audit Manager"]}
+                    index={0} // Unique index for tracking
+                    activeDropdownIndex={activeDropdownIndex}
+                    setActiveDropdownIndex={setActiveDropdownIndex}
+                    onChange={handleDropdownChange}
+                  />
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Form Buttons */}
-            <div className="box-buttons">
+            <div className="box-buttons mt-3">
               <button
                 type="button"
                 className="btn cancel-btn"
@@ -191,9 +196,9 @@ const AddUser = ({ isClosing, onClose }) => {
               <button
                 type="submit"
                 className="btn add-btn"
-                style={{ width: "150px" }}
+                style={{ width: "auto" }}
               >
-                Add Sub-Admin
+                Add {header}
               </button>
             </div>
           </div>

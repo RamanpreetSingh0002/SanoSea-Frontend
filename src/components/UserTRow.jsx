@@ -1,18 +1,22 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import DropdownSelect from "./DropdownSelect";
 
 const UserTRow = ({
   name,
   email,
+  role,
   imgSrc,
   index,
   activeDropdownIndex,
   setActiveDropdownIndex,
 }) => {
-  const handleDropdownChange = (value) => {
+  const handleDropdownChange = value => {
     console.log("Selected Status:", value);
   };
+
+  const location = useLocation();
+  const isSubAdminPage = location.pathname === "/auth/sub-admin";
 
   return (
     <tr>
@@ -25,6 +29,11 @@ const UserTRow = ({
       <td>
         <p className="doctor-email">{email}</p>
       </td>
+      {isSubAdminPage && (
+        <td>
+          <p className="admin-role">{role}</p>
+        </td>
+      )}
       <td>
         <DropdownSelect
           defaultValue="Active"

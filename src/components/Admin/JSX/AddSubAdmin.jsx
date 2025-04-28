@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import FormField from "../../Form/FormField";
 import DropdownSelect from "../../DropdownSelect";
 
 import { useNotification } from "../../../hooks";
-import { addSubAdmin } from "../../../api/admin";
+import { addUser } from "../../../api/admin";
 import { isValidEmail } from "../../../utils/helper";
 
 // Default sub-admin structure
@@ -69,7 +68,7 @@ const AddSubAdmin = ({ isClosing, onClose }) => {
     // Set busy before API call to prevent multiple requests
     setBusy(true);
 
-    const response = await addSubAdmin(subAdminInfo);
+    const response = await addUser(subAdminInfo);
 
     // Set busy to false before handling response
     setBusy(false);

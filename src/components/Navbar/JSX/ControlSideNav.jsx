@@ -29,28 +29,28 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
           // case 1:
           //   newSrc = "/images/setting-white.png";
           //   break;
+          // case 1:
+          //   newSrc = "/images/management-white.png";
+          //   break;
           case 1:
-            newSrc = "/images/management-white.png";
-            break;
-          case 2:
             newSrc = "/images/subAdmin-white.png";
             break;
-          case 3:
+          case 2:
             newSrc = "/images/doctor-white.png";
             break;
-          case 4:
+          case 3:
             newSrc = "/images/patient-white.png";
             break;
-          case 5:
+          case 4:
             newSrc = "/images/general-phy-white.png";
             break;
           // case 6:
           //   newSrc = "/images/navShip-white.png";
           //   break;
-          case 6:
+          case 5:
             newSrc = "/images/portAgent-white.png";
             break;
-          case 7:
+          case 6:
             newSrc = "/images/appointment-white.png";
             break;
           default:
@@ -83,10 +83,10 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
           sideNavLabel={"Setting"}
         /> */}
 
-        <SideNavIcon
+        {/* <SideNavIcon
           imgSrc="/images/management.png"
           sideNavLabel={"Management"}
-        />
+        /> */}
 
         <SideNavIcon
           imgSrc="/images/subAdmin.png"
@@ -102,12 +102,13 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
 
         <SideNavIcon
           imgSrc="/images/patient.png"
-          onClick={() => navigate("/auth/patient-detail")}
+          onClick={() => navigate("/auth/patient")}
           sideNavLabel={"Patient"}
         />
 
         <SideNavIcon
           imgSrc="/images/general-phy.png"
+          onClick={() => navigate("/auth/general-physician")}
           sideNavLabel={"General Physician"}
         />
 
@@ -115,6 +116,7 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
 
         <SideNavIcon
           imgSrc="/images/portAgent.png"
+          onClick={() => navigate("/auth/port-agent")}
           sideNavLabel={"Port Agent"}
         />
 

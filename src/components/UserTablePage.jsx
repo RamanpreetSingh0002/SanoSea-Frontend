@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import UserTRow from "./UserTRow";
 import TBox from "./TBox";
+import { AuthContext } from "../context/AuthProvider";
 
-// import AddUser from "./AddUser";
+import AddUser from "./AddUser";
+import AddDoctor from "./Doctor/JSX/AddDoctor";
 
 const UserTablePage = ({ header, addBtn }) => {
+  const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
+  const [isClosing, setClosing] = useState(false); // State to control closing animation
+  const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
+
+  const { authInfo } = useContext(AuthContext);
+  const { profile } = authInfo;
+
+  const location = useLocation();
+  const isDoctorPage = location.pathname === "/auth/doctor";
+  const isSubAdminPage = location.pathname === "/auth/sub-admin";
+
+  const handleOpenBox = () => {
+    setBoxOpen(true); // Open box modal
+    setClosing(false); // Reset closing state
+    document.body.classList.add("overflow-hidden"); // Prevent background scrolling
+  };
+
+  const handleCloseBox = () => {
+    document.body.classList.remove("overflow-hidden"); // Restore scrolling
+    setClosing(true); // Trigger closing animation
+    setTimeout(() => setBoxOpen(false), 400); // Wait for animation before removing modal
+    // setBoxOpen(false); // Close box-modal
+  };
+
   return (
     <main>
       <section id="sub-admin-section">
@@ -14,13 +42,12 @@ const UserTablePage = ({ header, addBtn }) => {
             <button className="doctor-search-btn">
               <i className="fa-solid fa-search"></i>
             </button>
-            {/* {profile?.role == "Admin" && ( */}
-            {/* <button className="add-user-btn" onClick={handleOpenBox}> */}
-            <button className="add-user-btn">
-              <img src="/images/icon-plus-white.png" alt="icon-plus" />
-              {addBtn}
-            </button>
-            {/* )} */}
+            {profile?.role == "Admin" && (
+              <button className="add-user-btn" onClick={handleOpenBox}>
+                <img src="/images/icon-plus-white.png" alt="icon-plus" />
+                {addBtn}
+              </button>
+            )}
           </div>
         </div>
 
@@ -31,6 +58,7 @@ const UserTablePage = ({ header, addBtn }) => {
               <tr>
                 <th>{header + "s"}</th>
                 <th>Email</th>
+                {isSubAdminPage && <th>Role</th>}
                 <th>State</th>
                 <th colSpan="2"></th>
               </tr>
@@ -74,20 +102,35 @@ const UserTablePage = ({ header, addBtn }) => {
                   email={user.email}
                   imgSrc={user.imgSrc}
                   index={index}
-                  //   activeDropdownIndex={activeDropdownIndex}
-                  //   setActiveDropdownIndex={setActiveDropdownIndex}
+                  role={index % 2 === 0 ? "Coordinator" : "Audit Manager"}
+                  activeDropdownIndex={activeDropdownIndex}
+                  setActiveDropdownIndex={setActiveDropdownIndex}
                 />
               ))}
             </tbody>
+            <div className="pagination-data">
+              <div>
+                <p>Showing Data 1 To 6</p>
+              </div>
+              <div>{/* pagination will be done here */}</div>
+            </div>
           </table>
         </div>
       </section>
 
-      {/* {isBoxOpen && (
+      {isBoxOpen && (
         <div className="box-overlay">
-          <AddUser isClosing={isClosing} onClose={handleCloseBox} />
+          {isDoctorPage ? (
+            <AddDoctor isClosing={isClosing} onClose={handleCloseBox} />
+          ) : (
+            <AddUser
+              isClosing={isClosing}
+              onClose={handleCloseBox}
+              header={header}
+            />
+          )}
         </div>
-      )} */}
+      )}
     </main>
   );
 };

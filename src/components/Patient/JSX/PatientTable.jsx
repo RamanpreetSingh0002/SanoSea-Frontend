@@ -1,28 +1,12 @@
 import React, { useState } from "react";
 import TBox from "../../TBox";
-import TopNav from "../../Navbar/JSX/TopNav";
 import PatientTRow from "./PatientTRow";
-import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
 
 // import "../Style/SubAdmin.css";
 
-const Patients = () => {
-  const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
-  const [isClosing, setClosing] = useState(false); // State to control closing animation
+const PatientTable = () => {
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
 
-  const handleOpenBox = () => {
-    setBoxOpen(true); // Open box modal
-    setClosing(false); // Reset closing state
-    document.body.classList.add("overflow-hidden"); // Prevent background scrolling
-  };
-
-  const handleCloseBox = () => {
-    document.body.classList.remove("overflow-hidden"); // Restore scrolling
-    setClosing(true); // Trigger closing animation
-    setTimeout(() => setBoxOpen(false), 400); // Wait for animation before removing modal
-    // setBoxOpen(false); // Close boxmodal
-  };
   return (
     <>
       <main>
@@ -115,4 +99,4 @@ const Patients = () => {
   );
 };
 
-export default Patients;
+export default PatientTable;

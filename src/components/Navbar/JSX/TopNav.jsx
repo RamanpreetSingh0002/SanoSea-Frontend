@@ -44,11 +44,11 @@ const TopNav = () => {
             </CustomLink>
           </span> */}
 
-          <span>
+          {/* <span>
             <CustomLink href="/">
               <i class="fa-solid fa-bell"></i>
             </CustomLink>
-          </span>
+          </span> */}
 
           <div
             class="profile"
