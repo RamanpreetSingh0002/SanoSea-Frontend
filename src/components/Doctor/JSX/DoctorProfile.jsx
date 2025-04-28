@@ -7,7 +7,7 @@ import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
 import AllBooking from "../../AllBooking";
 import TBox from "../../TBox";
 import Table from "../../Table";
-import DoctorTRow from "./DoctorTRow";
+
 import DoctorPatientTBody from "./DoctorPatientTBody";
 import ToggleAppointment from "../../ToggleAppointment";
 import "../Style/DoctorProfile.css";

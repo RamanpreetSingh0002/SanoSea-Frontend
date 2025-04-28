@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import DropdownSelect from "../../DropdownSelect";
+import DropdownSelect from "./DropdownSelect";
 
-const DoctorTRow = ({
+const UserTRow = ({
   name,
   email,
   imgSrc,
@@ -51,4 +51,4 @@ const DoctorTRow = ({
   );
 };
 
-export default DoctorTRow;
+export default UserTRow;
