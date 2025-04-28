@@ -27,8 +27,9 @@ const Doctor = () => {
     document.body.classList.remove("overflow-hidden"); // Restore scrolling
     setClosing(true); // Trigger closing animation
     setTimeout(() => setBoxOpen(false), 400); // Wait for animation before removing modal
-    // setBoxOpen(false); // Close boxmodal
+    // setBoxOpen(false); // Close box-modal
   };
+
   return (
     <>
       <main>

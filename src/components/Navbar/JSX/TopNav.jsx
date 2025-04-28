@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "../Style/TopNav.css";
 
@@ -8,6 +9,8 @@ import { AuthContext } from "../../../context/AuthProvider";
 const TopNav = () => {
   const { authInfo, isAuth } = useContext(AuthContext);
   const { profile, isPending } = authInfo;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     isAuth();
@@ -47,7 +50,10 @@ const TopNav = () => {
             </CustomLink>
           </span>
 
-          <div class="profile">
+          <div
+            class="profile"
+            onClick={() => navigate("/auth/admin-profile-setting")}
+          >
             <div class="profile-image">
               <img
                 src={profile?.profilePhoto || "/images/user.png"}

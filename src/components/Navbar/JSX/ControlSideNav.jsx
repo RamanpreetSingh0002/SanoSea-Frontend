@@ -11,7 +11,6 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
   const { isLoggedIn } = authInfo;
 
   const navigate = useNavigate();
-
   useEffect(() => {
     const navItems = document.querySelectorAll(".has-subnav");
 
@@ -27,31 +26,31 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
           case 0:
             newSrc = "/images/grid-white.png";
             break;
+          // case 1:
+          //   newSrc = "/images/setting-white.png";
+          //   break;
           case 1:
-            newSrc = "/images/setting-white.png";
-            break;
-          case 2:
             newSrc = "/images/management-white.png";
             break;
-          case 3:
+          case 2:
             newSrc = "/images/subAdmin-white.png";
             break;
-          case 4:
+          case 3:
             newSrc = "/images/doctor-white.png";
             break;
-          case 5:
+          case 4:
             newSrc = "/images/patient-white.png";
             break;
-          case 6:
+          case 5:
             newSrc = "/images/general-phy-white.png";
             break;
-          case 7:
+          case 6:
             newSrc = "/images/navShip-white.png";
             break;
-          case 8:
+          case 7:
             newSrc = "/images/portAgent-white.png";
             break;
-          case 9:
+          case 8:
             newSrc = "/images/appointment-white.png";
             break;
           default:
@@ -78,11 +77,11 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
           sideNavLabel={"Dashboard"}
         />
 
-        <SideNavIcon
+        {/* <SideNavIcon
           imgSrc="/images/setting.png"
           onClick={() => navigate("/auth/admin-profile-setting")}
           sideNavLabel={"Setting"}
-        />
+        /> */}
 
         <SideNavIcon
           imgSrc="/images/management.png"

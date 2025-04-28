@@ -43,7 +43,7 @@ const AddDoctor = ({ isClosing, onClose }) => {
 
         <DoctorInputFields />
         <DoctorUploadSection />
-        <DoctorFooterActions />
+        <DoctorFooterActions onClose={onClose} />
       </div>
     </div>
   );
