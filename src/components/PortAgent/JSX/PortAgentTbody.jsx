@@ -1,7 +1,7 @@
 import React from "react";
 import TRow from "../../TRow.jsx";
 
-const PortAgentTbody = () => {
+const PortAgentTbody = ({ onOpen }) => {
   return (
     <tbody>
       <TRow
@@ -17,6 +17,7 @@ const PortAgentTbody = () => {
         statusLabel="Complete"
         actionType="View Detail"
         isPortAgent="true"
+        onOpen={onOpen}
       />
 
       <TRow
@@ -32,6 +33,7 @@ const PortAgentTbody = () => {
         statusLabel="Upcoming"
         actionType="View Detail"
         isPortAgent="true"
+        onOpen={onOpen}
       />
 
       <TRow
@@ -47,6 +49,7 @@ const PortAgentTbody = () => {
         statusLabel="Past"
         actionType="View Detail"
         isPortAgent="true"
+        onOpen={onOpen}
       />
 
       <TRow
@@ -62,6 +65,7 @@ const PortAgentTbody = () => {
         statusLabel="Waiting"
         actionType="View Detail"
         isPortAgent="true"
+        onOpen={onOpen}
       />
 
       <TRow
@@ -77,6 +81,7 @@ const PortAgentTbody = () => {
         statusLabel="New"
         actionType="View Detail"
         isPortAgent="true"
+        onOpen={onOpen}
       />
     </tbody>
   );

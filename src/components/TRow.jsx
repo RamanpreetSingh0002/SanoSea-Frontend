@@ -15,6 +15,7 @@ const TRow = ({
   statusLabel,
   actionType,
   isPortAgent = false,
+  onOpen,
 }) => {
   return (
     <tr>
@@ -67,7 +68,9 @@ const TRow = ({
       {isPortAgent && (
         <td>
           <div class="add-cab-details">
-            <button to="/auth/booking-detail">Add Cab Details</button>
+            <button to="/auth/booking-detail" onClick={onOpen}>
+              Add Cab Details
+            </button>
           </div>
         </td>
       )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TBox from "../../TBox";
 import Table from "../../Table";
@@ -7,10 +7,25 @@ import AllBooking from "../../AllBooking";
 import PortAgentTbody from "./PortAgentTbody";
 
 import Bits from "../../Bits";
-import TopNav from "../../Navbar/JSX/TopNav";
-import SideNav from "../../Navbar/JSX/SideNav";
+import AddCabDetail from "./AddCabDetail";
 
 const PortAgentDashboard = () => {
+  const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
+  const [isClosing, setClosing] = useState(false); // State to control closing animation
+
+  const handleOpenBox = () => {
+    setBoxOpen(true); // Open box modal
+    setClosing(false); // Reset closing state
+    document.body.classList.add("overflow-hidden"); // Prevent background scrolling
+  };
+
+  const handleCloseBox = () => {
+    document.body.classList.remove("overflow-hidden"); // Restore scrolling
+    setClosing(true); // Trigger closing animation
+    setTimeout(() => setBoxOpen(false), 400); // Wait for animation before removing modal
+    // setBoxOpen(false); // Close box-modal
+  };
+
   return (
     <>
       <main>
@@ -55,9 +70,19 @@ const PortAgentDashboard = () => {
           {/* table */}
 
           <Table isPortAgent="true">
-            <PortAgentTbody />
+            <PortAgentTbody onOpen={handleOpenBox} />
           </Table>
         </AllBooking>
+
+        {isBoxOpen && (
+          <div className="box-overlay">
+            <AddCabDetail
+              isClosing={isClosing}
+              onClose={handleCloseBox}
+              width="136px"
+            />
+          </div>
+        )}
       </main>
     </>
   );
