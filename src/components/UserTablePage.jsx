@@ -17,6 +17,7 @@ const UserTablePage = ({ header, addBtn, width }) => {
 
   const location = useLocation();
   const isSubAdminPage = location.pathname === "/auth/sub-admin";
+  const isPatientPage = location.pathname === "/auth/patient";
 
   const handleOpenBox = () => {
     setBoxOpen(true); // Open box modal
@@ -40,7 +41,7 @@ const UserTablePage = ({ header, addBtn, width }) => {
             <button className="doctor-search-btn">
               <i className="fa-solid fa-search"></i>
             </button>
-            {profile?.role == "Admin" && (
+            {profile?.role == "Admin" && !isPatientPage && (
               <button className="add-user-btn" onClick={handleOpenBox}>
                 <img src="/images/icon-plus-white.png" alt="icon-plus" />
                 {addBtn}
@@ -58,49 +59,70 @@ const UserTablePage = ({ header, addBtn, width }) => {
                 <th>Email</th>
                 {isSubAdminPage && <th>Role</th>}
                 <th>State</th>
+
+                {isPatientPage && (
+                  <>
+                    <th>Status</th>
+                    <th>Report</th>
+                  </>
+                )}
                 <th colSpan="2"></th>
               </tr>
             </thead>
             <tbody>
               {[
                 {
+                  imgSrc: "/images/male-1.jpg",
                   name: "Jaydon Bartor",
                   email: "jaydonbartor@gmail.com",
-                  imgSrc: "/images/male-1.jpg",
+                  statusClass: "new",
+                  statusLabel: "New",
                 },
                 {
+                  imgSrc: "/images/female-2.jpg ",
                   name: "Shaify",
                   email: "Shaify@gmail.com",
-                  imgSrc: "/images/female-2.jpg ",
+                  statusClass: "complete",
+                  statusLabel: "Complete",
                 },
                 {
+                  imgSrc: "/images/male-3.jpg",
                   name: "Vikram",
                   email: "Vikram@gmail.com",
-                  imgSrc: "/images/male-3.jpg",
+                  statusClass: "upcoming",
+                  statusLabel: "Upcoming",
                 },
                 {
+                  imgSrc: "/images/male-5.jpg",
                   name: "Aryan",
                   email: "Aryan@gmail.com",
-                  imgSrc: "/images/male-5.jpg",
+                  statusClass: "cancelled",
+                  statusLabel: "Cancelled",
                 },
                 {
+                  imgSrc: "/images/male-2.jpg",
                   name: "Vishal",
                   email: "Vishal@gmail.com",
-                  imgSrc: "/images/male-2.jpg",
+                  statusClass: "waiting",
+                  statusLabel: "Waiting",
                 },
                 {
+                  imgSrc: "/images/female-4.jpg",
                   name: "Shilpa",
                   email: "Shilpa@gmail.com",
-                  imgSrc: "/images/female-4.jpg",
+                  statusClass: "new",
+                  statusLabel: "New",
                 },
               ].map((user, index) => (
                 <UserTRow
                   key={index}
+                  imgSrc={user.imgSrc}
                   name={user.name}
                   email={user.email}
-                  imgSrc={user.imgSrc}
-                  index={index}
                   role={index % 2 === 0 ? "Coordinator" : "Audit Manager"}
+                  statusClass={user.statusClass}
+                  statusLabel={user.statusLabel}
+                  index={index}
                   activeDropdownIndex={activeDropdownIndex}
                   setActiveDropdownIndex={setActiveDropdownIndex}
                 />

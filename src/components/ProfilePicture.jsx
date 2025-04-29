@@ -22,12 +22,7 @@ const ProfilePicture = () => {
   };
 
   return (
-    <div className="profile-left">
-      {/* <div className="profile-picture">
-        <img src="../images/person-dummy.jpg" alt="Profile" />
-        <p>Edit Picture</p>
-      </div> */}
-
+    <div className="user-profile">
       {/* Profile Photo */}
       <div className="col-12">
         <div className="profile_wrapper">
@@ -42,8 +37,7 @@ const ProfilePicture = () => {
               {selectedProfilePhoto ? (
                 <img src={selectedProfilePhoto} alt="" />
               ) : (
-                // <i className="fa-regular fa-user"></i>
-                <img src="../images/person-dummy.jpg" alt="Profile" />
+                <img src="../images/user.png" alt="Profile" />
               )}
             </div>
 
@@ -75,8 +69,8 @@ const ProfilePicture = () => {
         </div>
       </div>
 
-      <div className="section-conatiner">
-        {/* <div className="left-section"> */}{" "}
+      <div className="section-container mt-3">
+        {/* Update user profile */}
         <div className="profile-right-custom">
           <form className="profile-form">
             <div className="row">
@@ -93,6 +87,7 @@ const ProfilePicture = () => {
                   type="text"
                 />
               </div>
+
               <div className="col-md-6">
                 <FormField
                   // value={userInfo.email}
@@ -106,6 +101,7 @@ const ProfilePicture = () => {
                   type="text"
                 />
               </div>
+
               <div className="col-md-6">
                 <FormField
                   // value={userInfo.email}
@@ -119,6 +115,7 @@ const ProfilePicture = () => {
                   type="email"
                 />
               </div>
+
               <div className="col-md-6">
                 <FormField
                   // value={userInfo.email}
@@ -132,6 +129,7 @@ const ProfilePicture = () => {
                   type="tel"
                 />
               </div>
+
               <div className="col-md-6">
                 <FormField
                   // value={userInfo.email}
@@ -145,8 +143,8 @@ const ProfilePicture = () => {
                   type="text"
                 />
               </div>
+
               <div className="col-md-6">
-                {" "}
                 <div className="button-row">
                   <button type="button" className="cancel-btn">
                     Cancel
@@ -158,9 +156,9 @@ const ProfilePicture = () => {
               </div>
             </div>
           </form>
-        </div>{" "}
-        {/* </div> */}
-        {/* <div className="right-section"> */}{" "}
+        </div>
+
+        {/* Change Password */}
         <div className="change-password">
           <FormField
             // value={userInfo.password}
@@ -190,8 +188,8 @@ const ProfilePicture = () => {
             // value={userInfo.password}
             // onChange={handleChange}
             id="confirmPassword"
-            name="ConfirmPassword"
-            label="confirm Password"
+            name="confirmPassword"
+            label="Confirm Password"
             placeholder="Confirm Your Old Password"
             iconClass={confirmPasswordVisible ? "fa-eye-slash" : "fa-eye"}
             type={confirmPasswordVisible ? "text" : "password"}
@@ -202,7 +200,6 @@ const ProfilePicture = () => {
 
           <button className="chng-pass"> Change Password </button>
         </div>
-        {/* </div> */}
       </div>
     </div>
   );

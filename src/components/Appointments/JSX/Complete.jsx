@@ -12,7 +12,7 @@ const Complete = () => {
   return (
     <section id="appointment-table">
       <div className="appointment-body">
-        <TBox heading="Completed" />
+        <TBox heading="Completed" showDateTime={true} />
 
         {/* table */}
 

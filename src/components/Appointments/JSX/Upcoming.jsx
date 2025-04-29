@@ -12,7 +12,7 @@ const Upcoming = () => {
   return (
     <section id="appointment-table">
       <div className="appointment-body">
-        <TBox heading="Upcoming" />
+        <TBox heading="Upcoming" showDateTime={true} />
 
         {/* table */}
 

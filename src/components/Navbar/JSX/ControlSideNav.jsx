@@ -122,6 +122,7 @@ const ControlSideNav = ({ bookNow, onOpen }) => {
 
         <SideNavIcon
           imgSrc="/images/appointment.png"
+          onClick={() => navigate("/auth/appointments")}
           sideNavLabel={"Appointments"}
         />
       </ul>

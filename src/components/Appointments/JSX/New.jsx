@@ -12,7 +12,7 @@ const New = () => {
   return (
     <section id="appointment-table">
       <div className="appointment-body">
-        <TBox heading="New Appointments" />
+        <TBox heading="New Appointments" showDateTime={true} />
 
         {/* table */}
 

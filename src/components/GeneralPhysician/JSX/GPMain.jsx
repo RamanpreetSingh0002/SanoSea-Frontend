@@ -47,7 +47,7 @@ const GPMain = () => {
 
       {/* patient detail table */}
       <AllBooking>
-        <TBox heading="Today Bookings" />
+        <TBox heading="Today Bookings" showDateTime={true} />
 
         {/* table */}
 

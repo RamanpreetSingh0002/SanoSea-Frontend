@@ -11,7 +11,7 @@ const Unconfirmed = () => {
   return (
     <section id="appointment-table">
       <div className="appointment-body">
-        <TBox heading="Unconfirmed" />
+        <TBox heading="Unconfirmed" showDateTime={true} />
 
         {/* table */}
 

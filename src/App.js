@@ -36,13 +36,14 @@ import Cancelled from "./components/Appointments/JSX/Cancelled.jsx";
 import Complete from "./components/Appointments/JSX/Complete.jsx";
 import New from "./components/Appointments/JSX/New.jsx";
 import PortAgentTable from "./components/PortAgent/JSX/PortAgentTable.jsx";
+import AppointmentTable from "./components/Appointments/JSX/AppointmentTable.jsx";
 
 function App() {
-  const publicRoutesWrapper = Component => {
+  const publicRoutesWrapper = (Component) => {
     return <PublicLayout>{Component}</PublicLayout>;
   };
 
-  const privateRoutesWrapper = Component => {
+  const privateRoutesWrapper = (Component) => {
     return <PrivateLayout>{Component}</PrivateLayout>;
   };
 
@@ -105,6 +106,10 @@ function App() {
         <Route
           path="/auth/port-agent"
           element={privateRoutesWrapper(<PortAgentTable />)}
+        />
+        <Route
+          path="/auth/appointments"
+          element={privateRoutesWrapper(<AppointmentTable />)}
         />
 
         {/* Admin/SubAdmin Internal Paging */}

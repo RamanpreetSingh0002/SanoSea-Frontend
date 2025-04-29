@@ -84,7 +84,7 @@ const PatientMain = () => {
       </section>
 
       <AllBooking>
-        <TBox heading="All Bookings" />
+        <TBox heading="All Bookings" showDateTime={true} />
 
         {/* table */}
 

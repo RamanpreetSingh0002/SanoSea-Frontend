@@ -12,7 +12,7 @@ const Cancelled = () => {
   return (
     <section id="appointment-table">
       <div className="appointment-body">
-        <TBox heading="Cancelled" />
+        <TBox heading="Cancelled" showDateTime={true} />
 
         {/* table */}
 
