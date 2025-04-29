@@ -6,6 +6,7 @@ const GeneralPhysicianTable = () => {
     <UserTablePage
       header="General Physician"
       addBtn="Add New General Physician"
+      width={"180px"}
     />
   );
 };

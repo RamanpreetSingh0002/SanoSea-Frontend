@@ -16,12 +16,12 @@ import "../Style/ToggleAppointment.css";
 const DoctorProfile = () => {
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null); // Track dropdown globally
 
-  const handleDropdownChange = (value) => {
+  const handleDropdownChange = value => {
     console.log("Selected Status:", value);
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (!event.target.closest(".select-menu")) {
         setActiveDropdownIndex(null);
       }
@@ -105,7 +105,7 @@ const DoctorProfile = () => {
 
             <ToggleAppointment />
 
-            <TBox heading="All Appointments" />
+            <TBox heading="All Appointments" showDateTime={true} />
 
             {/* table */}
 

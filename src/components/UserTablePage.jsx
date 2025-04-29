@@ -6,9 +6,8 @@ import TBox from "./TBox";
 import { AuthContext } from "../context/AuthProvider";
 
 import AddUser from "./AddUser";
-import AddDoctor from "./Doctor/JSX/AddDoctor";
 
-const UserTablePage = ({ header, addBtn }) => {
+const UserTablePage = ({ header, addBtn, width }) => {
   const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
   const [isClosing, setClosing] = useState(false); // State to control closing animation
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
@@ -17,7 +16,6 @@ const UserTablePage = ({ header, addBtn }) => {
   const { profile } = authInfo;
 
   const location = useLocation();
-  const isDoctorPage = location.pathname === "/auth/doctor";
   const isSubAdminPage = location.pathname === "/auth/sub-admin";
 
   const handleOpenBox = () => {
@@ -120,15 +118,12 @@ const UserTablePage = ({ header, addBtn }) => {
 
       {isBoxOpen && (
         <div className="box-overlay">
-          {isDoctorPage ? (
-            <AddDoctor isClosing={isClosing} onClose={handleCloseBox} />
-          ) : (
-            <AddUser
-              isClosing={isClosing}
-              onClose={handleCloseBox}
-              header={header}
-            />
-          )}
+          <AddUser
+            isClosing={isClosing}
+            onClose={handleCloseBox}
+            header={header}
+            width={width}
+          />
         </div>
       )}
     </main>

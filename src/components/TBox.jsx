@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-const TBox = ({ heading }) => {
+const TBox = ({ heading, showDateTime = false }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
 
@@ -61,59 +61,71 @@ const TBox = ({ heading }) => {
 
       <div class="patient-booking-date-time">
         <div class="all-booking-date">
-          <p>Date</p>
+          {showDateTime && (
+            <>
+              <p>Date</p>
 
-          <div class="all-booking-select-date-time" onClick={openDatePicker}>
-            <p>{selectedDate ? formatDate(selectedDate) : "Select Date"}</p>
+              <div
+                class="all-booking-select-date-time"
+                onClick={openDatePicker}
+              >
+                <p>{selectedDate ? formatDate(selectedDate) : "Select Date"}</p>
 
-            <img
-              src="/images/icons8-calendar-30.png"
-              alt="calender"
-              style={{ cursor: "pointer" }}
-            />
+                <img
+                  src="/images/icons8-calendar-30.png"
+                  alt="calender"
+                  style={{ cursor: "pointer" }}
+                />
 
-            {/* Hidden date input that triggers the calendar */}
-            <input
-              ref={dateInputRef}
-              name="date"
-              type="date"
-              value={selectedDate}
-              onChange={handleDateChange}
-              style={{
-                position: "absolute",
-                top: "10px", // Adjust to position below the parent div
-                left: "0px",
-                opacity: "0", // Hide the default styling
-              }}
-            />
-          </div>
+                {/* Hidden date input that triggers the calendar */}
+                <input
+                  ref={dateInputRef}
+                  name="date"
+                  type="date"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  style={{
+                    position: "absolute",
+                    top: "10px", // Adjust to position below the parent div
+                    left: "0px",
+                    opacity: "0", // Hide the default styling
+                  }}
+                />
+              </div>
 
-          <div class="all-booking-select-date-time" onClick={openTimePicker}>
-            <p>
-              {selectedTime ? formatTimeTo12Hour(selectedTime) : "Select Time"}
-            </p>
+              <div
+                class="all-booking-select-date-time"
+                onClick={openTimePicker}
+              >
+                <p>
+                  {selectedTime
+                    ? formatTimeTo12Hour(selectedTime)
+                    : "Select Time"}
+                </p>
 
-            <img
-              src="/images/icon-clock.png"
-              alt="clock"
-              style={{ cursor: "pointer" }}
-            />
+                <img
+                  src="/images/icon-clock.png"
+                  alt="clock"
+                  style={{ cursor: "pointer" }}
+                />
 
-            {/* Hidden input for time picker */}
-            <input
-              ref={timeInputRef}
-              name="time"
-              type="time"
-              value={selectedTime} // Set the selected time as the current value
-              onChange={handleTimeChange}
-              style={{
-                position: "absolute",
-                top: "10px", // Adjust to position below the parent div
-                left: "0px",
-                opacity: "0",
-              }} // Hide the native input
-            />
-          </div>
+                {/* Hidden input for time picker */}
+                <input
+                  ref={timeInputRef}
+                  name="time"
+                  type="time"
+                  value={selectedTime} // Set the selected time as the current value
+                  onChange={handleTimeChange}
+                  style={{
+                    position: "absolute",
+                    top: "10px", // Adjust to position below the parent div
+                    left: "0px",
+                    opacity: "0",
+                  }} // Hide the native input
+                />
+              </div>
+            </>
+          )}
 
           <div class="all-booking-refresh">
             <a href="">Refresh</a>
