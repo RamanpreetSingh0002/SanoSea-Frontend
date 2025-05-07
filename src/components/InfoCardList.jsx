@@ -1,7 +1,9 @@
 import React from "react";
 import "./AuditManager/Style/InfoCardList.css";
+import { Link } from "react-router-dom";
+import { ImSpinner3 } from "react-icons/im";
 
-const InfoCardList = ({ title, data, onClose }) => {
+const InfoCardList = ({ title, users, onClose, busy }) => {
   return (
     <div>
       <div className="view-list-header">
@@ -14,24 +16,45 @@ const InfoCardList = ({ title, data, onClose }) => {
       <hr />
 
       <div>
-        {data?.map((item, index) => (
-          <div key={index} className="view-item">
-            <div className="list-profile-img">
-              <img src={item.image} alt="profile" />
-            </div>
-
-            <div className="view-list">
-              <div className="list-detail">
-                <h5>{item.name}</h5>
-                <p className="view-link">Audit Manager</p>
-              </div>
-
-              <div className="view-all">
-                <a href="#">View Detail</a>
-              </div>
+        {busy ? (
+          <div style={{ textAlign: "center" }}>
+            <ImSpinner3 className="animate-spin" />
+            <br />
+            <div className="loading-text">
+              Loading
+              <span className="dot">.</span>
+              <span className="dot">.</span>
+              <span className="dot">.</span>
             </div>
           </div>
-        ))}
+        ) : users?.length === 0 ? (
+          <h6 style={{ textAlign: "center" }}>No {title} Found</h6>
+        ) : (
+          users?.map((user, index) => (
+            <div key={index} className="view-item">
+              <div className="list-profile-img">
+                <img src={user?.image} alt="profile" />
+              </div>
+
+              <div className="view-list">
+                <div className="list-detail">
+                  <h5>{user?.name}</h5>
+                  <p className="view-link">Audit Manager</p>
+                </div>
+
+                <div>
+                  <Link
+                    to={"/auth/user-profile/" + user?.id}
+                    state={{ throughModal: true }}
+                    className="view-all"
+                  >
+                    View Detail
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

@@ -1,64 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getUserByRole } from "../../../api/admin";
 import InfoCardList from "../../InfoCardList";
 
 const PortAgentModal = ({ isPortClose, onClose }) => {
+  const [users, setUsers] = useState([]);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setBusy(true);
+      const response = await getUserByRole("Port Agent"); // Fetch data from API
+      setBusy(false);
+
+      if (!response.error) setUsers(response.users); // Use API data
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className={`list-modal ${isPortClose ? "closing" : ""}`}>
       <InfoCardList
         title="Port Agent"
         onClose={onClose}
-        data={[
-          {
-            image: "/images/female-2.jpg",
-            name: "Shaify",
-            link: "#",
-          },
-          {
-            image: "/images/male-5.jpg",
-            name: "Franci",
-            link: "#",
-          },
-          {
-            image: "/images/person.jpg",
-            name: "Justin Franci",
-            link: "#",
-          },
-          {
-            image: "/images/male-5.jpg",
-            name: "piel",
-            link: "#",
-          },
-          {
-            image: "/images/female-6.jpg",
-            name: "Sonia",
-            link: "#",
-          },
-          {
-            image: "/images/female-4.jpg",
-            name: "Alinaa",
-            link: "#",
-          },
-          {
-            image: "/images/male-2.jpg",
-            name: "Rohan",
-            link: "#",
-          },
-          {
-            image: "/images/male-5.jpg",
-            name: "Jasvir ",
-            link: "#",
-          },
-          {
-            image: "/images/female-5.jpg",
-            name: "visha",
-            link: "#",
-          },
-          {
-            image: "/images/female-4.jpg",
-            name: "Alia",
-            link: "#",
-          },
-        ]}
+        busy={busy}
+        users={users.map(user => ({
+          id: user?._id,
+          image: user?.profilePhoto || "/images/user.png",
+          name: user?.fullName,
+        }))}
       />
     </div>
   );

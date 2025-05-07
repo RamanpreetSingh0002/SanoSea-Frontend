@@ -1,7 +1,7 @@
 import React from "react";
 import TRow from "../../TRow";
 
-const CoordinatorTbody = () => {
+const ManagementTbody = () => {
   return (
     <tbody>
       <TRow
@@ -77,4 +77,4 @@ const CoordinatorTbody = () => {
   );
 };
 
-export default CoordinatorTbody;
+export default ManagementTbody;

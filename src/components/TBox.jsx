@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { useApi } from "../hooks";
 
 const TBox = ({ heading, showDateTime = false }) => {
   const [selectedDate, setSelectedDate] = useState("");
@@ -6,6 +8,8 @@ const TBox = ({ heading, showDateTime = false }) => {
 
   const dateInputRef = useRef(null);
   const timeInputRef = useRef(null);
+
+  const { fetchUsers } = useApi();
 
   // Show the date picker when clicking the calendar
   const openDatePicker = () => {
@@ -128,7 +132,9 @@ const TBox = ({ heading, showDateTime = false }) => {
           )}
 
           <div class="all-booking-refresh">
-            <a href="">Refresh</a>
+            <Link to="#" onClick={() => fetchUsers()}>
+              Refresh
+            </Link>
           </div>
         </div>
       </div>

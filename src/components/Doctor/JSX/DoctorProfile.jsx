@@ -11,18 +11,18 @@ import Table from "../../Table";
 import DoctorPatientTBody from "./DoctorPatientTBody";
 import ToggleAppointment from "../../ToggleAppointment";
 import "../Style/DoctorProfile.css";
-import "../Style/ToggleAppointment.css";
+// import "../Style/ToggleAppointment.css";
 import AppointmentTable from "../../Appointments/JSX/AppointmentTable";
 
 const DoctorProfile = () => {
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null); // Track dropdown globally
 
-  const handleDropdownChange = (value) => {
+  const handleDropdownChange = value => {
     console.log("Selected Status:", value);
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (!event.target.closest(".select-menu")) {
         setActiveDropdownIndex(null);
       }

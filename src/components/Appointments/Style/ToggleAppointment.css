@@ -24,19 +24,19 @@
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
 }
 
-.taeb-switch.left:after {
+.taeb-switch.all:after {
   left: 0px;
 }
-.taeb-switch.upcoming:after {
+.taeb-switch.Upcoming:after {
   left: 200px;
 }
-.taeb-switch.complete:after {
+.taeb-switch.Complete:after {
   left: 400px;
 }
-.taeb-switch.cancelled:after {
+.taeb-switch.Cancelled:after {
   left: 600px;
 }
-.taeb-switch.unconfirmed:after {
+.taeb-switch.Waiting:after {
   left: 800px;
 }
 

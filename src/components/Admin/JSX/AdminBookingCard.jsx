@@ -11,10 +11,12 @@ const AdminBookingCard = ({ data }) => {
     downloadLabel,
     avatar,
   } = data;
+
   return (
     <div className="booking-card">
       <div className="card-header">
         <img src={avatar} alt={name} />
+
         <div>
           <h3>{name}</h3>
           <p className="role">{role}</p>
@@ -24,9 +26,11 @@ const AdminBookingCard = ({ data }) => {
         <p>
           <strong>Email-ID:</strong> {email}
         </p>
+
         <p>
           <strong>Phone Number:</strong> {phone}
         </p>
+
         {additionalInfo &&
           additionalInfo.map((info, idx) => (
             <p key={idx}>
@@ -34,6 +38,7 @@ const AdminBookingCard = ({ data }) => {
             </p>
           ))}
       </div>
+
       {downloadLink && (
         <a href={downloadLink} className="download-btn" download>
           {downloadLabel}

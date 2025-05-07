@@ -14,7 +14,6 @@ import ChangePassword from "./components/Auth/JSX/ChangePassword.jsx";
 // * Dashboards
 import PatientDashboard from "./components/Patient/JSX/PatientDashboard.jsx";
 import GeneralPhysician from "./components/GeneralPhysician/JSX/GeneralPhysician.jsx";
-import CoordinatorDashboard from "./components/Coordinator/JSX/CoordinatorDashboard.jsx";
 import PortAgentDashboard from "./components/PortAgent/JSX/PortAgentDashboard.jsx";
 
 // * Admin/SubAdmin Side Nav
@@ -26,8 +25,7 @@ import GeneralPhysicianTable from "./components/GeneralPhysician/JSX/GeneralPhys
 // * Admin/SubAdmin Internal Paging
 import AdminBookingDetail from "./components/Admin/JSX/AdminBookingDetail.jsx";
 import DoctorProfile from "./components/Doctor/JSX/DoctorProfile.jsx";
-import SubAdminProfile from "./components/Admin/JSX/SubAdminProfile.jsx";
-import ProfileSetting from "./components/Admin/JSX/ProfileSetting.jsx";
+import EditProfile from "./components/User/JSX/EditProfile.jsx";
 
 // * Appointments
 import Unconfirmed from "./components/Appointments/JSX/Unconfirmed.jsx";
@@ -38,12 +36,16 @@ import New from "./components/Appointments/JSX/New.jsx";
 import PortAgentTable from "./components/PortAgent/JSX/PortAgentTable.jsx";
 import AppointmentTable from "./components/Appointments/JSX/AppointmentTable.jsx";
 
+// * User
+import UserProfile from "./components/User/JSX/UserProfile.jsx";
+import ManagementDashboard from "./components/Admin/JSX/ManagementDashboard.jsx";
+
 function App() {
-  const publicRoutesWrapper = (Component) => {
+  const publicRoutesWrapper = Component => {
     return <PublicLayout>{Component}</PublicLayout>;
   };
 
-  const privateRoutesWrapper = (Component) => {
+  const privateRoutesWrapper = Component => {
     return <PrivateLayout>{Component}</PrivateLayout>;
   };
 
@@ -62,25 +64,18 @@ function App() {
 
         {/* Dashboards */}
         <Route
-          path="/auth/admin-dashboard"
-          element={privateRoutesWrapper(<CoordinatorDashboard />)}
+          path="/auth/management-dashboard"
+          element={privateRoutesWrapper(<ManagementDashboard />)}
         />
         <Route
-          path="/auth/sub-admin-dashboard"
-          element={privateRoutesWrapper(<CoordinatorDashboard />)}
+          path="/auth/general-physician-dashboard"
+          element={publicRoutesWrapper(<GeneralPhysician />)}
         />
         <Route
           path="/auth/patient-dashboard"
           element={publicRoutesWrapper(<PatientDashboard />)}
         />
-        <Route
-          path="/auth/general-physician-dashboard"
-          element={<GeneralPhysician />}
-        />
-        <Route
-          path="/auth/coordinator-dashboard"
-          element={privateRoutesWrapper(<CoordinatorDashboard />)}
-        />
+
         <Route
           path="/auth/port-agent-dashboard"
           element={publicRoutesWrapper(<PortAgentDashboard />)}
@@ -122,12 +117,14 @@ function App() {
           element={privateRoutesWrapper(<DoctorProfile />)}
         />
         <Route
-          path="/auth/admin-profile-setting"
-          element={privateRoutesWrapper(<ProfileSetting />)}
+          path="/auth/edit-profile"
+          element={privateRoutesWrapper(<EditProfile />)}
         />
+
+        {/* User */}
         <Route
-          path="/auth/sub-admin-profile"
-          element={privateRoutesWrapper(<SubAdminProfile />)}
+          path="/auth/user-profile/:userId"
+          element={privateRoutesWrapper(<UserProfile />)}
         />
 
         {/* Appointments */}

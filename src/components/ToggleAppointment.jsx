@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from "react";
-// import "./ToggleAppointment.css"; // if you moved your styles to a CSS file
+import { useAppointments } from "../hooks";
+import "./Appointments/Style/ToggleAppointment.css";
 
 const directions = [
-  { label: "All Appointments", value: "left" },
-  { label: "Upcoming", value: "upcoming" },
-  { label: "Complete", value: "complete" },
-  { label: "Cancelled", value: "cancelled" },
-  { label: "Newly Booked", value: "unconfirmed" },
+  { label: "All Appointments", value: "" },
+  { label: "Upcoming", value: "Upcoming" },
+  { label: "Complete", value: "Complete" },
+  { label: "Cancelled", value: "Cancelled" },
+  { label: "Newly Booked", value: "Waiting" },
 ];
 
 const ToggleAppointment = () => {
-  const [active, setActive] = useState("left");
+  const { fetchAppointments, fetchParams } = useAppointments();
+  const [active, setActive] = useState(fetchParams.state || "");
+
+  const handleToggle = state => {
+    setActive(state);
+    fetchAppointments(fetchParams.pageNo, fetchParams.limit, state); // Fetch filtered appointments
+  };
 
   return (
     <div className="toggle-appoint">
-      <div className={`taeb-switch ${active} text-center`}>
-        {directions.map((item) => (
+      <div className={`taeb-switch ${active ? active : "all"} text-center`}>
+        {directions.map(item => (
           <div
             key={item.value}
             className={`taeb ${active === item.value ? "active" : ""}`}
-            onClick={() => setActive(item.value)}
+            onClick={() => handleToggle(item.value)}
           >
             {item.label}
           </div>

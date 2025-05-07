@@ -209,12 +209,14 @@
 
 /* Cancel Button */
 .cancel-btn {
-  background-color: #a3dde9;
+  /* background-color: #a3dde9; */
+  background-color: #eee;
   color: black;
 }
 
-/* Save Button */
-.add-btn {
+/* Save & Add Button */
+.add-btn,
+.save-btn {
   background-color: #030f21;
   color: white;
 }

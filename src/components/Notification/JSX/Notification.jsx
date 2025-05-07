@@ -2,10 +2,8 @@ import React from "react";
 import "../Style/Notification.css";
 
 const Notification = ({ toasts, removeToast }) => {
-  console.log("Toasts: ", toasts);
-
   // Get icon class based on type
-  const getIcon = (type) => {
+  const getIcon = type => {
     switch (type) {
       case "success":
         return "check-circle-fill";
@@ -20,7 +18,7 @@ const Notification = ({ toasts, removeToast }) => {
 
   return (
     <div className="my-toast-container">
-      {toasts.map((toast) => (
+      {toasts.map(toast => (
         <div
           key={toast.id}
           className={`my-toast-banner ${toast.type} ${

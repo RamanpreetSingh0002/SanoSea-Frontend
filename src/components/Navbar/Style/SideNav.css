@@ -29,7 +29,7 @@ nav.main-menu.expanded {
   position: relative;
   display: block;
   /* width: 200px; */
-  padding: 7px 0px;
+  padding: 1px 0px;
   cursor: pointer;
 }
 
@@ -46,6 +46,9 @@ nav.main-menu.expanded {
   align-items: center;
   border: none;
   background: transparent;
+  width: 200px;
+  padding: 6px 0px;
+
   /* -webkit-transform: translateZ(0) scale(1, 1);
   -webkit-transition: all 0.1s linear; */
   transition: all 0.1s linear;
@@ -55,7 +58,9 @@ nav.main-menu.expanded {
 .logout-icon {
   position: relative;
   /* display: table-cell; */
-  width: 60px;
+  width: 40px;
+  border-radius: 4px;
+  margin: 0 10px;
   height: 36px;
   /* text-align: center; */
   /* vertical-align: middle; */
@@ -71,7 +76,12 @@ nav.main-menu.expanded {
   /* display: table-cell;
   vertical-align: middle; */
   width: 140px;
+  height: 36px;
   text-align: left;
+  padding: 0 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
 }
 
 .main-menu > ul.logout {
@@ -87,7 +97,8 @@ nav li {
   padding: 0;
 }
 
-.main-menu li:hover {
+.main-menu li:hover .nav-icon,
+.main-menu li:hover .nav-text {
   background-color: #020a36;
   background: #005c7b;
   background: #498e99;
@@ -101,6 +112,53 @@ nav li {
 .main-menu li:hover .nav-icon i {
   color: #fff;
 }
+
+.main-menu a.active {
+  /* background-color: #498b9c; */
+}
+
+.main-menu a.active > .nav-icon-button {
+  color: #fff;
+}
+
+.main-menu a.active .nav-icon i {
+  color: #fff;
+}
+
+.main-menu a.active .nav-icon {
+  /* color: #fff; */
+  background-color: #498b9c;
+}
+
+.main-menu a.active .nav-text {
+  color: #fff;
+  background-color: #498b9c;
+}
+
+/* .has-subnav:hover .nav-img {
+  filter: brightness(0) invert(1); Example: Makes image appear white
+}
+
+.has-subnav.dashboard:hover .nav-img {
+  filter: none; Keeps original styling for Dashboard
+}
+
+.main-menu a.active .nav-img {
+  filter: brightness(0) invert(1); Example: Makes image appear white
+}
+
+.main-menu.dashboard.nav-icon-button.active .nav-img {
+  filter: none; Keeps original styling for Dashboard
+} */
+
+/* .has-subnav a.active .nav-img {
+  filter: brightness(0) invert(1); Makes image white for active state
+} */
+
+/* Exclude Dashboard from this effect */
+/* .has-subnav.dashboard .nav-icon-button.active .nav-img {
+  filter: none; Keeps original styling for Dashboard
+} */
 
 .main-menu i {
   color: #000;

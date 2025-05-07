@@ -1,17 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { ImSpinner3 } from "react-icons/im";
 
 import UserTRow from "./UserTRow";
 import TBox from "./TBox";
 import { AuthContext } from "../context/AuthProvider";
 
-import AddUser from "./AddUser";
+import { useApi, useUserForm } from "../hooks";
+import { useDebounce } from "../utils/helper";
+import UserPagination from "./User/JSX/UserPagination";
 
-const UserTablePage = ({ header, addBtn, width }) => {
-  const [isBoxOpen, setBoxOpen] = useState(false); // State to control boxmodal
-  const [isClosing, setClosing] = useState(false); // State to control closing animation
+const UserTablePage = ({ header, addBtn, width, users, busy }) => {
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
+  const [searchVisible, setSearchVisible] = useState(false); // Manage visibility
+  const [searchQuery, setSearchQuery] = useState(
+    localStorage.getItem("searchQuery") || "" // Restore search on refresh
+  );
 
+  const { fetchUsers, fetchParams } = useApi(); // Use context to fetch users
+  const { handleOpenUserForm } = useUserForm(); // Use context to open UserForm
   const { authInfo } = useContext(AuthContext);
   const { profile } = authInfo;
 
@@ -19,18 +26,42 @@ const UserTablePage = ({ header, addBtn, width }) => {
   const isSubAdminPage = location.pathname === "/auth/sub-admin";
   const isPatientPage = location.pathname === "/auth/patient";
 
-  const handleOpenBox = () => {
-    setBoxOpen(true); // Open box modal
-    setClosing(false); // Reset closing state
-    document.body.classList.add("overflow-hidden"); // Prevent background scrolling
+  const handleOpen = (user = null) => {
+    handleOpenUserForm(user, header, width); // Open UserForm with user data
   };
 
-  const handleCloseBox = () => {
-    document.body.classList.remove("overflow-hidden"); // Restore scrolling
-    setClosing(true); // Trigger closing animation
-    setTimeout(() => setBoxOpen(false), 400); // Wait for animation before removing modal
-    // setBoxOpen(false); // Close box-modal
+  // Toggle search bar visibility
+  const handleSearchClick = () => {
+    setSearchVisible(prev => !prev);
   };
+
+  const debouncedSearch = useDebounce(searchQuery, 500);
+  useEffect(() => {
+    if (debouncedSearch === "") {
+      // If search is empty, fetch users without search
+      fetchUsers(fetchParams.roles, fetchParams.pageNo, fetchParams.limit, "");
+
+      const removeInput = setTimeout(() => {
+        setSearchVisible(false); // Hide search bar after 5 seconds
+        setSearchQuery(""); // Reset search query
+        localStorage.setItem("searchQuery", ""); // Clear search query in local storage
+      }, 5000);
+
+      return () => {
+        clearTimeout(removeInput);
+      };
+    }
+    // Fetch users when search query changes
+    if (searchQuery)
+      fetchUsers(
+        fetchParams.roles,
+        fetchParams.pageNo,
+        fetchParams.limit,
+        debouncedSearch
+      );
+
+    if (localStorage.getItem("searchQuery") !== "") setSearchVisible(true); // Show search bar if there's a query
+  }, [debouncedSearch]);
 
   return (
     <main>
@@ -38,11 +69,27 @@ const UserTablePage = ({ header, addBtn, width }) => {
         <div className="sub-admin-header">
           <h4>{header}</h4>
           <div className="doctor-btn">
-            <button className="doctor-search-btn">
+            {/* search-btn */}
+            <button className="search-btn" onClick={handleSearchClick}>
               <i className="fa-solid fa-search"></i>
             </button>
-            {profile?.role == "Admin" && !isPatientPage && (
-              <button className="add-user-btn" onClick={handleOpenBox}>
+
+            {/* Add transition effect */}
+            <div
+              className={`form_field search-field ${
+                searchVisible ? "visible" : ""
+              }`}
+            >
+              <input
+                name="search"
+                value={searchQuery}
+                placeholder="Search"
+                onChange={e => setSearchQuery(e.target.value)} // Auto-fetches results
+              />
+            </div>
+
+            {profile?.role === "Admin" && !isPatientPage && (
+              <button className="add-user-btn" onClick={() => handleOpen()}>
                 <img src="/images/icon-plus-white.png" alt="icon-plus" />
                 {addBtn}
               </button>
@@ -50,7 +97,10 @@ const UserTablePage = ({ header, addBtn, width }) => {
           </div>
         </div>
 
-        <div className="sub-admin-box">
+        <div
+          className="sub-admin-box"
+          // style={{ height: !busy && users && users?.length > 0 && "auto" }}
+        >
           <TBox heading={header} />
           <table className="sub-admin-table">
             <thead>
@@ -70,84 +120,45 @@ const UserTablePage = ({ header, addBtn, width }) => {
               </tr>
             </thead>
             <tbody>
-              {[
-                {
-                  imgSrc: "/images/male-1.jpg",
-                  name: "Jaydon Bartor",
-                  email: "jaydonbartor@gmail.com",
-                  statusClass: "new",
-                  statusLabel: "New",
-                },
-                {
-                  imgSrc: "/images/female-2.jpg ",
-                  name: "Shaify",
-                  email: "Shaify@gmail.com",
-                  statusClass: "complete",
-                  statusLabel: "Complete",
-                },
-                {
-                  imgSrc: "/images/male-3.jpg",
-                  name: "Vikram",
-                  email: "Vikram@gmail.com",
-                  statusClass: "upcoming",
-                  statusLabel: "Upcoming",
-                },
-                {
-                  imgSrc: "/images/male-5.jpg",
-                  name: "Aryan",
-                  email: "Aryan@gmail.com",
-                  statusClass: "cancelled",
-                  statusLabel: "Cancelled",
-                },
-                {
-                  imgSrc: "/images/male-2.jpg",
-                  name: "Vishal",
-                  email: "Vishal@gmail.com",
-                  statusClass: "waiting",
-                  statusLabel: "Waiting",
-                },
-                {
-                  imgSrc: "/images/female-4.jpg",
-                  name: "Shilpa",
-                  email: "Shilpa@gmail.com",
-                  statusClass: "new",
-                  statusLabel: "New",
-                },
-              ].map((user, index) => (
-                <UserTRow
-                  key={index}
-                  imgSrc={user.imgSrc}
-                  name={user.name}
-                  email={user.email}
-                  role={index % 2 === 0 ? "Coordinator" : "Audit Manager"}
-                  statusClass={user.statusClass}
-                  statusLabel={user.statusLabel}
-                  index={index}
-                  activeDropdownIndex={activeDropdownIndex}
-                  setActiveDropdownIndex={setActiveDropdownIndex}
-                />
-              ))}
+              {busy ? (
+                <tr style={{ borderBottom: "none" }}>
+                  <td colSpan="6" style={{ textAlign: "center" }}>
+                    <ImSpinner3 className="animate-spin" />
+                    <br />
+                    <div className="loading-text">
+                      Loading
+                      <span className="dot">.</span>
+                      <span className="dot">.</span>
+                      <span className="dot">.</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : !users || users?.length === 0 ? (
+                <tr>
+                  <td colSpan="6" style={{ textAlign: "center" }}>
+                    <h6>No {header + "s"} Found</h6>
+                  </td>
+                </tr>
+              ) : (
+                users?.map((user, index) => (
+                  <UserTRow
+                    key={index}
+                    onOpen={() => handleOpen(user)}
+                    user={user}
+                    statusClass={user?.statusClass}
+                    statusLabel={user?.statusLabel}
+                    index={index}
+                    activeDropdownIndex={activeDropdownIndex}
+                    setActiveDropdownIndex={setActiveDropdownIndex}
+                  />
+                ))
+              )}
             </tbody>
-            <div className="pagination-data">
-              <div>
-                <p>Showing Data 1 To 6</p>
-              </div>
-              <div>{/* pagination will be done here */}</div>
-            </div>
           </table>
+
+          {!busy && users && users?.length > 0 && <UserPagination />}
         </div>
       </section>
-
-      {isBoxOpen && (
-        <div className="box-overlay">
-          <AddUser
-            isClosing={isClosing}
-            onClose={handleCloseBox}
-            header={header}
-            width={width}
-          />
-        </div>
-      )}
     </main>
   );
 };

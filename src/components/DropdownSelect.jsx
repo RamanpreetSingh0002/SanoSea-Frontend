@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNeedPermission, useNotification } from "../hooks";
 
 const DropdownSelect = ({
-  defaultValue = "",
+  user,
+  onOpen,
+  defaultValue,
+  patientSelect = false,
   options = [],
   onChange,
   includeLabel = false,
@@ -13,8 +17,11 @@ const DropdownSelect = ({
   ...rest
 }) => {
   const [dropdownDirection, setDropdownDirection] = useState("down"); // Track dropdown position
-  const [selected, setSelected] = useState(""); // Default empty, filled on load
+  const [selected, setSelected] = useState(defaultValue); // Default empty, filled on load
   const dropdownRef = useRef(null); // Reference for dropdown
+
+  const { handleOpenPermissionBox } = useNeedPermission();
+  const { updateNotification } = useNotification();
 
   const isActive = activeDropdownIndex === index;
 
@@ -32,7 +39,25 @@ const DropdownSelect = ({
   };
 
   const handleOptionClick = option => {
-    setSelected(option);
+    if (option === user?.state) {
+      // Show warning if the selected option is the same as stored state
+      setActiveDropdownIndex(null);
+      return updateNotification(
+        "warning",
+        `${
+          user?.fullName + ` (${user?.email})`
+        } is already ${option.toLowerCase()} account`
+      );
+    }
+
+    if (option === "Active" || option === "Deactive") {
+      handleOpenPermissionBox(option, user); // Open permission modal with selected option
+    } else if (option === "Edit") {
+      onOpen(user); // Open edit modal with user data
+    } else {
+      setSelected(option);
+    }
+    // setSelected(option);
     onChange && onChange(option);
     setActiveDropdownIndex(null);
   };
@@ -66,25 +91,25 @@ const DropdownSelect = ({
   }, []);
 
   // Check if the dropdown is inside a form
-  const isInsideForm = dropdownRef.current?.closest("form");
+  // const isInsideForm = dropdownRef.current?.closest("form");
 
   return (
     <div
       className={`select-menu ${isActive ? "active" : ""}`}
       ref={dropdownRef}
     >
-      <div
-        className={`select-btn ${
-          selected === defaultValue ? "default-color" : "selected-color"
-        }`}
-        onClick={toggleDropdown}
-      >
-        <span className={"sBtn-text " + defaultClass}>
-          {selected || defaultValue}
-        </span>
+      {!patientSelect && (
+        <div
+          className={`select-btn ${
+            selected?.startsWith("Select") ? "default-color" : "selected-color"
+          }`}
+          onClick={toggleDropdown}
+        >
+          <span className={"sBtn-text " + defaultClass}>{selected}</span>
 
-        <i className={`bi bi-chevron-down ${isActive ? "rotate" : ""}`}></i>
-      </div>
+          <i className={`bi bi-chevron-down ${isActive ? "rotate" : ""}`}></i>
+        </div>
+      )}
 
       {isActive && (
         <ul className={`options options-${dropdownDirection}`} {...rest}>

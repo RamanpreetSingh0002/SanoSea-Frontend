@@ -1,51 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { ImSpinner3 } from "react-icons/im";
+import { useNeedPermission, useNotification } from "../hooks";
 import DropdownSelect from "./DropdownSelect";
 
 const UserTRow = ({
-  imgSrc,
-  name,
-  email,
-  role,
+  onOpen,
+  user,
   statusClass,
   statusLabel,
   index,
   activeDropdownIndex,
   setActiveDropdownIndex,
 }) => {
-  const handleDropdownChange = value => {
-    console.log("Selected Status:", value);
-  };
+  const { handleOpenPermissionBox } = useNeedPermission();
 
   const location = useLocation();
   const isSubAdminPage = location.pathname === "/auth/sub-admin";
   const isPatientPage = location.pathname === "/auth/patient";
 
+  const handleDeleteUser = async () => {
+    handleOpenPermissionBox("Delete", user); // Open permission modal with selected option
+  };
+
   return (
     <tr>
       <td>
         <div className="doctor-profile">
-          <img src={imgSrc} alt="person" />
-          <h5>{name}</h5>
+          <img
+            src={user?.profilePhoto?.url || "/images/user.png"}
+            alt="person"
+          />
+          <h5>{user?.fullName}</h5>
         </div>
       </td>
 
       <td>
-        <p className="doctor-email">{email}</p>
+        <p className="doctor-email">{user?.email}</p>
       </td>
 
       {isSubAdminPage && (
         <td>
-          <p className="admin-role">{role}</p>
+          <p className="admin-role">{user?.roleId?.name}</p>
         </td>
       )}
 
       <td>
         <DropdownSelect
-          defaultValue="Active"
+          user={user}
+          onOpen={onOpen}
+          defaultValue={user?.state}
           options={["Active", "Deactive", "Edit"]}
           includeLabel={true} // shows "Select State" label
-          onChange={handleDropdownChange}
           index={index}
           activeDropdownIndex={activeDropdownIndex}
           setActiveDropdownIndex={setActiveDropdownIndex}
@@ -73,12 +79,17 @@ const UserTRow = ({
 
       <td>
         <div className="assigned-status-view-detail">
-          <Link to="">View Detail</Link>
+          <Link
+            to={"/auth/user-profile/" + user?._id}
+            state={{ fromSubAdmin: isSubAdminPage }}
+          >
+            View Detail
+          </Link>
         </div>
       </td>
       <td>
         <div className="delete-profile">
-          <button>Delete Profile</button>
+          <button onClick={handleDeleteUser}>Delete Profile</button>
         </div>
       </td>
     </tr>

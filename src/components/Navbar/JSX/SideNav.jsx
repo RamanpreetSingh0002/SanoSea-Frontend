@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
 
 import SideNavIcon from "./SideNavIcon";
-import { useAuth } from "../../../hooks";
+import { useAuth, useBooking } from "../../../hooks";
 
 import "../Style/SideNav.css";
 import { useNavigate } from "react-router-dom";
 
-const SideNav = ({ bookNow, onOpen }) => {
+const SideNav = () => {
   const { authInfo, handleLogout } = useAuth();
-  const { isLoggedIn } = authInfo;
+  const { profile } = authInfo;
+
+  const { handleOpenBooking } = useBooking();
 
   const navigate = useNavigate();
+
+  const loginUser = profile?.role;
 
   useEffect(() => {
     const navItems = document.querySelectorAll(".has-subnav");
@@ -89,12 +93,12 @@ const SideNav = ({ bookNow, onOpen }) => {
           sideNavLabel={"Cancelled"}
         />
 
-        {bookNow && (
+        {loginUser === "General Physician" && (
           <SideNavIcon
             imgSrc="/images/Calender.png"
             iconClass={"fa-solid fa-check-double"}
             sideNavLabel={"Book Now"}
-            onClick={onOpen}
+            onClick={handleOpenBooking}
           />
         )}
       </ul>

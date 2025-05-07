@@ -1,13 +1,12 @@
 import React from "react";
-import AdminBookingCard from "./AdminBookingCard";
+import { useNavigate } from "react-router-dom";
+
 import UserHeader from "../../UserHeader";
 import PatientInfo from "../../Patient/JSX/PatientInfo";
 import PortAgentInfo from "../../PortAgent/JSX/PortAgentInfo";
 import LabeledIconText from "../../LabeledIconText";
+
 import "../Style/AdminBookingDetail.css";
-import TopNav from "../../Navbar/JSX/TopNav";
-import { useNavigate } from "react-router-dom";
-import ControlSideNav from "../../Navbar/JSX/ControlSideNav";
 
 const AdminBookingDetail = ({
   statusClass = "complete",

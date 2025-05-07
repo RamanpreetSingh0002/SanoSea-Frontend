@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
-const SideNavIcon = ({ imgSrc, iconClass, sideNavLabel, onClick }) => {
+const SideNavIcon = ({ imgSrc, to, iconClass, sideNavLabel, onClick }) => {
+  const isDashboard = sideNavLabel === "Dashboard";
+
   return (
-    <li className="has-subnav">
-      <button onClick={onClick} className="nav-icon-button">
+    <li className={`has-subnav ${isDashboard && "dashboard"}`}>
+      <NavLink
+        to={to}
+        onClick={onClick}
+        className={({ isActive }) =>
+          `nav-icon-button ${isActive ? "active" : ""}`
+        }
+      >
         <div className="nav-icon">
-          <img src={imgSrc} alt="" />
+          <img src={imgSrc} alt="" className="nav-img" />
 
           {iconClass && <i className={iconClass}></i>}
         </div>
-        <span className="nav-text">{sideNavLabel}</span>
-      </button>
+        <div className="nav-text">{sideNavLabel}</div>
+        {/* <span className="nav-text">{sideNavLabel}</span> */}
+      </NavLink>
     </li>
   );
 };

@@ -38,33 +38,21 @@ const AuthProvider = ({ children }) => {
     }
 
     // Determine the landing page based on the user's role
-    let landingPage = "/";
-    switch (user.role) {
-      case "Patient":
-        landingPage = "/auth/patient-dashboard";
-        break;
-      case "General Physician":
-        landingPage = "/auth/general-physician-dashboard";
-        break;
-      case "Admin":
-        landingPage = "/auth/admin-dashboard";
-        // landingPage = "/auth/coordinator-dashboard";
-        break;
-      case "Audit Manager":
-        landingPage = "/auth/sub-admin-dashboard";
-        break;
-      case "Doctor":
-        landingPage = "/auth/doctor-dashboard";
-        break;
-      case "Port Agent":
-        landingPage = "/auth/port-agent-dashboard";
-        break;
-      case "Coordinator":
-        landingPage = "/auth/sub-admin-dashboard";
-        break;
-      default:
-        landingPage = "/auth/default-dashboard";
-    }
+    const roleLandingPages = {
+      Admin: "/auth/management-dashboard",
+      Coordinator: "/auth/management-dashboard",
+      AuditManager: "/auth/management-dashboard",
+      GeneralPhysician: "/auth/general-physician-dashboard",
+      Doctor: "/auth/doctor-dashboard",
+      PortAgent: "/auth/port-agent-dashboard",
+      Patient: "/auth/patient-dashboard",
+    };
+
+    // Normalize role format by removing spaces
+    const normalizedRole = authInfo.profile?.role.replace(/\s+/g, "");
+
+    const landingPage =
+      roleLandingPages[normalizedRole] || "/auth/default-dashboard";
 
     // Navigate to the determined landing page
     navigate(landingPage, { replace: true });
@@ -130,7 +118,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ authInfo, handleLogin, handleLogout, isAuth }}
+      value={{ authInfo, setAuthInfo, handleLogin, handleLogout, isAuth }}
     >
       {children}
     </AuthContext.Provider>

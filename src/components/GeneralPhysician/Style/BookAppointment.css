@@ -186,7 +186,7 @@
 }
 
 /* Buttons */
-.booking-buttons {
+/* .booking-buttons {
   display: flex;
   justify-content: right;
 
@@ -200,23 +200,6 @@
   font-weight: bold;
   font-size: 14px;
   border: none;
-}
-
-/* Cancel Button */
-.cancel-btn {
-  background-color: #a3dde9;
-  color: black;
-}
-
-/* Save Button */
-.save-btn {
-  background-color: #030f21;
-  color: white;
-}
-
-/* Fix Overlay Icons */
-/* .input-group::after {
-  display: none !important;
 } */
 
 /* Mobile Responsive */

@@ -13,26 +13,52 @@
 .doctor-btn {
   display: flex;
   gap: 7px;
+  overflow: hidden;
 }
 
 .sub-admin-header button {
   border: none;
   padding: 5px 15px;
   border-radius: 4px;
+  height: 43px;
   display: flex;
   align-items: center;
 }
 
-.doctor-search-btn {
+.search-btn {
   background-color: #efecec;
   color: black;
+  transition: transform 0.4s ease;
 }
+
+.search-field {
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
+  transition: width 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.search-field.visible {
+  visibility: visible;
+  opacity: 1;
+  width: 200px;
+}
+
+/* .search-field input {
+  display: none;
+  transition: display 0.4s ease;
+}
+
+.search-field.visible input {
+  display: block;
+} */
 
 .add-user-btn {
   background-color: #498b9c;
   color: white;
   justify-content: center;
   gap: 5px;
+  z-index: 10;
 }
 
 .sub-admin-header img {
@@ -42,10 +68,12 @@
 }
 
 .sub-admin-box {
+  position: relative;
   background-color: white;
   /* padding: 20px; */
   border-radius: 8px;
   margin: 14px 20px 0 0;
+  height: 77vh;
 }
 
 .sub-admin-table {
@@ -224,6 +252,9 @@ tbody td {
   color: red;
   font-size: 14px;
   outline: none;
+  width: 84px;
+  display: flex;
+  justify-content: center;
 }
 .delete-profile button:hover {
   text-decoration: underline;

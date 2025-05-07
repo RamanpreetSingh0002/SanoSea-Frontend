@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import "../Style/TopNav.css";
-
-import CustomLink from "../../CustomLink";
 import { AuthContext } from "../../../context/AuthProvider";
+
+import "../Style/TopNav.css";
 
 const TopNav = () => {
   const { authInfo, isAuth } = useContext(AuthContext);
@@ -12,13 +11,31 @@ const TopNav = () => {
 
   const navigate = useNavigate();
 
+  const handleDashboardClick = () => {
+    const roleLandingPages = {
+      Admin: "/auth/management-dashboard",
+      Coordinator: "/auth/management-dashboard",
+      AuditManager: "/auth/management-dashboard",
+      GeneralPhysician: "/auth/general-physician-dashboard",
+      Doctor: "/auth/doctor-dashboard",
+      PortAgent: "/auth/port-agent-dashboard",
+      Patient: "/auth/patient-dashboard",
+    };
+
+    // Efficient way to determine landing page
+    const landingPage =
+      roleLandingPages[profile?.role] || "/auth/default-dashboard";
+
+    navigate(landingPage);
+  };
+
   useEffect(() => {
     isAuth();
   }, []);
 
   return (
     <header>
-      <div class="logo">
+      <div class="logo" onClick={handleDashboardClick}>
         <img src="/images/Ship.png" alt="Ship" class="ship" />
         <img src="/images/sanosealabel.png" alt="SanoSea" class="seamed" />
       </div>
@@ -50,13 +67,10 @@ const TopNav = () => {
             </CustomLink>
           </span> */}
 
-          <div
-            class="profile"
-            onClick={() => navigate("/auth/admin-profile-setting")}
-          >
+          <div class="profile" onClick={() => navigate("/auth/edit-profile")}>
             <div class="profile-image">
               <img
-                src={profile?.profilePhoto || "/images/user.png"}
+                src={profile?.profilePhoto?.url || "/images/user.png"}
                 alt="profile"
               />
             </div>

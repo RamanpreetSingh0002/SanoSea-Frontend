@@ -48,7 +48,7 @@
   width: 100%;
   background: #fff;
   padding: 2rem;
-  text-align: center;
+  /* text-align: center; */
   border-radius: 4px;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);*/
 }
@@ -143,7 +143,6 @@
   margin-top: 30px;
 }
 
-.cancel-btn,
 .save-btn,
 .chng-pass {
   padding: 0.7rem 1.5rem;
@@ -154,23 +153,24 @@
   cursor: pointer;
 }
 
-.cancel-btn {
+/* .cancel-btn {
   background-color: #eee;
   color: #333;
   width: 19%;
-  height: 44px;
+   height: 44px; 
   width: 130px;
-}
+} */
 
 .save-btn,
 .chng-pass {
   background-color: #005c75;
   color: white;
-  height: 42px;
+  /* height: 42px; */
 }
 
 .chng-pass {
   margin-top: 10px;
+  width: 100%;
 }
 
 .system-config-card table {

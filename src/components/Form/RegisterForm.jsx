@@ -66,7 +66,7 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
     setIsSmallScreen(window.innerWidth <= 981);
   };
 
-  const updateProfilePhoto = (file) => {
+  const updateProfilePhoto = file => {
     const url = URL.createObjectURL(file);
     setSelectedProfilePhoto(url);
   };
@@ -84,7 +84,7 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     setBusy(true);
 
     e.preventDefault();
@@ -96,7 +96,7 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
     }
 
     const formData = new FormData();
-    Object.keys(userInfo).forEach((key) => {
+    Object.keys(userInfo).forEach(key => {
       if (userInfo[key]) {
         formData.append(key, userInfo[key]);
       }
@@ -133,32 +133,21 @@ const RegisterForm = ({ initialState, className, setResetForm }) => {
   useEffect(() => {
     // Handle navigation for logged-in users based on roles
     if (isLoggedIn) {
-      let landingPage = "/";
-      switch (authInfo.profile?.role) {
-        case "Patient":
-          landingPage = "/auth/patient-dashboard";
-          break;
-        case "General Physician":
-          landingPage = "/auth/general-physician-dashboard";
-          break;
-        case "Admin":
-          landingPage = "/auth/admin-dashboard";
-          break;
-        case "Audit Manager":
-          landingPage = "/auth/sub-admin-dashboard";
-          break;
-        case "Doctor":
-          landingPage = "/auth/doctor-dashboard";
-          break;
-        case "Port Agent":
-          landingPage = "/auth/port-agent-dashboard";
-          break;
-        case "Coordinator":
-          landingPage = "/auth/sub-admin-dashboard";
-          break;
-        default:
-          landingPage = "/auth/default-dashboard";
-      }
+      const roleLandingPages = {
+        Admin: "/auth/management-dashboard",
+        Coordinator: "/auth/management-dashboard",
+        AuditManager: "/auth/management-dashboard",
+        GeneralPhysician: "/auth/general-physician-dashboard",
+        Doctor: "/auth/doctor-dashboard",
+        PortAgent: "/auth/port-agent-dashboard",
+        Patient: "/auth/patient-dashboard",
+      };
+
+      // Normalize role format by removing spaces
+      const normalizedRole = authInfo.profile?.role.replace(/\s+/g, "");
+
+      const landingPage =
+        roleLandingPages[normalizedRole] || "/auth/default-dashboard";
 
       navigate(landingPage);
     }
