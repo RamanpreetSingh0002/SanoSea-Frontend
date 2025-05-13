@@ -4,6 +4,7 @@ import { ImSpinner3 } from "react-icons/im";
 
 import {
   useApi,
+  useAuth,
   useModal,
   useNeedPermission,
   useNotification,
@@ -15,7 +16,7 @@ import LabeledIconText from "../../LabeledIconText";
 import DropdownSelect from "../../DropdownSelect";
 
 import "../Style/UserProfile.css";
-import AppointmentTable from "../../Appointments/JSX/AppointmentTable";
+import UserAppointmentTable from "./UserAppointmentTable";
 
 const UserProfile = () => {
   const { userId } = useParams();
@@ -33,7 +34,23 @@ const UserProfile = () => {
   const isThroughDashboard = location.state?.throughDashboard || false;
 
   const isDoctor = selectedUser?.role === "Doctor";
-  const height = !fetchingUser && isDoctor && "100%";
+  const isPatient = selectedUser?.role === "Patient";
+
+  const { authInfo } = useAuth();
+  const { profile } = authInfo;
+
+  const isFromManagement =
+    profile?.role === "Admin" ||
+    profile?.role === "Coordinator" ||
+    profile?.role === "Audit Manager";
+
+  const isFromPatient = profile?.role === "Patient";
+
+  const shouldShowRoleBox = (!isDoctor && !isPatient) || isFromPatient;
+
+  const height =
+    !shouldShowRoleBox && !fetchingUser && (isDoctor || isPatient) && "100%";
+
   const { handleCloseAudit, handleClosePort } = useModal();
 
   const handleOpen = () => {
@@ -135,48 +152,45 @@ const UserProfile = () => {
                     </div>
                   </UserHeader>
 
-                  <div className="doctor-profile-btn">
-                    <DropdownSelect
-                      user={selectedUser}
-                      onOpen={handleOpen}
-                      defaultValue={selectedUser?.state}
-                      options={[
-                        "Active",
-                        "Deactive",
-                        selectedUser?.role == "Doctor" && "Edit",
-                      ]}
-                      includeLabel={true} // shows "Select State" label
-                      index={0} // Unique index for tracking
-                      activeDropdownIndex={activeDropdownIndex}
-                      setActiveDropdownIndex={setActiveDropdownIndex}
-                    />
-                    <button className="delete-btn" onClick={handleDelete}>
-                      <div>
-                        <img src="/images/icons trash.png" alt="trash" />
-                      </div>
-                      <span>Delete Profile</span>
-                    </button>
-                  </div>
+                  {isFromManagement && (
+                    <div className="doctor-profile-btn">
+                      <DropdownSelect
+                        user={selectedUser}
+                        onOpen={handleOpen}
+                        defaultValue={selectedUser?.state}
+                        options={["Active", "Deactive"]}
+                        includeLabel={true} // shows "Select State" label
+                        index={0} // Unique index for tracking
+                        activeDropdownIndex={activeDropdownIndex}
+                        setActiveDropdownIndex={setActiveDropdownIndex}
+                      />
+                      <button className="delete-btn" onClick={handleDelete}>
+                        <div>
+                          <img src="/images/icons trash.png" alt="trash" />
+                        </div>
+                        <span>Delete Profile</span>
+                      </button>
+                    </div>
+                  )}
                 </div>
 
-                {!isDoctor && (
+                {shouldShowRoleBox && (
                   <div className="sub-admin-role-box">
                     <div className="sub-admin-role">
                       <i class="fa-solid fa-briefcase"></i>
                       <strong>Role</strong>
                       <p>{selectedUser?.role}</p>
                     </div>
-                    <div className="sub-admin-role-edit-btn">
-                      <button onClick={handleOpen}>Edit</button>
-                    </div>
+                    {isFromManagement && (
+                      <div className="sub-admin-role-edit-btn">
+                        <button onClick={handleOpen}>Edit</button>
+                      </div>
+                    )}
                   </div>
                 )}
 
-                {isDoctor && (
-                  <AppointmentTable
-                    padding={"0px"}
-                    isDoctor={isDoctor && "relative"}
-                  />
+                {!isFromPatient && (isDoctor || isPatient) && (
+                  <UserAppointmentTable padding={"0px"} userId={userId} />
                 )}
               </>
             )}

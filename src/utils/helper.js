@@ -30,3 +30,29 @@ export const useDebounce = (value, delay) => {
 
   return debouncedValue;
 };
+
+export const formatTime = time => {
+  if (!time) return "Invalid Time";
+
+  const [hours, minutes] = time.split(":"); // Extract hours & minutes
+  const date = new Date();
+  date.setHours(hours);
+  date.setMinutes(minutes);
+
+  return date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true, // ✅ Convert to 12-hour format
+  });
+};
+
+export const formatDate = dateString => {
+  if (!dateString) return "Invalid Date"; // Handle null/undefined cases
+
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  });
+};

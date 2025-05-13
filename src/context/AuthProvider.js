@@ -108,6 +108,13 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("auth-token");
     sessionStorage.removeItem("auth-token");
 
+    localStorage.setItem("currentPage", 0); // Reset to first page when navigating from sideNav
+    localStorage.removeItem("activeState");
+    localStorage.setItem("stateQuery", "");
+    localStorage.removeItem("selectedDate");
+    localStorage.removeItem("activeNav");
+    // localStorage.removeItem("searchQuery");
+
     navigate("/");
     setAuthInfo({ ...defaultAuthInfo });
   };

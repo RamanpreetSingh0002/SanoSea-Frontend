@@ -54,7 +54,10 @@ const UserForm = ({ user, isClosing, onClose, header, width }) => {
 
   const location = useLocation();
   const path = location.pathname;
-  const isUserProfile = location.pathname.startsWith("/auth/user-profile/");
+  const isUserProfile = path.startsWith("/auth/user-profile/");
+
+  const showDoctorFormFields =
+    path === "/auth/doctor" || userInfo?.roleName === "Doctor";
 
   // Function to determine default role name based on the current path
   const getRoleName = () => {
@@ -214,7 +217,7 @@ const UserForm = ({ user, isClosing, onClose, header, width }) => {
                 </div>
               )}
 
-              {path === "/auth/doctor" ? (
+              {showDoctorFormFields ? (
                 <>
                   <div className="form_field">
                     <label for="doctorSpeciality">Doctor Speciality</label>

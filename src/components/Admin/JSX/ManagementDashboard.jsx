@@ -20,7 +20,7 @@ const ManagementDashboard = () => {
   } = useModal();
 
   return (
-    <div>
+    <>
       <ManagementMain
         onAuditOpen={handleOpenAudit}
         onPortOpen={handleOpenPort}
@@ -40,7 +40,7 @@ const ManagementDashboard = () => {
           <PortAgentModal isPortClose={isPortClose} onClose={handleClosePort} />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

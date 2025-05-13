@@ -9,10 +9,15 @@ const AppointmentPagination = () => {
 
   const totalPages = Math.ceil(totalAppointments / limit);
 
-  // ✅ Handle Page Change
+  // Handle Page Change
   const handlePageChange = newPage => {
     if (newPage >= 0 && newPage < totalPages) {
-      fetchAppointments(newPage, limit, fetchParams.state);
+      fetchAppointments(
+        newPage,
+        limit,
+        fetchParams.state,
+        fetchParams.selectedDate
+      );
     }
   };
 

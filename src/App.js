@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { useAuth } from "./hooks/index.js";
 
 // * Layouts
 import PublicLayout from "./layout/PublicLayout.jsx";
@@ -23,7 +24,7 @@ import PatientTable from "./components/Patient/JSX/PatientTable.jsx";
 import GeneralPhysicianTable from "./components/GeneralPhysician/JSX/GeneralPhysicianTable.jsx";
 
 // * Admin/SubAdmin Internal Paging
-import AdminBookingDetail from "./components/Admin/JSX/AdminBookingDetail.jsx";
+import BookingDetail from "./components/Admin/JSX/BookingDetail.jsx";
 import DoctorProfile from "./components/Doctor/JSX/DoctorProfile.jsx";
 import EditProfile from "./components/User/JSX/EditProfile.jsx";
 
@@ -39,8 +40,19 @@ import AppointmentTable from "./components/Appointments/JSX/AppointmentTable.jsx
 // * User
 import UserProfile from "./components/User/JSX/UserProfile.jsx";
 import ManagementDashboard from "./components/Admin/JSX/ManagementDashboard.jsx";
+import Past from "./components/Appointments/JSX/Past.jsx";
+import AllBookings from "./components/Appointments/JSX/AllBookings.jsx";
+import GeneralPhysicianDashboard from "./components/GeneralPhysician/JSX/GeneralPhysicianDashboard.jsx";
+import DoctorDashboard from "./components/Doctor/JSX/DoctorDashboard.jsx";
 
 function App() {
+  const { authInfo } = useAuth();
+  const { profile } = authInfo;
+  const isPrivate =
+    profile?.role === "Admin" ||
+    profile?.role === "Coordinator" ||
+    profile?.role === "Audit Manager";
+
   const publicRoutesWrapper = Component => {
     return <PublicLayout>{Component}</PublicLayout>;
   };
@@ -69,11 +81,15 @@ function App() {
         />
         <Route
           path="/auth/general-physician-dashboard"
-          element={publicRoutesWrapper(<GeneralPhysician />)}
+          element={publicRoutesWrapper(<GeneralPhysicianDashboard />)}
         />
         <Route
           path="/auth/patient-dashboard"
           element={publicRoutesWrapper(<PatientDashboard />)}
+        />
+        <Route
+          path="/auth/doctor-dashboard"
+          element={publicRoutesWrapper(<DoctorDashboard />)}
         />
 
         <Route
@@ -109,8 +125,8 @@ function App() {
 
         {/* Admin/SubAdmin Internal Paging */}
         <Route
-          path="/auth/booking-detail"
-          element={privateRoutesWrapper(<AdminBookingDetail />)}
+          path="/auth/booking-detail/:appointmentId"
+          element={privateRoutesWrapper(<BookingDetail />)}
         />
         <Route
           path="/auth/doctor-profile"
@@ -124,29 +140,44 @@ function App() {
         {/* User */}
         <Route
           path="/auth/user-profile/:userId"
-          element={privateRoutesWrapper(<UserProfile />)}
+          element={
+            isPrivate
+              ? privateRoutesWrapper(<UserProfile />)
+              : publicRoutesWrapper(<UserProfile />)
+          }
         />
 
         {/* Appointments */}
         <Route
-          path="/auth/unconfirmed-appointment"
-          element={publicRoutesWrapper(<Unconfirmed />)}
-        />
-        <Route
-          path="/auth/upcoming-appointment"
-          element={publicRoutesWrapper(<Upcoming />)}
-        />
-        <Route
-          path="/auth/cancelled-appointment"
-          element={publicRoutesWrapper(<Cancelled />)}
+          path="/auth/all-appointment"
+          element={publicRoutesWrapper(<AllBookings />)}
         />
         <Route
           path="/auth/complete-appointment"
           element={publicRoutesWrapper(<Complete />)}
         />
         <Route
+          path="/auth/upcoming-appointment"
+          element={publicRoutesWrapper(<Upcoming />)}
+        />
+        <Route
+          path="/auth/unconfirmed-appointment"
+          element={publicRoutesWrapper(<Unconfirmed />)}
+        />
+
+        <Route
+          path="/auth/cancelled-appointment"
+          element={publicRoutesWrapper(<Cancelled />)}
+        />
+
+        <Route
           path="/auth/new-appointment"
           element={publicRoutesWrapper(<New />)}
+        />
+
+        <Route
+          path="/auth/past-appointment"
+          element={publicRoutesWrapper(<Past />)}
         />
       </Routes>
     </>

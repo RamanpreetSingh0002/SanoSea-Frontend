@@ -1,7 +1,8 @@
 import React from "react";
 import LabeledIconText from "../../LabeledIconText";
+import { formatTime } from "../../../utils/helper";
 
-const PatientInfo = () => {
+const PatientInfo = ({ appointment }) => {
   return (
     <>
       <div className="patient-info-section">
@@ -9,24 +10,33 @@ const PatientInfo = () => {
           <LabeledIconText
             iconClass="fa-solid fa-envelope"
             label="Email-ID"
-            value="carder@gmail.com"
+            value={appointment?.patient?.email}
           />
           <LabeledIconText
             iconClass="fa-solid fa-phone"
             label="Phone Number"
-            value="9887767890"
+            value={appointment?.patient?.phoneNumber}
           />
           <div className="patient-info-date-time">
             <div>
               <img src="/images/icons8-calendar-30.png" alt="calender" />
             </div>
-            <p>Feb07,2025</p>
+            <p>
+              {new Date(appointment?.dateOfAppointment).toLocaleDateString(
+                "en-US",
+                {
+                  month: "2-digit",
+                  day: "2-digit",
+                  year: "numeric",
+                }
+              )}
+            </p>
           </div>
           <div className="patient-info-date-time">
             <div>
               <img src="/images/icon-clock.png" alt="clock" />
             </div>
-            <p>11:40 AM</p>
+            <p>{formatTime(appointment?.timeOfAppointment)}</p>
           </div>
         </div>
         <div className="download-info-button">
@@ -36,9 +46,7 @@ const PatientInfo = () => {
           </button>
         </div>
       </div>
-      <h4 className="patient-info-symptom">
-        Chest Pain Or Pressure And Pain That Radiates Pressure Pain Or Pressure
-      </h4>
+      <h4 className="patient-info-symptom">{appointment?.reason}</h4>
     </>
   );
 };

@@ -1,11 +1,7 @@
-#coordinator-main {
+#main {
   background-color: #f5f5f5;
-  height: 100vh;
-}
-
-#coordinator-section {
-  padding: 107px 0 15px 80px;
-  width: 98%;
+  height: 100%;
+  padding: 105px 20px 20px 80px;
 }
 
 .card-grid .row {
@@ -58,6 +54,8 @@
 }
 
 .list-profile-img {
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid white;
@@ -65,8 +63,8 @@
 }
 
 .list-profile-img img {
-  width: 32px;
-  height: 32px;
+  height: 100%;
+  width: 100%;
   border-radius: 50px;
   object-fit: cover;
 }

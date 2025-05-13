@@ -1,0 +1,67 @@
+.assigned-container {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.assigned-header {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.assigned-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.assigned-card {
+  background-color: #f9f9f9;
+  padding: 10px;
+
+  border-radius: 6px;
+}
+
+.assigned-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.assigned-info {
+  font-size: 13px;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.assigned-name {
+  font-weight: 500;
+}
+
+.assigned-date-time {
+  font-style: italic;
+  color: #888;
+}
+
+.appointmennt-details {
+  background-color: #f5f5f5;
+  /* padding: 105px 0 20px 80px; */
+  margin-top: -22px;
+}
+
+.new-appointment-content {
+  background-color: white;
+  padding: 13px;
+  border-radius: 8px;
+  height: 100%;
+  /* margin: 20px 20px 0 0; */
+}

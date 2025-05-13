@@ -9,6 +9,9 @@ const TopNav = () => {
   const { authInfo, isAuth } = useContext(AuthContext);
   const { profile, isPending } = authInfo;
 
+  console.log(profile);
+  console.log(profile?.role);
+
   const navigate = useNavigate();
 
   const handleDashboardClick = () => {
@@ -22,9 +25,14 @@ const TopNav = () => {
       Patient: "/auth/patient-dashboard",
     };
 
+    // Normalize role format by removing spaces
+    const normalizedRole = profile?.role.replace(/\s+/g, "");
+
     // Efficient way to determine landing page
     const landingPage =
-      roleLandingPages[profile?.role] || "/auth/default-dashboard";
+      roleLandingPages[normalizedRole] || "/auth/default-dashboard";
+
+    console.log(roleLandingPages[normalizedRole]);
 
     navigate(landingPage);
   };

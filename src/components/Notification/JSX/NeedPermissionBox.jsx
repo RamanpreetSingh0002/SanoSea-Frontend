@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { useApi, useNeedPermission, useNotification } from "../../../hooks";
-import { deleteUser, updateUserState } from "../../../api/admin";
+import {
+  useApi,
+  useAppointments,
+  useNeedPermission,
+  useNotification,
+} from "../../../hooks";
 import { ImSpinner3 } from "react-icons/im";
 import { useLocation, useNavigate } from "react-router-dom";
+import { cancelAppointment } from "../../../api/appointment";
 
 const NeedPermissionBox = () => {
   const [busy, setBusy] = useState(false);
@@ -13,11 +18,16 @@ const NeedPermissionBox = () => {
     selectedUser,
     handleClosePermissionBox,
   } = useNeedPermission();
+
+  console.log(selectedUser);
+
+  const { fetchAppointments, fetchParams } = useAppointments();
   const { handleUserStateUpdate, handleDeleteUser, fetchUsers, fetchUser } =
     useApi();
 
   const navigate = useNavigate();
   const { updateNotification } = useNotification();
+
   const location = useLocation();
   const isUserProfile = location.pathname.startsWith("/auth/user-profile/");
 
@@ -38,6 +48,27 @@ const NeedPermissionBox = () => {
           `Failed to delete user: ${response.error}`
         );
       }
+    } else if (actionType === "Cancel") {
+      console.log(selectedUser);
+      console.log(selectedUser?._id);
+
+      response = await cancelAppointment(selectedUser?._id); //  Cancel appointment using ID
+      setBusy(false);
+
+      if (response.error) {
+        handleClosePermissionBox();
+        return updateNotification(
+          "error",
+          `Failed to cancel appointment: ${response.error}`
+        );
+      }
+
+      fetchAppointments(
+        fetchParams.pageNo,
+        fetchParams.limit,
+        fetchParams.state,
+        fetchParams.selectedDate
+      );
     } else {
       response = await handleUserStateUpdate(selectedUser?._id, actionType);
       setBusy(false); // Reset busy state after the operation
@@ -66,8 +97,13 @@ const NeedPermissionBox = () => {
       <div className={`box-modal ${isPermissionBoxClosing ? "closing" : ""}`}>
         <div className="internal-modal">
           <p>
-            Are you sure you want to {actionType.toLowerCase()}{" "}
-            {selectedUser?.fullName + ` (${selectedUser?.email})`} account?
+            {actionType === "Cancel"
+              ? `Are you sure you want to ${actionType.toLowerCase()} ${
+                  selectedUser?.patientId?.fullName
+                } (${selectedUser?.patientId?.email}) appointment?`
+              : `Are you sure you want to ${actionType.toLowerCase()} ${
+                  selectedUser?.fullName
+                } (${selectedUser?.email}) account?`}
           </p>
 
           <div className="box-buttons mt-3">
@@ -93,4 +129,5 @@ const NeedPermissionBox = () => {
     </div>
   );
 };
+
 export default NeedPermissionBox;

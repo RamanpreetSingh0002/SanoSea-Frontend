@@ -46,3 +46,18 @@ export const fetchPatientsByName = async search => {
     return catchError(error);
   }
 };
+
+export const fetchDoctorsBySpeciality = async speciality => {
+  const token = getToken();
+  try {
+    const { data } = await client.get("/user/doctors", {
+      params: { speciality },
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+    return data;
+  } catch (error) {
+    return catchError(error);
+  }
+};

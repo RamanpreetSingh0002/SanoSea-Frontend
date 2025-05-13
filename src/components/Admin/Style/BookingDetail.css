@@ -139,12 +139,13 @@
 .cab-detail-port {
   display: flex;
   align-items: center;
-  gap: 5px;
+  /* gap: 5px; */
 }
 
 .cab-detail-port i {
   color: #005c75;
   font-size: 12px;
+  margin-right: 5px;
 }
 
 .patient-info-date-time p,
@@ -157,6 +158,7 @@
 .cab-detail-port img {
   width: 12px;
   vertical-align: inherit;
+  margin-right: 5px;
 }
 .patient-info-symptom {
   font-size: 18px;

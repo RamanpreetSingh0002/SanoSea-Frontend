@@ -7,6 +7,7 @@ import {
   updateUser,
   updateUserState,
 } from "../api/admin";
+import { fetchDashboardStats } from "../api/appointment";
 
 export const ApiContext = createContext();
 
@@ -29,6 +30,16 @@ const ApiProvider = ({ children }) => {
   const [addingUser, setAddingUser] = useState(false);
   const [updatingUserState, setUpdatingUserState] = useState(false);
   const [deletingUser, setDeletingUser] = useState(false);
+  const [fetchingStats, setFetchingStats] = useState(false);
+
+  const [stats, setStats] = useState({
+    totalPatients: 0,
+    totalPortAgents: 0,
+    totalDoctors: 0,
+    totalUpcomingAppointments: 0,
+    totalNewAppointments: 0,
+    totalCancelledAppointments: 0,
+  });
 
   const [totalUsers, setTotalUsers] = useState(0);
 
@@ -104,6 +115,16 @@ const ApiProvider = ({ children }) => {
     return response;
   };
 
+  const handleFetchStats = async () => {
+    setFetchingStats(true);
+    const response = await fetchDashboardStats();
+    setFetchingStats(false);
+
+    if (!response.error) setStats(response.stats);
+
+    return response;
+  };
+
   return (
     <ApiContext.Provider
       value={{
@@ -117,12 +138,15 @@ const ApiProvider = ({ children }) => {
         addingUser,
         updatingUserState,
         deletingUser,
+        fetchingStats,
         fetchUsers,
         fetchUser,
         handleAddUser,
         handleUpdateUser,
         handleDeleteUser,
         handleUserStateUpdate,
+        handleFetchStats,
+        stats,
       }}
     >
       {children}

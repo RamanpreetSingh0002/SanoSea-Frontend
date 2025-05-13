@@ -2,14 +2,20 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useApi } from "../hooks";
 
-const TBox = ({ heading, showDateTime = false }) => {
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedTime, setSelectedTime] = useState("");
+const TBox = ({
+  heading,
+  showDateTime = false,
+  onRefresh,
+  selectedDate,
+  onDateSelect,
+}) => {
+  // const [selectedDate, setSelectedDate] = useState("");
+  // const [selectedTime, setSelectedTime] = useState("");
 
   const dateInputRef = useRef(null);
-  const timeInputRef = useRef(null);
+  // const timeInputRef = useRef(null);
 
-  const { fetchUsers } = useApi();
+  // const { fetchUsers } = useApi();
 
   // Show the date picker when clicking the calendar
   const openDatePicker = () => {
@@ -33,31 +39,32 @@ const TBox = ({ heading, showDateTime = false }) => {
 
   // Handle date change
   const handleDateChange = e => {
-    setSelectedDate(e.target.value);
+    const formattedDate = e.target.value;
+    onDateSelect(formattedDate);
   };
 
   // Show the time picker programmatically
-  const openTimePicker = () => {
-    if (timeInputRef.current) {
-      timeInputRef.current.showPicker(); // Trigger the time picker
-    }
-  };
+  // const openTimePicker = () => {
+  //   if (timeInputRef.current) {
+  //     timeInputRef.current.showPicker(); // Trigger the time picker
+  //   }
+  // };
 
   // Convert 24-hour time to 12-hour AM/PM format
-  const formatTimeTo12Hour = time => {
-    const [hours, minutes] = time.split(":");
-    const isAM = parseInt(hours) < 12;
-    const formattedHours = (parseInt(hours) % 12 || 12)
-      .toString()
-      .padStart(2, "0");
-    const period = isAM ? "AM" : "PM";
-    return `${formattedHours}:${minutes} ${period}`;
-  };
+  // const formatTimeTo12Hour = time => {
+  //   const [hours, minutes] = time.split(":");
+  //   const isAM = parseInt(hours) < 12;
+  //   const formattedHours = (parseInt(hours) % 12 || 12)
+  //     .toString()
+  //     .padStart(2, "0");
+  //   const period = isAM ? "AM" : "PM";
+  //   return `${formattedHours}:${minutes} ${period}`;
+  // };
 
   // Handle time selection and format to AM/PM
-  const handleTimeChange = e => {
-    setSelectedTime(e.target.value); // Update state with formatted time
-  };
+  // const handleTimeChange = e => {
+  //   setSelectedTime(e.target.value); // Update state with formatted time
+  // };
 
   return (
     <div class="all-booking-table">
@@ -73,7 +80,15 @@ const TBox = ({ heading, showDateTime = false }) => {
                 class="all-booking-select-date-time"
                 onClick={openDatePicker}
               >
-                <p>{selectedDate ? formatDate(selectedDate) : "Select Date"}</p>
+                <p>
+                  {selectedDate
+                    ? new Date(selectedDate).toLocaleDateString("en-US", {
+                        month: "2-digit",
+                        day: "2-digit",
+                        year: "numeric",
+                      })
+                    : "Select Date"}
+                </p>
 
                 <img
                   src="/images/icons8-calendar-30.png"
@@ -90,14 +105,16 @@ const TBox = ({ heading, showDateTime = false }) => {
                   onChange={handleDateChange}
                   style={{
                     position: "absolute",
-                    top: "10px", // Adjust to position below the parent div
+                    top: "5px", // Adjust to position below the parent div
                     left: "0px",
                     opacity: "0", // Hide the default styling
+                    width: "112px",
+                    height: "33px",
                   }}
                 />
               </div>
 
-              <div
+              {/* <div
                 class="all-booking-select-date-time"
                 onClick={openTimePicker}
               >
@@ -113,7 +130,7 @@ const TBox = ({ heading, showDateTime = false }) => {
                   style={{ cursor: "pointer" }}
                 />
 
-                {/* Hidden input for time picker */}
+                {/* Hidden input for time picker *
                 <input
                   ref={timeInputRef}
                   name="time"
@@ -127,12 +144,12 @@ const TBox = ({ heading, showDateTime = false }) => {
                     opacity: "0",
                   }} // Hide the native input
                 />
-              </div>
+              </div> */}
             </>
           )}
 
           <div class="all-booking-refresh">
-            <Link to="#" onClick={() => fetchUsers()}>
+            <Link to="#" onClick={onRefresh}>
               Refresh
             </Link>
           </div>

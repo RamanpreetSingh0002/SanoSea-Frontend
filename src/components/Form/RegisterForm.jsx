@@ -31,8 +31,12 @@ const validateUserInfo = ({
     return { error: "Invalid image/Profile photo file!" };
 
   if (!firstName.trim()) return { ok: false, error: "First name is missing!" };
-  if (!isValidName.test(firstName) || !isValidName.test(lastName))
-    return { ok: false, error: "Invalid name!" };
+  if (!isValidName.test(firstName))
+    return { ok: false, error: "Invalid first name!" };
+
+  // Check lastName only if it's provided (optional)
+  if (lastName && !isValidName.test(lastName))
+    return { ok: false, error: "Invalid last name!" };
 
   if (!phoneNumber.trim())
     return { ok: false, error: "Phone number is missing!" };

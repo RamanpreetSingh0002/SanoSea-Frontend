@@ -258,7 +258,10 @@ tbody td {
 }
 .delete-profile button:hover {
   text-decoration: underline;
+  text-underline-position: from-font;
+  text-decoration-thickness: from-font;
 }
+
 .pagination-data {
   padding: 8px 0px 8px 15px;
 }

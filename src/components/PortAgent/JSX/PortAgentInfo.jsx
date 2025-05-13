@@ -3,98 +3,110 @@ import React from "react";
 import LabeledIconText from "../../LabeledIconText";
 import CabLocation from "../../CabLocation";
 import BookingDetailItem from "./BookingDetailItem";
+import { formatDate, formatTime } from "../../../utils/helper";
 
-const PortAgentInfo = () => {
+const PortAgentInfo = ({ appointment }) => {
   return (
     <div className="port-agent-info-section">
       <div className="contact-detail">
         <LabeledIconText
           iconClass="fa-solid fa-envelope"
           label="Email-ID"
-          value="carder@gmail.com"
+          value={appointment?.portAgent?.email}
         />
         <LabeledIconText
           iconClass="fa-solid fa-phone"
           label="Phone Number"
-          value="9887767890"
+          value={appointment?.portAgent?.phoneNumber}
         />
       </div>
 
-      <div className="port-agent-info-cab">
-        <div className="row">
-          <div className="col-3">
-            <div class="cab-location">
-              <CabLocation
-                address="R.AI-Ani, B.Zhou, Q,Shi,A.Sagheer"
-                type="Pickup"
-              />
-              <CabLocation address="M. Arif, G. Wang, T.Peng" type="Drop Off" />
+      {appointment?.cabDetails && (
+        <div className="port-agent-info-cab">
+          <div className="row">
+            <div className="col-3">
+              <div class="cab-location">
+                <CabLocation
+                  address={appointment?.cabDetails?.pickupLocation}
+                  type="Pickup"
+                />
+                <CabLocation
+                  address={appointment?.cabDetails?.dropOffLocation}
+                  type="Drop Off"
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="col-6">
-            <div className="port-agent-booking-detail">
-              <div className="row">
-                <div className="col-4 ">
-                  <BookingDetailItem
-                    imgSrc="/images/icon-clock.png"
-                    cabDetailHeader="Pickup Time"
-                    cabDetailValue="11:40 AM"
-                  />
-                </div>
+            <div className="col-6">
+              <div className="port-agent-booking-detail">
+                <div className="row">
+                  <div className="col-4 ">
+                    <BookingDetailItem
+                      imgSrc="/images/icon-clock.png"
+                      cabDetailHeader="Pickup Time"
+                      cabDetailValue={formatTime(
+                        appointment?.cabDetails?.pickupTime
+                      )}
+                    />
+                  </div>
 
-                <div className="col-4 ">
-                  <BookingDetailItem
-                    iconClass="fa-solid fa-car-side"
-                    cabDetailHeader="Cab Number"
-                    cabDetailValue="8765456769"
-                  />
-                </div>
+                  <div className="col-4 ">
+                    <BookingDetailItem
+                      iconClass="fa-solid fa-car-side"
+                      cabDetailHeader="Cab Number"
+                      cabDetailValue={appointment?.cabDetails?.cabNumber}
+                    />
+                  </div>
 
-                <div className="col-4 ">
-                  <BookingDetailItem
-                    imgSrc="/images/icons8-calendar-30.png"
-                    cabDetailHeader="Date of Booking"
-                    cabDetailValue="Jan 20,2025"
-                  />
-                </div>
+                  <div className="col-4 ">
+                    <BookingDetailItem
+                      imgSrc="/images/icons8-calendar-30.png"
+                      cabDetailHeader="Date of Booking"
+                      cabDetailValue={formatDate(
+                        appointment?.dateOfAppointment
+                      )}
+                    />
+                  </div>
 
-                <div className="col-4 ">
-                  <BookingDetailItem
-                    imgSrc="/images/icon-clock.png"
-                    cabDetailHeader="Drop Off Time"
-                    cabDetailValue="2:40 AM"
-                  />
-                </div>
+                  <div className="col-4 ">
+                    <BookingDetailItem
+                      imgSrc="/images/icon-clock.png"
+                      cabDetailHeader="Drop Off Time"
+                      cabDetailValue={formatTime(
+                        appointment?.cabDetails?.dropOffTime
+                      )}
+                    />
+                  </div>
 
-                <div className="col-4 ">
-                  <BookingDetailItem
-                    cabDetailHeader="Driver Name"
-                    cabDetailValue="Alfredo Carder"
-                  />
-                </div>
+                  <div className="col-4 ">
+                    <BookingDetailItem
+                      cabDetailHeader="Driver Name"
+                      cabDetailValue={appointment?.cabDetails?.driverName}
+                    />
+                  </div>
 
-                <div className="col-4 ">
-                  <BookingDetailItem
-                    iconClass="fa-solid fa-phone"
-                    cabDetailHeader="Driver Contact Number"
-                    cabDetailValue="9768364732"
-                  />
+                  <div className="col-4 ">
+                    <BookingDetailItem
+                      iconClass="fa-solid fa-phone"
+                      cabDetailHeader="Driver Contact Number"
+                      cabDetailValue={appointment?.cabDetails?.phoneNumber}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="col-3">
-            <div className="download-info-button">
-              <button>
-                Download Invoice
-                <img alt="download" src="/images/icons-download.png" />
-              </button>
+            <div className="col-3">
+              <div className="download-info-button">
+                <button>
+                  Download Invoice
+                  <img alt="download" src="/images/icons-download.png" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

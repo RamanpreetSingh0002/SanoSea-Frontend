@@ -7,8 +7,6 @@ import DropdownSelect from "./DropdownSelect";
 const UserTRow = ({
   onOpen,
   user,
-  statusClass,
-  statusLabel,
   index,
   activeDropdownIndex,
   setActiveDropdownIndex,
@@ -60,11 +58,11 @@ const UserTRow = ({
 
       {isPatientPage && (
         <>
-          <td>
+          {/* <td>
             <div class={"assigned-status " + statusClass}>
               <a href="">{statusLabel}</a>
             </div>
-          </td>
+          </td> */}
 
           <td>
             <div class="assigned-status-download-report">
@@ -82,6 +80,10 @@ const UserTRow = ({
           <Link
             to={"/auth/user-profile/" + user?._id}
             state={{ fromSubAdmin: isSubAdminPage }}
+            onClick={() => {
+              localStorage.setItem("stateQuery", "");
+              localStorage.setItem("activeState", "");
+            }}
           >
             View Detail
           </Link>

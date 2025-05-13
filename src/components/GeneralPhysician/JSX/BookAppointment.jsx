@@ -15,6 +15,7 @@ const defaultInfo = {
   fullName: "",
   email: "",
   dateOfAppointment: "",
+  timeOfAppointment: "",
   doctorSpeciality: "",
   reason: "",
 };
@@ -146,7 +147,7 @@ const BookAppointment = () => {
                   {patientOptions?.length > 0 && (
                     <DropdownSelect
                       // defaultClass="default-value"
-                      defaultValue="Select Doctor Speciality"
+                      // defaultValue="Select Doctor Speciality"
                       patientSelect={true}
                       options={patientOptions.map(
                         patient => `${patient?.fullName} (${patient?.email})`
@@ -178,7 +179,7 @@ const BookAppointment = () => {
                 />
               </div>
 
-              <div className="col-12">
+              <div className="col-md-6">
                 <div className="form_field">
                   <label for="date">Select Date</label>
                   <input
@@ -192,16 +193,19 @@ const BookAppointment = () => {
                 </div>
               </div>
 
-              {/* <div className="col-md-6">
-                <label for="time">Select Time</label>
-                <input
-                  type="time"
-                  id="time"
-                  value={formData.time}
-                  onChange={handleChange}
-                  className={formData.time ? "filled" : "empty"}
-                />
-              </div> */}
+              <div className="col-md-6">
+                <div className="form_field">
+                  <label for="time">Select Time</label>
+                  <input
+                    name="timeOfAppointment"
+                    type="time"
+                    id="time"
+                    value={formData.timeOfAppointment}
+                    onChange={handleChange}
+                    className={formData.timeOfAppointment ? "filled" : "empty"}
+                  />
+                </div>
+              </div>
 
               <div className="col-12">
                 <div className="form_field">

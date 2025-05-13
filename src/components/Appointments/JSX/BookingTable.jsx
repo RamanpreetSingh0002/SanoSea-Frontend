@@ -1,18 +1,30 @@
 import React from "react";
 import { ImSpinner3 } from "react-icons/im";
-import TBox from "../../TBox";
-import BookingTBody from "./BookingTBody";
-import { useAppointments } from "../../../hooks";
-import AppointmentPagination from "./AppointmentPagination";
+import { useAppointments, useAuth } from "../../../hooks";
+import { formatDate, formatTime } from "../../../utils/helper";
+import BookingTBody from "./BookingTBody.jsx";
+import AppointmentPagination from "./AppointmentPagination.jsx";
+import { useLocation } from "react-router-dom";
+import TodayBookingPagination from "./TodayBookingPagination.jsx";
 
-const BookingTable = () => {
+const BookingTable = ({
+  height,
+  isToday = false,
+  showAddCab = false,
+  showReason = false,
+  showReport = false,
+  showEmail = false,
+}) => {
   const { appointments, busy } = useAppointments();
 
-  return (
-    <div style={{ position: "relative", height: "80.6vh" }}>
-      <TBox heading="All Appointments" showDateTime={true} />
+  const { authInfo } = useAuth();
+  const { profile } = authInfo;
 
-      {/* table */}
+  const isPortAgent = profile?.role === "Port Agent";
+  const isPatient = profile?.role === "Patient";
+
+  return (
+    <div style={{ position: "relative", height: height }}>
       {busy ? (
         <div style={{ textAlign: "center" }}>
           <ImSpinner3 className="animate-spin" />
@@ -25,37 +37,43 @@ const BookingTable = () => {
           </div>
         </div>
       ) : !appointments || appointments?.length === 0 ? (
-        <h6>No Appointments Found</h6>
+        <h6 style={{ textAlign: "center", padding: "15px" }}>
+          No Appointments Found
+        </h6>
       ) : (
         <>
           <table className="sub-admin-table">
             <thead>
               <tr>
-                <th>Patient Name</th>
-                <th>Problem</th>
-                {/* <th>Time</th> */}
+                {!isPatient && <th>Patients</th>}
+                <th>Doctor Assigned</th>
+                {!isPortAgent && <th>Port Agent</th>}
+                {isPortAgent && <th>Coordinator</th>}
+                {showReason && <th>Reason</th>}
+                <th>Time</th>
                 <th>Date</th>
-                <th>Email</th>
-                <th>Report</th>
-                <th colSpan="2">Status</th>
+                {showEmail && <th>Email</th>}
+                {showReport && <th>Report</th>}
+                <th>Status</th>
+                {isPortAgent && showAddCab && <th></th>}
+                <th></th>
               </tr>
             </thead>
             <tbody>
               {appointments?.map((appointment, index) => (
-                <BookingTBody key={index} appointment={appointment} />
+                <BookingTBody
+                  key={index}
+                  appointment={appointment}
+                  isPatient={isPatient}
+                  isPortAgent={isPortAgent}
+                  showAddCab={showAddCab}
+                  showReport={showReport}
+                />
               ))}
             </tbody>
-            {/* <tfoot>
-            <tr>
-              <td colSpan="8">
-                
-              </td>
-            </tr>
-          </tfoot> */}
           </table>
-          {!busy && appointments && appointments?.length > 0 && (
-            <AppointmentPagination />
-          )}
+
+          {isToday ? <TodayBookingPagination /> : <AppointmentPagination />}
         </>
       )}
     </div>

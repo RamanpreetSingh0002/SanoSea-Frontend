@@ -8,8 +8,12 @@ import AllBooking from "../../AllBooking";
 import TBox from "../../TBox";
 import Table from "../../Table";
 import ManagementTbody from "./ManagementTbody";
+import { useAppointments } from "../../../hooks";
+import BookingTable from "../../Appointments/JSX/BookingTable";
 
 const ManagementMain = ({ onAuditOpen, onPortOpen }) => {
+  const { fetchTodayAppointments, fetchParams } = useAppointments();
+
   const [auditManagers, setAuditManagers] = useState([]);
   const [portAgents, setPortAgents] = useState([]);
   const [auditListLoading, setAuditListLoading] = useState(false);
@@ -34,11 +38,11 @@ const ManagementMain = ({ onAuditOpen, onPortOpen }) => {
 
     fetchAuditManager(); // Fetch Audit Manager data
     fetchPortAgent(); // Fetch Port Agent data
+    fetchTodayAppointments(fetchParams.pageNo, 5);
   }, []);
 
   return (
-    <main id="coordinator-main">
-      {/* Coordinator Section */}
+    <main id="main">
       <section id="coordinator-section">
         <div className="row">
           {/* Left Section - Registered Patients & Other Stats */}
@@ -75,14 +79,13 @@ const ManagementMain = ({ onAuditOpen, onPortOpen }) => {
         </div>
       </section>
 
-      {/* patient detail table */}
       <AllBooking>
-        <TBox heading="Today Bookings" showDateTime={true} />
+        <TBox
+          heading="Today Bookings"
+          onRefresh={() => fetchTodayAppointments(0, 5)}
+        />
 
-        {/* table */}
-        <Table>
-          <ManagementTbody />
-        </Table>
+        <BookingTable height="60vh" isToday={true} />
       </AllBooking>
     </main>
   );

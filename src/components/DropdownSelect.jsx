@@ -25,6 +25,8 @@ const DropdownSelect = ({
 
   const isActive = activeDropdownIndex === index;
 
+  const isEdit = user?.role === "Doctor" || user?.role === "Patient";
+
   useEffect(() => {
     setSelected(defaultValue); // Apply default value on mount
   }, [defaultValue]);
@@ -127,6 +129,15 @@ const DropdownSelect = ({
               <span className="option-text">{opt}</span>
             </li>
           ))}
+          {isEdit && (
+            <li
+              key="Edit"
+              className="option"
+              onClick={() => handleOptionClick("Edit")}
+            >
+              <span className="option-text">Edit</span>
+            </li>
+          )}
         </ul>
       )}
     </div>

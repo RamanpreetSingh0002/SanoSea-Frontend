@@ -6,8 +6,6 @@ import Table from "../../Table";
 import GpTbody from "./GpTbody";
 import AllBooking from "../../AllBooking";
 
-import "../Style/GeneralPhysician.css";
-
 const GPMain = () => {
   return (
     <main>

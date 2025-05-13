@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ImSpinner3 } from "react-icons/im";
 
 import UserTRow from "./UserTRow";
 import TBox from "./TBox";
-import { AuthContext } from "../context/AuthProvider";
 
-import { useApi, useUserForm } from "../hooks";
+import { useApi, useAuth, useUserForm } from "../hooks";
 import { useDebounce } from "../utils/helper";
 import UserPagination from "./User/JSX/UserPagination";
 
@@ -19,7 +18,7 @@ const UserTablePage = ({ header, addBtn, width, users, busy }) => {
 
   const { fetchUsers, fetchParams } = useApi(); // Use context to fetch users
   const { handleOpenUserForm } = useUserForm(); // Use context to open UserForm
-  const { authInfo } = useContext(AuthContext);
+  const { authInfo } = useAuth();
   const { profile } = authInfo;
 
   const location = useLocation();
@@ -101,62 +100,59 @@ const UserTablePage = ({ header, addBtn, width, users, busy }) => {
           className="sub-admin-box"
           // style={{ height: !busy && users && users?.length > 0 && "auto" }}
         >
-          <TBox heading={header} />
-          <table className="sub-admin-table">
-            <thead>
-              <tr>
-                <th>{header + "s"}</th>
-                <th>Email</th>
-                {isSubAdminPage && <th>Role</th>}
-                <th>State</th>
+          <TBox heading={header} onRefresh={fetchUsers} />
 
-                {isPatientPage && (
-                  <>
-                    <th>Status</th>
-                    <th>Report</th>
-                  </>
-                )}
-                <th colSpan="2"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {busy ? (
-                <tr style={{ borderBottom: "none" }}>
-                  <td colSpan="6" style={{ textAlign: "center" }}>
-                    <ImSpinner3 className="animate-spin" />
-                    <br />
-                    <div className="loading-text">
-                      Loading
-                      <span className="dot">.</span>
-                      <span className="dot">.</span>
-                      <span className="dot">.</span>
-                    </div>
-                  </td>
-                </tr>
-              ) : !users || users?.length === 0 ? (
-                <tr>
-                  <td colSpan="6" style={{ textAlign: "center" }}>
-                    <h6>No {header + "s"} Found</h6>
-                  </td>
-                </tr>
-              ) : (
-                users?.map((user, index) => (
-                  <UserTRow
-                    key={index}
-                    onOpen={() => handleOpen(user)}
-                    user={user}
-                    statusClass={user?.statusClass}
-                    statusLabel={user?.statusLabel}
-                    index={index}
-                    activeDropdownIndex={activeDropdownIndex}
-                    setActiveDropdownIndex={setActiveDropdownIndex}
-                  />
-                ))
-              )}
-            </tbody>
-          </table>
+          {busy ? (
+            <div style={{ textAlign: "center" }}>
+              <ImSpinner3 className="animate-spin" />
+              <br />
+              <div className="loading-text">
+                Loading
+                <span className="dot">.</span>
+                <span className="dot">.</span>
+                <span className="dot">.</span>
+              </div>
+            </div>
+          ) : !users || users?.length === 0 ? (
+            <h6 style={{ textAlign: "center", padding: "15px" }}>
+              No {header + "s"} Found
+            </h6>
+          ) : (
+            <>
+              <table className="sub-admin-table">
+                <thead>
+                  <tr>
+                    <th>{header + "s"}</th>
+                    <th>Email</th>
+                    {isSubAdminPage && <th>Role</th>}
+                    <th>State</th>
 
-          {!busy && users && users?.length > 0 && <UserPagination />}
+                    {isPatientPage && (
+                      <>
+                        {/* <th>Status</th> */}
+                        <th>Report</th>
+                      </>
+                    )}
+                    <th colSpan="2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users?.map((user, index) => (
+                    <UserTRow
+                      key={index}
+                      onOpen={() => handleOpen(user)}
+                      user={user}
+                      index={index}
+                      activeDropdownIndex={activeDropdownIndex}
+                      setActiveDropdownIndex={setActiveDropdownIndex}
+                    />
+                  ))}
+                </tbody>
+              </table>
+
+              <UserPagination />
+            </>
+          )}
         </div>
       </section>
     </main>
