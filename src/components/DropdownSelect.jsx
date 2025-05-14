@@ -16,6 +16,8 @@ const DropdownSelect = ({
   setActiveDropdownIndex,
   ...rest
 }) => {
+  console.log(rest);
+
   const [dropdownDirection, setDropdownDirection] = useState("down"); // Track dropdown position
   const [selected, setSelected] = useState(defaultValue); // Default empty, filled on load
   const dropdownRef = useRef(null); // Reference for dropdown

@@ -259,6 +259,7 @@ const UserForm = ({ user, isClosing, onClose, header, width }) => {
                       activeDropdownIndex={activeDropdownIndex}
                       setActiveDropdownIndex={setActiveDropdownIndex}
                       onChange={handleDropdownChange}
+                      style={{ overflow: "auto", height: "200px" }}
                     />
                   </div>
 
