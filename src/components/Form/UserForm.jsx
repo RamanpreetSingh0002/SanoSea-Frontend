@@ -234,32 +234,17 @@ const UserForm = ({ user, isClosing, onClose, header, width }) => {
                           : "Select Doctor Speciality"
                       }
                       options={[
-                        "Pediatrician",
                         "Cardiologist",
-                        "Dermatologist",
-                        "Neurologist",
                         "Orthopedic Surgeon",
                         "ENT Specialist (Otolaryngologist)",
                         "Psychiatrist",
-                        "Oncologist",
-                        "Gastroenterologist",
-                        "Endocrinologist",
-                        "Pulmonologist",
-                        "Hematologist",
-                        "Rheumatologist",
-                        "Radiologist",
-                        "Anesthesiologist",
                         "Surgeon (General)",
-                        "Plastic Surgeon",
-                        "Ophthalmologist",
-                        "Allergist / Immunologist",
                         "Infectious Disease Specialist",
                       ]}
                       index={1} // Unique index for tracking
                       activeDropdownIndex={activeDropdownIndex}
                       setActiveDropdownIndex={setActiveDropdownIndex}
                       onChange={handleDropdownChange}
-                      style={{ overflow: "auto", height: "200px" }}
                     />
                   </div>
 
