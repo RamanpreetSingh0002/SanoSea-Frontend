@@ -58,7 +58,7 @@ const ManagementMain = ({ onAuditOpen, onPortOpen }) => {
               busy={auditListLoading}
               users={auditManagers.map(user => ({
                 id: user?._id,
-                image: user?.profilePhoto || "/images/user.png",
+                image: user?.profilePhoto?.url || "/images/user.png",
                 name: user?.fullName,
               }))}
             />
@@ -71,7 +71,7 @@ const ManagementMain = ({ onAuditOpen, onPortOpen }) => {
               busy={portListLoading}
               users={portAgents.map(user => ({
                 id: user?._id,
-                image: user?.profilePhoto || "/images/user.png",
+                image: user?.profilePhoto?.url || "/images/user.png",
                 name: user?.fullName,
               }))}
             />

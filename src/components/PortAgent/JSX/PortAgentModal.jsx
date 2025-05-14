@@ -26,7 +26,7 @@ const PortAgentModal = ({ isPortClose, onClose }) => {
         busy={busy}
         users={users.map(user => ({
           id: user?._id,
-          image: user?.profilePhoto || "/images/user.png",
+          image: user?.profilePhoto?.url || "/images/user.png",
           name: user?.fullName,
         }))}
       />

@@ -54,6 +54,8 @@ const UserForm = ({ user, isClosing, onClose, header, width }) => {
 
   const location = useLocation();
   const path = location.pathname;
+  console.log(path);
+
   const isUserProfile = path.startsWith("/auth/user-profile/");
 
   const showDoctorFormFields =
@@ -127,6 +129,8 @@ const UserForm = ({ user, isClosing, onClose, header, width }) => {
     setTimeout(() => setUserInfo({ ...defaultUserInfo }), 400); // Reset form data
   };
 
+  console.log(userInfo?.roleName);
+
   const isSubAdmin = ["Coordinator", "Audit Manager"].includes(
     user?.roleId?.name || user?.role
   );
@@ -134,7 +138,7 @@ const UserForm = ({ user, isClosing, onClose, header, width }) => {
   // Reset form on close
   useEffect(() => {
     if (!isClosing) {
-      setUserInfo(user || defaultUserInfo);
+      setUserInfo(user || { ...defaultUserInfo, roleName: getRoleName() });
     }
   }, [isClosing, user]);
 
@@ -156,9 +160,9 @@ const UserForm = ({ user, isClosing, onClose, header, width }) => {
   useEffect(() => {
     setUserInfo(prev => ({
       ...prev,
-      roleName: getRoleName(), // Update role name dynamically
+      roleName: prev.roleName || getRoleName(), // Update role name dynamically
     }));
-  }, [path]); // Re-run effect whenever `path` changes
+  }, [isUserFormOpen, path]); // Re-run effect whenever `path` changes
 
   // Update user info when user is available
   useEffect(() => {

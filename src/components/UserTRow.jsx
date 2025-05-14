@@ -64,14 +64,14 @@ const UserTRow = ({
             </div>
           </td> */}
 
-          <td>
+          {/* <td>
             <div class="assigned-status-download-report">
               <a href="">
                 <img src="/images/icons-download.png" alt="download" />
                 <span>Download Report</span>
               </a>
             </div>
-          </td>
+          </td> */}
         </>
       )}
 

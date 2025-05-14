@@ -127,12 +127,12 @@ const UserTablePage = ({ header, addBtn, width, users, busy }) => {
                     {isSubAdminPage && <th>Role</th>}
                     <th>State</th>
 
-                    {isPatientPage && (
+                    {/* {isPatientPage && (
                       <>
-                        {/* <th>Status</th> */}
+                        { <th>Status</th> /}
                         <th>Report</th>
                       </>
-                    )}
+                    )} */}
                     <th colSpan="2"></th>
                   </tr>
                 </thead>
