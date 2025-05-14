@@ -14,7 +14,6 @@ import ChangePassword from "./components/Auth/JSX/ChangePassword.jsx";
 
 // * Dashboards
 import PatientDashboard from "./components/Patient/JSX/PatientDashboard.jsx";
-import GeneralPhysician from "./components/GeneralPhysician/JSX/GeneralPhysician.jsx";
 import PortAgentDashboard from "./components/PortAgent/JSX/PortAgentDashboard.jsx";
 
 // * Admin/SubAdmin Side Nav
