@@ -156,16 +156,12 @@ export const fetchCurrentBooking = async patientId => {
 
 export const fetchNewlyAssignedAppointments = async () => {
   const token = getToken();
-  const doctorId = "6818b6d439730375eb51ae11";
   try {
-    const { data } = await client.get(
-      "/appointment/newly-assigned/" + doctorId,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
+    const { data } = await client.get("/appointment/newly-assigned/", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
     return data;
   } catch (error) {
     return catchError(error);
@@ -174,10 +170,9 @@ export const fetchNewlyAssignedAppointments = async () => {
 
 export const fetchDoctorAppointmentsByMonth = async (month, year) => {
   const token = getToken();
-  const doctorId = "6818b6d439730375eb51ae11";
   try {
     const { data } = await client.get(
-      `/appointment/doctor-appointments-month/${doctorId}/${month}/${year}`,
+      `/appointment/doctor-appointments-month/${month}/${year}`,
       {
         headers: {
           Authorization: "Bearer " + token,

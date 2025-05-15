@@ -39,7 +39,7 @@ const AllBookings = () => {
     if (profile?.id)
       isDoctor
         ? fetchAppointmentsForUser(
-            "6818b6d439730375eb51ae11",
+            profile?.id,
             fetchParams.pageNo,
             fetchParams.limit,
             "",

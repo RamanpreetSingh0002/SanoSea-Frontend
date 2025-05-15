@@ -215,12 +215,12 @@ const BookAppointment = () => {
                     // defaultClass="default-value"
                     defaultValue="Select Doctor Speciality"
                     options={[
-                      "Emergency Medicine Specialist",
                       "Cardiologist",
-                      "Pulmonologist (Lung Specialist)",
-                      "Orthopedic Specialist (Lung Specialist)",
-                      "Neurologist",
-                      "Gastroenterologist",
+                      "Orthopedic Surgeon",
+                      "ENT Specialist (Otolaryngologist)",
+                      "Psychiatrist",
+                      "Surgeon (General)",
+                      "Infectious Disease Specialist",
                     ]}
                     index={1} // Unique index for tracking
                     activeDropdownIndex={activeDropdownIndex}

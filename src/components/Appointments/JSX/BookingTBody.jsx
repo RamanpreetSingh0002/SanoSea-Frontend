@@ -8,6 +8,7 @@ const BookingTBody = ({
   appointment,
   isPortAgent,
   isPatient,
+  isDoctor,
   showAddCab = false,
   showReason = false,
   showReport,
@@ -42,17 +43,19 @@ const BookingTBody = ({
         </td>
       )}
 
-      <td>
-        {appointment?.assignedDoctorId ? (
-          <ProfileCol
-            img={appointment?.assignedDoctorId?.profilePhoto?.url}
-            name={appointment?.assignedDoctorId?.fullName}
-            id={appointment?.assignedDoctorId?._id}
-          />
-        ) : (
-          <p className="doctor-patient-detail">No Doctor Assigned</p>
-        )}
-      </td>
+      {!isDoctor && (
+        <td>
+          {appointment?.assignedDoctorId ? (
+            <ProfileCol
+              img={appointment?.assignedDoctorId?.profilePhoto?.url}
+              name={appointment?.assignedDoctorId?.fullName}
+              id={appointment?.assignedDoctorId?._id}
+            />
+          ) : (
+            <p className="doctor-patient-detail">No Doctor Assigned</p>
+          )}
+        </td>
+      )}
 
       {!isPortAgent && (
         <td>

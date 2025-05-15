@@ -22,6 +22,7 @@ const BookingTable = ({
 
   const isPortAgent = profile?.role === "Port Agent";
   const isPatient = profile?.role === "Patient";
+  const isDoctor = profile?.role === "Doctor";
 
   return (
     <div style={{ position: "relative", height: height }}>
@@ -46,7 +47,7 @@ const BookingTable = ({
             <thead>
               <tr>
                 {!isPatient && <th>Patients</th>}
-                <th>Doctor Assigned</th>
+                {!isDoctor && <th>Doctor Assigned</th>}
                 {!isPortAgent && <th>Port Agent</th>}
                 {isPortAgent && <th>Coordinator</th>}
                 {showReason && <th>Reason</th>}
@@ -66,6 +67,7 @@ const BookingTable = ({
                   appointment={appointment}
                   isPatient={isPatient}
                   isPortAgent={isPortAgent}
+                  isDoctor={isDoctor}
                   showAddCab={showAddCab}
                   showReport={showReport}
                 />
